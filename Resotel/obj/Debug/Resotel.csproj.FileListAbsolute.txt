@@ -20,3 +20,11 @@ E:\Workspace\C#\resotel\Resotel\obj\Debug\Resotel.csproj.CoreCompileInputs.cache
 E:\Workspace\C#\resotel\Resotel\obj\Debug\Resotel.csproj.CopyComplete
 E:\Workspace\C#\resotel\Resotel\obj\Debug\Resotel.exe
 E:\Workspace\C#\resotel\Resotel\obj\Debug\Resotel.pdb
+E:\Workspace\C#\resotel\Resotel\bin\Debug\MaterialDesignColors.dll
+E:\Workspace\C#\resotel\Resotel\bin\Debug\MaterialDesignThemes.Wpf.dll
+E:\Workspace\C#\resotel\Resotel\bin\Debug\MaterialDesignColors.pdb
+E:\Workspace\C#\resotel\Resotel\bin\Debug\MaterialDesignThemes.Wpf.pdb
+E:\Workspace\C#\resotel\Resotel\bin\Debug\MaterialDesignThemes.Wpf.xml
+E:\Workspace\C#\resotel\Resotel\bin\Debug\fr\EntityFramework.resources.dll
+E:\Workspace\C#\resotel\Resotel\obj\Debug\Resotel_Content.g.cs
+E:\Workspace\C#\resotel\Resotel\obj\Debug\App.baml
