@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Entities.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bedroom">
+          <Key>
+            <PropertyRef Name="bedroom_id" />
+          </Key>
+          <Property Name="bedroom_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bedroom_floor" Type="int" Nullable="false" />
+          <Property Name="bedroom_number" Type="int" Nullable="false" />
+          <Property Name="bedroom_price" Type="float" Nullable="false" />
+          <Property Name="bedroom_status" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="booking_id" />
+          </Key>
+          <Property Name="booking_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="booking_start" Type="date" Nullable="false" />
+          <Property Name="booking_end" Type="date" Nullable="false" />
+          <Property Name="bedroom_id" Type="int" Nullable="false" />
+          <Property Name="invoice_reference" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_lastname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_addres" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="client_city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="client_postalCode" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="client_email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="client_phone" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="concerner">
+          <Key>
+            <PropertyRef Name="feature_id" />
+            <PropertyRef Name="booking_id" />
+          </Key>
+          <Property Name="feature_id" Type="int" Nullable="false" />
+          <Property Name="booking_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="effectuer">
+          <Key>
+            <PropertyRef Name="booking_id" />
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="booking_id" Type="int" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="feature">
+          <Key>
+            <PropertyRef Name="feature_id" />
+          </Key>
+          <Property Name="feature_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="feature_default" Type="bool" Nullable="false" />
+          <Property Name="feature_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="feature_price" Type="float" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="invoice_reference" />
+          </Key>
+          <Property Name="invoice_reference" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="invoice_date" Type="date" Nullable="false" />
+          <Property Name="invoice_tva" Type="float" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="posseder">
+          <Key>
+            <PropertyRef Name="feature_id" />
+            <PropertyRef Name="bedroom_id" />
+          </Key>
+          <Property Name="feature_id" Type="int" Nullable="false" />
+          <Property Name="bedroom_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="role_name" />
+          </Key>
+          <Property Name="role_name" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_identifiant" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="user_password" Type="longtext" Nullable="false" />
+          <Property Name="user_lastname" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="user_firstname" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <Association Name="booking_bedroom_FK">
+          <End Role="bedroom" Type="Self.bedroom" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bedroom">
+              <PropertyRef Name="bedroom_id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="bedroom_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="booking_invoice0_FK">
+          <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice">
+              <PropertyRef Name="invoice_reference" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="invoice_reference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Concerner_booking0_FK">
+          <End Role="booking" Type="Self.booking" Multiplicity="1" />
+          <End Role="concerner" Type="Self.concerner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="booking">
+              <PropertyRef Name="booking_id" />
+            </Principal>
+            <Dependent Role="concerner">
+              <PropertyRef Name="booking_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Concerner_feature_FK">
+          <End Role="feature" Type="Self.feature" Multiplicity="1" />
+          <End Role="concerner" Type="Self.concerner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="feature">
+              <PropertyRef Name="feature_id" />
+            </Principal>
+            <Dependent Role="concerner">
+              <PropertyRef Name="feature_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Effectuer_booking_FK">
+          <End Role="booking" Type="Self.booking" Multiplicity="1" />
+          <End Role="effectuer" Type="Self.effectuer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="booking">
+              <PropertyRef Name="booking_id" />
+            </Principal>
+            <Dependent Role="effectuer">
+              <PropertyRef Name="booking_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Effectuer_client0_FK">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="effectuer" Type="Self.effectuer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="effectuer">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="invoice_client_FK">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="invoice">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="POSSEDER_bedroom0_FK">
+          <End Role="bedroom" Type="Self.bedroom" Multiplicity="1" />
+          <End Role="posseder" Type="Self.posseder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bedroom">
+              <PropertyRef Name="bedroom_id" />
+            </Principal>
+            <Dependent Role="posseder">
+              <PropertyRef Name="bedroom_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="POSSEDER_feature_FK">
+          <End Role="feature" Type="Self.feature" Multiplicity="1" />
+          <End Role="posseder" Type="Self.posseder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="feature">
+              <PropertyRef Name="feature_id" />
+            </Principal>
+            <Dependent Role="posseder">
+              <PropertyRef Name="feature_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_role_FK">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="role_name" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="role_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesStoreContainer">
+          <EntitySet Name="bedroom" EntityType="Self.bedroom" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="booking" EntityType="Self.booking" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="client" EntityType="Self.client" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="concerner" EntityType="Self.concerner" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="effectuer" EntityType="Self.effectuer" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="feature" EntityType="Self.feature" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="invoice" EntityType="Self.invoice" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="posseder" EntityType="Self.posseder" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="resotel" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="resotel" store:Type="Tables" />
+          <AssociationSet Name="booking_bedroom_FK" Association="Self.booking_bedroom_FK">
+            <End Role="bedroom" EntitySet="bedroom" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="booking_invoice0_FK" Association="Self.booking_invoice0_FK">
+            <End Role="invoice" EntitySet="invoice" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="Concerner_booking0_FK" Association="Self.Concerner_booking0_FK">
+            <End Role="booking" EntitySet="booking" />
+            <End Role="concerner" EntitySet="concerner" />
+          </AssociationSet>
+          <AssociationSet Name="Concerner_feature_FK" Association="Self.Concerner_feature_FK">
+            <End Role="feature" EntitySet="feature" />
+            <End Role="concerner" EntitySet="concerner" />
+          </AssociationSet>
+          <AssociationSet Name="Effectuer_booking_FK" Association="Self.Effectuer_booking_FK">
+            <End Role="booking" EntitySet="booking" />
+            <End Role="effectuer" EntitySet="effectuer" />
+          </AssociationSet>
+          <AssociationSet Name="Effectuer_client0_FK" Association="Self.Effectuer_client0_FK">
+            <End Role="client" EntitySet="client" />
+            <End Role="effectuer" EntitySet="effectuer" />
+          </AssociationSet>
+          <AssociationSet Name="invoice_client_FK" Association="Self.invoice_client_FK">
+            <End Role="client" EntitySet="client" />
+            <End Role="invoice" EntitySet="invoice" />
+          </AssociationSet>
+          <AssociationSet Name="POSSEDER_bedroom0_FK" Association="Self.POSSEDER_bedroom0_FK">
+            <End Role="bedroom" EntitySet="bedroom" />
+            <End Role="posseder" EntitySet="posseder" />
+          </AssociationSet>
+          <AssociationSet Name="POSSEDER_feature_FK" Association="Self.POSSEDER_feature_FK">
+            <End Role="feature" EntitySet="feature" />
+            <End Role="posseder" EntitySet="posseder" />
+          </AssociationSet>
+          <AssociationSet Name="user_role_FK" Association="Self.user_role_FK">
+            <End Role="role" EntitySet="role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bedroom">
+          <Key>
+            <PropertyRef Name="bedroom_id" />
+          </Key>
+          <Property Name="bedroom_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bedroom_floor" Type="Int32" Nullable="false" />
+          <Property Name="bedroom_number" Type="Int32" Nullable="false" />
+          <Property Name="bedroom_price" Type="Single" Nullable="false" />
+          <Property Name="bedroom_status" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="booking" Relationship="Self.booking_bedroom_FK" FromRole="bedroom" ToRole="booking" />
+          <NavigationProperty Name="feature" Relationship="Self.posseder" FromRole="bedroom" ToRole="feature" />
+        </EntityType>
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="booking_id" />
+          </Key>
+          <Property Name="booking_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="booking_start" Type="DateTime" Nullable="false" />
+          <Property Name="booking_end" Type="DateTime" Nullable="false" />
+          <Property Name="bedroom_id" Type="Int32" Nullable="false" />
+          <Property Name="invoice_reference" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bedroom" Relationship="Self.booking_bedroom_FK" FromRole="booking" ToRole="bedroom" />
+          <NavigationProperty Name="invoice" Relationship="Self.booking_invoice0_FK" FromRole="booking" ToRole="invoice" />
+          <NavigationProperty Name="feature" Relationship="Self.concerner" FromRole="booking" ToRole="feature" />
+          <NavigationProperty Name="client" Relationship="Self.effectuer" FromRole="booking" ToRole="client" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_addres" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="invoice" Relationship="Self.invoice_client_FK" FromRole="client" ToRole="invoice" />
+          <NavigationProperty Name="booking" Relationship="Self.effectuer" FromRole="client" ToRole="booking" />
+        </EntityType>
+        <EntityType Name="feature">
+          <Key>
+            <PropertyRef Name="feature_id" />
+          </Key>
+          <Property Name="feature_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="feature_default" Type="Boolean" Nullable="false" />
+          <Property Name="feature_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="feature_price" Type="Single" />
+          <NavigationProperty Name="booking" Relationship="Self.concerner" FromRole="feature" ToRole="booking" />
+          <NavigationProperty Name="bedroom" Relationship="Self.posseder" FromRole="feature" ToRole="bedroom" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="invoice_reference" />
+          </Key>
+          <Property Name="invoice_reference" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="invoice_date" Type="DateTime" Nullable="false" />
+          <Property Name="invoice_tva" Type="Single" Nullable="false" />
+          <Property Name="client_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="booking" Relationship="Self.booking_invoice0_FK" FromRole="invoice" ToRole="booking" />
+          <NavigationProperty Name="client" Relationship="Self.invoice_client_FK" FromRole="invoice" ToRole="client" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="role_name" />
+          </Key>
+          <Property Name="role_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.user_role_FK" FromRole="role" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_identifiant" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_password" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_lastname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_firstname" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="role" Relationship="Self.user_role_FK" FromRole="user" ToRole="role" />
+        </EntityType>
+        <Association Name="booking_bedroom_FK">
+          <End Role="bedroom" Type="Self.bedroom" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bedroom">
+              <PropertyRef Name="bedroom_id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="bedroom_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="booking_invoice0_FK">
+          <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice">
+              <PropertyRef Name="invoice_reference" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="invoice_reference" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="invoice_client_FK">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="invoice">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_role_FK">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="role_name" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="role_name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="concerner">
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <End Role="feature" Type="Self.feature" Multiplicity="*" />
+        </Association>
+        <Association Name="effectuer">
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <End Role="client" Type="Self.client" Multiplicity="*" />
+        </Association>
+        <Association Name="posseder">
+          <End Role="bedroom" Type="Self.bedroom" Multiplicity="*" />
+          <End Role="feature" Type="Self.feature" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="resotelEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bedroom" EntityType="Self.bedroom" />
+          <EntitySet Name="booking" EntityType="Self.booking" />
+          <EntitySet Name="client" EntityType="Self.client" />
+          <EntitySet Name="feature" EntityType="Self.feature" />
+          <EntitySet Name="invoice" EntityType="Self.invoice" />
+          <EntitySet Name="role" EntityType="Self.role" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="booking_bedroom_FK" Association="Self.booking_bedroom_FK">
+            <End Role="bedroom" EntitySet="bedroom" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="booking_invoice0_FK" Association="Self.booking_invoice0_FK">
+            <End Role="invoice" EntitySet="invoice" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="invoice_client_FK" Association="Self.invoice_client_FK">
+            <End Role="client" EntitySet="client" />
+            <End Role="invoice" EntitySet="invoice" />
+          </AssociationSet>
+          <AssociationSet Name="user_role_FK" Association="Self.user_role_FK">
+            <End Role="role" EntitySet="role" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="concerner" Association="Self.concerner">
+            <End Role="booking" EntitySet="booking" />
+            <End Role="feature" EntitySet="feature" />
+          </AssociationSet>
+          <AssociationSet Name="effectuer" Association="Self.effectuer">
+            <End Role="booking" EntitySet="booking" />
+            <End Role="client" EntitySet="client" />
+          </AssociationSet>
+          <AssociationSet Name="posseder" Association="Self.posseder">
+            <End Role="bedroom" EntitySet="bedroom" />
+            <End Role="feature" EntitySet="feature" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EntitiesStoreContainer" CdmEntityContainer="resotelEntities">
+          <EntitySetMapping Name="bedroom">
+            <EntityTypeMapping TypeName="Entities.bedroom">
+              <MappingFragment StoreEntitySet="bedroom">
+                <ScalarProperty Name="bedroom_id" ColumnName="bedroom_id" />
+                <ScalarProperty Name="bedroom_floor" ColumnName="bedroom_floor" />
+                <ScalarProperty Name="bedroom_number" ColumnName="bedroom_number" />
+                <ScalarProperty Name="bedroom_price" ColumnName="bedroom_price" />
+                <ScalarProperty Name="bedroom_status" ColumnName="bedroom_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="booking">
+            <EntityTypeMapping TypeName="Entities.booking">
+              <MappingFragment StoreEntitySet="booking">
+                <ScalarProperty Name="booking_id" ColumnName="booking_id" />
+                <ScalarProperty Name="booking_start" ColumnName="booking_start" />
+                <ScalarProperty Name="booking_end" ColumnName="booking_end" />
+                <ScalarProperty Name="bedroom_id" ColumnName="bedroom_id" />
+                <ScalarProperty Name="invoice_reference" ColumnName="invoice_reference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="client">
+            <EntityTypeMapping TypeName="Entities.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="client_lastname" ColumnName="client_lastname" />
+                <ScalarProperty Name="client_firstname" ColumnName="client_firstname" />
+                <ScalarProperty Name="client_addres" ColumnName="client_addres" />
+                <ScalarProperty Name="client_city" ColumnName="client_city" />
+                <ScalarProperty Name="client_postalCode" ColumnName="client_postalCode" />
+                <ScalarProperty Name="client_email" ColumnName="client_email" />
+                <ScalarProperty Name="client_phone" ColumnName="client_phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feature">
+            <EntityTypeMapping TypeName="Entities.feature">
+              <MappingFragment StoreEntitySet="feature">
+                <ScalarProperty Name="feature_id" ColumnName="feature_id" />
+                <ScalarProperty Name="feature_default" ColumnName="feature_default" />
+                <ScalarProperty Name="feature_name" ColumnName="feature_name" />
+                <ScalarProperty Name="feature_price" ColumnName="feature_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice">
+            <EntityTypeMapping TypeName="Entities.invoice">
+              <MappingFragment StoreEntitySet="invoice">
+                <ScalarProperty Name="invoice_reference" ColumnName="invoice_reference" />
+                <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
+                <ScalarProperty Name="invoice_tva" ColumnName="invoice_tva" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="Entities.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="Entities.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_identifiant" ColumnName="user_identifiant" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="user_lastname" ColumnName="user_lastname" />
+                <ScalarProperty Name="user_firstname" ColumnName="user_firstname" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="concerner" TypeName="Entities.concerner" StoreEntitySet="concerner">
+            <EndProperty Name="booking">
+              <ScalarProperty Name="booking_id" ColumnName="booking_id" />
+            </EndProperty>
+            <EndProperty Name="feature">
+              <ScalarProperty Name="feature_id" ColumnName="feature_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="effectuer" TypeName="Entities.effectuer" StoreEntitySet="effectuer">
+            <EndProperty Name="booking">
+              <ScalarProperty Name="booking_id" ColumnName="booking_id" />
+            </EndProperty>
+            <EndProperty Name="client">
+              <ScalarProperty Name="client_id" ColumnName="client_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="posseder" TypeName="Entities.posseder" StoreEntitySet="posseder">
+            <EndProperty Name="bedroom">
+              <ScalarProperty Name="bedroom_id" ColumnName="bedroom_id" />
+            </EndProperty>
+            <EndProperty Name="feature">
+              <ScalarProperty Name="feature_id" ColumnName="feature_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

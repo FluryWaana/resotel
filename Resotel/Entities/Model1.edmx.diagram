@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="699dc750947f43daa789ab7f034cb42e" Name="Diagram1">
+        <EntityTypeShape EntityType="Entities.bedroom" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.booking" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.client" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.feature" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.invoice" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.role" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entities.user" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="Entities.booking_bedroom_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Entities.booking_invoice0_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Entities.invoice_client_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Entities.user_role_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Entities.concerner" ManuallyRouted="false" />
+        <AssociationConnector Association="Entities.effectuer" ManuallyRouted="false" />
+        <AssociationConnector Association="Entities.posseder" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
