@@ -10,8 +10,6 @@ namespace Resotel.Views
             InitializeComponent();
 
             DataContext = new MainViewModel();
-
-            this.btnMoveWindow.
         }
     }
 }

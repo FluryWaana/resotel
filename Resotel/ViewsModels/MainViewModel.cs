@@ -57,7 +57,7 @@ namespace Resotel.ViewsModels
 
         private void teeeest( object obj, MouseEventArgs e  )
         {
-            temp.DragMove();
+    
         }
 
         /**
