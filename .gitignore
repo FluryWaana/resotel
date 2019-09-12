@@ -1,6 +1,3 @@
-ResotelApplication/obj
-ResotelApplication/obj/*
-ResotelApplication/.vs
-ResotelApplication/.vs/*
-ResotelApplication/bin
-ResotelApplication/bin/*
+ResotelApplication/obj/
+ResotelApplication/.vs/
+ResotelApplication/bin/
