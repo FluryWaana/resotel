@@ -40,6 +40,28 @@ namespace Resotel.ViewsModels
         }
 
         /**
+         * Commande pour aggrandir la fenêtre de l'application
+         */
+        private ICommand enlargeApp;
+        public ICommand EnlargeApp
+        {
+            get
+            {
+                if (enlargeApp == null)
+                {
+                    enlargeApp = new RelayCommand((window) =>
+                    {
+                        if (window != null)
+                        {
+                            ((Window)window).WindowState = WindowState.Maximized;
+                        }
+                    });
+                }
+                return enlargeApp;
+            }
+        }
+
+        /**
          * Commande pour fermer l'application
          */
         private ICommand closeApp;

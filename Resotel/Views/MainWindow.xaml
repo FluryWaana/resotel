@@ -95,12 +95,14 @@
                     </MenuItem.Header>
                 </MenuItem>
             </Menu>
-            <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent">
-                <fa:FontAwesomeIcon SolidIcon="WindowMinimize" FontSize="10" />
-            </Button>
-            <Button Grid.Column="2" Background="Transparent" BorderBrush="Transparent"
+            <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent"
                     Command="{Binding ReduceApp, Mode=OneWay}" 
-                    CommandParameter="{Binding ElementName=Window}" >
+                    CommandParameter="{Binding ElementName=Window}">
+                <fa:FontAwesomeIcon SolidIcon="WindowMinimize" FontSize="10" />
+            </Button> 
+            <Button Grid.Column="2" Background="Transparent" BorderBrush="Transparent"
+                    Command="{Binding EnlargeApp, Mode=OneWay}" 
+                    CommandParameter="{Binding ElementName=Window}">
                 <fa:FontAwesomeIcon SolidIcon="WindowMaximize" FontSize="10" />
             </Button> 
             <Button Grid.Column="3" Background="Transparent" BorderBrush="Transparent" 
