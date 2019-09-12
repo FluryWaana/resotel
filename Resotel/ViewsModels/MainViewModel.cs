@@ -1,21 +1,14 @@
-﻿using Resotel.Entities;
-using Resotel.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Resotel.Shared;
+using Resotel.Views;
 using System.Windows;
 using System.Windows.Input;
+using Meziantou.WpfFontAwesome;
 
 namespace Resotel.ViewsModels
 {
-    public class MainViewModel
+    public class MainViewModel : ViewModelBase
     {
-        public MainViewModel()
-        {
-
-        }
+        public MainViewModel() { }
 
         /**
          * Commande pour réduire la fenêtre de l'application
@@ -31,12 +24,40 @@ namespace Resotel.ViewsModels
                     {
                         if (window != null)
                         {
-                            ((Window)window).WindowState = WindowState.Minimized;
+                            ((MainWindow)window ).WindowState = WindowState.Minimized;
                         }
                     });
                 }
                 return reduceApp;
             }
+        }
+
+        /**
+         * Commande pour réduire la fenêtre de l'application
+         */
+        private ICommand moveApp;
+        public ICommand MoveApp
+        {
+            get
+            {
+                if (moveApp == null)
+                {
+                    moveApp = new RelayCommand((window) =>
+                    {
+                        if (window != null)
+                        {
+                            MainWindow temp = (MainWindow)window;
+                            temp.btnMoveWindow.PreviewMouseDown += teeeest;
+                        }
+                    });
+                }
+                return reduceApp;
+            }
+        }
+
+        private void teeeest( object obj, MouseEventArgs e  )
+        {
+            temp.DragMove();
         }
 
         /**
@@ -53,7 +74,17 @@ namespace Resotel.ViewsModels
                     {
                         if (window != null)
                         {
-                            ((Window)window).WindowState = WindowState.Maximized;
+                            MainWindow temp = (MainWindow)window;
+                            if ( temp.WindowState != WindowState.Maximized )
+                            {
+                                temp.WindowState        = WindowState.Maximized;
+                                temp.sizeIcon.SolidIcon = FontAwesomeSolidIcon.WindowRestore;
+                            }
+                            else
+                            {
+                                temp.WindowState        = WindowState.Normal;
+                                temp.sizeIcon.SolidIcon = FontAwesomeSolidIcon.WindowMaximize;
+                            }
                         }
                     });
                 }
@@ -75,7 +106,7 @@ namespace Resotel.ViewsModels
                     {
                         if ( window != null )
                         {
-                            ((Window) window).Close();
+                            ((MainWindow)window).Close();
                         }
                     });
                 }

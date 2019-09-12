@@ -1,5 +1,6 @@
-.vs
 /Resotel/bin
 /Resotel/obj
 /Resotel/.vs
-obj
+/Resotel/bin/*
+/Resotel/obj/*
+/Resotel/.vs/*
