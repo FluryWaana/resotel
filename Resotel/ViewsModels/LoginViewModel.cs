@@ -1,6 +1,6 @@
 ﻿namespace Resotel.ViewsModels
 {
-    class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
     }
 }

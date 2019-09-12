@@ -450,7 +450,7 @@
           <End Role="bedroom" Type="Self.bedroom" Multiplicity="*" />
           <End Role="feature" Type="Self.feature" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="resotelEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="bedroom" EntityType="Self.bedroom" />
           <EntitySet Name="booking" EntityType="Self.booking" />
           <EntitySet Name="client" EntityType="Self.client" />
@@ -497,7 +497,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="resotelModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="resotelModelStoreContainer" CdmEntityContainer="resotelEntities">
           <EntitySetMapping Name="bedroom">
             <EntityTypeMapping TypeName="resotelModel.bedroom">
               <MappingFragment StoreEntitySet="bedroom">

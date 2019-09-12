@@ -13,10 +13,10 @@ namespace Resotel.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Entities : DbContext
+    public partial class resotelEntities : DbContext
     {
-        public Entities()
-            : base("name=Entities")
+        public resotelEntities()
+            : base("name=resotelEntities")
         {
         }
     

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Resotel.ViewsModels;
+using System.Windows;
 
 namespace Resotel.Views
 {
@@ -7,6 +8,8 @@ namespace Resotel.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainViewModel();
         }
     }
 }
