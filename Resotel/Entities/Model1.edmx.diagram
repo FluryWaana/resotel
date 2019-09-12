@@ -4,21 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="699dc750947f43daa789ab7f034cb42e" Name="Diagram1">
-        <EntityTypeShape EntityType="Entities.bedroom" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.booking" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.client" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.feature" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.invoice" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.role" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Entities.user" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
-        <AssociationConnector Association="Entities.booking_bedroom_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Entities.booking_invoice0_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Entities.invoice_client_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Entities.user_role_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="Entities.concerner" ManuallyRouted="false" />
-        <AssociationConnector Association="Entities.effectuer" ManuallyRouted="false" />
-        <AssociationConnector Association="Entities.posseder" ManuallyRouted="false" />
+      <Diagram DiagramId="64553a3df1d44bacbc2e5a6e6be20a2b" Name="Diagram1" ZoomLevel="109">
+        <EntityTypeShape EntityType="resotelModel.bedroom" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.booking" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.client" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.concerner" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.feature" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.invoice" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.role" Width="1.5" PointX="9.875" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.user" Width="1.5" PointX="12.125" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="resotelModel.booking_bedroom_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.booking_invoice0_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.Concerner_booking0_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.invoice_client_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.Concerner_feature_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.user_role_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.effectuer" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.posseder" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

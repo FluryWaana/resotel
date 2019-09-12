@@ -13,10 +13,10 @@ namespace Resotel.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class resotelEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public resotelEntities()
-            : base("name=resotelEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -28,6 +28,7 @@ namespace Resotel.Entities
         public virtual DbSet<bedroom> bedroom { get; set; }
         public virtual DbSet<booking> booking { get; set; }
         public virtual DbSet<client> client { get; set; }
+        public virtual DbSet<concerner> concerner { get; set; }
         public virtual DbSet<feature> feature { get; set; }
         public virtual DbSet<invoice> invoice { get; set; }
         public virtual DbSet<role> role { get; set; }

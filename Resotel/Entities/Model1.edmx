@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Entities.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="resotelModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bedroom">
           <Key>
             <PropertyRef Name="bedroom_id" />
@@ -45,6 +45,8 @@
           </Key>
           <Property Name="feature_id" Type="int" Nullable="false" />
           <Property Name="booking_id" Type="int" Nullable="false" />
+          <Property Name="fearture_date_start" Type="date" />
+          <Property Name="fearture_date_end" Type="date" />
         </EntityType>
         <EntityType Name="effectuer">
           <Key>
@@ -217,7 +219,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="EntitiesStoreContainer">
+        <EntityContainer Name="resotelModelStoreContainer">
           <EntitySet Name="bedroom" EntityType="Self.bedroom" Schema="resotel" store:Type="Tables" />
           <EntitySet Name="booking" EntityType="Self.booking" Schema="resotel" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="resotel" store:Type="Tables" />
@@ -273,7 +275,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="resotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="bedroom">
           <Key>
             <PropertyRef Name="bedroom_id" />
@@ -297,7 +299,7 @@
           <Property Name="invoice_reference" Type="Int32" Nullable="false" />
           <NavigationProperty Name="bedroom" Relationship="Self.booking_bedroom_FK" FromRole="booking" ToRole="bedroom" />
           <NavigationProperty Name="invoice" Relationship="Self.booking_invoice0_FK" FromRole="booking" ToRole="invoice" />
-          <NavigationProperty Name="feature" Relationship="Self.concerner" FromRole="booking" ToRole="feature" />
+          <NavigationProperty Name="concerner" Relationship="Self.Concerner_booking0_FK" FromRole="booking" ToRole="concerner" />
           <NavigationProperty Name="client" Relationship="Self.effectuer" FromRole="booking" ToRole="client" />
         </EntityType>
         <EntityType Name="client">
@@ -315,6 +317,18 @@
           <NavigationProperty Name="invoice" Relationship="Self.invoice_client_FK" FromRole="client" ToRole="invoice" />
           <NavigationProperty Name="booking" Relationship="Self.effectuer" FromRole="client" ToRole="booking" />
         </EntityType>
+        <EntityType Name="concerner">
+          <Key>
+            <PropertyRef Name="feature_id" />
+            <PropertyRef Name="booking_id" />
+          </Key>
+          <Property Name="feature_id" Type="Int32" Nullable="false" />
+          <Property Name="booking_id" Type="Int32" Nullable="false" />
+          <Property Name="fearture_date_start" Type="DateTime" />
+          <Property Name="fearture_date_end" Type="DateTime" />
+          <NavigationProperty Name="booking" Relationship="Self.Concerner_booking0_FK" FromRole="concerner" ToRole="booking" />
+          <NavigationProperty Name="feature" Relationship="Self.Concerner_feature_FK" FromRole="concerner" ToRole="feature" />
+        </EntityType>
         <EntityType Name="feature">
           <Key>
             <PropertyRef Name="feature_id" />
@@ -323,7 +337,7 @@
           <Property Name="feature_default" Type="Boolean" Nullable="false" />
           <Property Name="feature_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="feature_price" Type="Single" />
-          <NavigationProperty Name="booking" Relationship="Self.concerner" FromRole="feature" ToRole="booking" />
+          <NavigationProperty Name="concerner" Relationship="Self.Concerner_feature_FK" FromRole="feature" ToRole="concerner" />
           <NavigationProperty Name="bedroom" Relationship="Self.posseder" FromRole="feature" ToRole="bedroom" />
         </EntityType>
         <EntityType Name="invoice">
@@ -380,6 +394,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Concerner_booking0_FK">
+          <End Role="booking" Type="Self.booking" Multiplicity="1" />
+          <End Role="concerner" Type="Self.concerner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="booking">
+              <PropertyRef Name="booking_id" />
+            </Principal>
+            <Dependent Role="concerner">
+              <PropertyRef Name="booking_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="invoice_client_FK">
           <End Role="client" Type="Self.client" Multiplicity="1" />
           <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
@@ -389,6 +415,18 @@
             </Principal>
             <Dependent Role="invoice">
               <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Concerner_feature_FK">
+          <End Role="feature" Type="Self.feature" Multiplicity="1" />
+          <End Role="concerner" Type="Self.concerner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="feature">
+              <PropertyRef Name="feature_id" />
+            </Principal>
+            <Dependent Role="concerner">
+              <PropertyRef Name="feature_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -404,10 +442,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="concerner">
-          <End Role="booking" Type="Self.booking" Multiplicity="*" />
-          <End Role="feature" Type="Self.feature" Multiplicity="*" />
-        </Association>
         <Association Name="effectuer">
           <End Role="booking" Type="Self.booking" Multiplicity="*" />
           <End Role="client" Type="Self.client" Multiplicity="*" />
@@ -416,10 +450,11 @@
           <End Role="bedroom" Type="Self.bedroom" Multiplicity="*" />
           <End Role="feature" Type="Self.feature" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="resotelEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="bedroom" EntityType="Self.bedroom" />
           <EntitySet Name="booking" EntityType="Self.booking" />
           <EntitySet Name="client" EntityType="Self.client" />
+          <EntitySet Name="concerner" EntityType="Self.concerner" />
           <EntitySet Name="feature" EntityType="Self.feature" />
           <EntitySet Name="invoice" EntityType="Self.invoice" />
           <EntitySet Name="role" EntityType="Self.role" />
@@ -432,17 +467,21 @@
             <End Role="invoice" EntitySet="invoice" />
             <End Role="booking" EntitySet="booking" />
           </AssociationSet>
+          <AssociationSet Name="Concerner_booking0_FK" Association="Self.Concerner_booking0_FK">
+            <End Role="booking" EntitySet="booking" />
+            <End Role="concerner" EntitySet="concerner" />
+          </AssociationSet>
           <AssociationSet Name="invoice_client_FK" Association="Self.invoice_client_FK">
             <End Role="client" EntitySet="client" />
             <End Role="invoice" EntitySet="invoice" />
           </AssociationSet>
+          <AssociationSet Name="Concerner_feature_FK" Association="Self.Concerner_feature_FK">
+            <End Role="feature" EntitySet="feature" />
+            <End Role="concerner" EntitySet="concerner" />
+          </AssociationSet>
           <AssociationSet Name="user_role_FK" Association="Self.user_role_FK">
             <End Role="role" EntitySet="role" />
             <End Role="user" EntitySet="user" />
-          </AssociationSet>
-          <AssociationSet Name="concerner" Association="Self.concerner">
-            <End Role="booking" EntitySet="booking" />
-            <End Role="feature" EntitySet="feature" />
           </AssociationSet>
           <AssociationSet Name="effectuer" Association="Self.effectuer">
             <End Role="booking" EntitySet="booking" />
@@ -458,9 +497,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="EntitiesStoreContainer" CdmEntityContainer="resotelEntities">
+        <EntityContainerMapping StorageEntityContainer="resotelModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="bedroom">
-            <EntityTypeMapping TypeName="Entities.bedroom">
+            <EntityTypeMapping TypeName="resotelModel.bedroom">
               <MappingFragment StoreEntitySet="bedroom">
                 <ScalarProperty Name="bedroom_id" ColumnName="bedroom_id" />
                 <ScalarProperty Name="bedroom_floor" ColumnName="bedroom_floor" />
@@ -471,7 +510,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="booking">
-            <EntityTypeMapping TypeName="Entities.booking">
+            <EntityTypeMapping TypeName="resotelModel.booking">
               <MappingFragment StoreEntitySet="booking">
                 <ScalarProperty Name="booking_id" ColumnName="booking_id" />
                 <ScalarProperty Name="booking_start" ColumnName="booking_start" />
@@ -482,7 +521,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="client">
-            <EntityTypeMapping TypeName="Entities.client">
+            <EntityTypeMapping TypeName="resotelModel.client">
               <MappingFragment StoreEntitySet="client">
                 <ScalarProperty Name="client_id" ColumnName="client_id" />
                 <ScalarProperty Name="client_lastname" ColumnName="client_lastname" />
@@ -495,8 +534,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="concerner">
+            <EntityTypeMapping TypeName="resotelModel.concerner">
+              <MappingFragment StoreEntitySet="concerner">
+                <ScalarProperty Name="feature_id" ColumnName="feature_id" />
+                <ScalarProperty Name="booking_id" ColumnName="booking_id" />
+                <ScalarProperty Name="fearture_date_start" ColumnName="fearture_date_start" />
+                <ScalarProperty Name="fearture_date_end" ColumnName="fearture_date_end" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="feature">
-            <EntityTypeMapping TypeName="Entities.feature">
+            <EntityTypeMapping TypeName="resotelModel.feature">
               <MappingFragment StoreEntitySet="feature">
                 <ScalarProperty Name="feature_id" ColumnName="feature_id" />
                 <ScalarProperty Name="feature_default" ColumnName="feature_default" />
@@ -506,7 +555,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="invoice">
-            <EntityTypeMapping TypeName="Entities.invoice">
+            <EntityTypeMapping TypeName="resotelModel.invoice">
               <MappingFragment StoreEntitySet="invoice">
                 <ScalarProperty Name="invoice_reference" ColumnName="invoice_reference" />
                 <ScalarProperty Name="invoice_date" ColumnName="invoice_date" />
@@ -516,14 +565,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="role">
-            <EntityTypeMapping TypeName="Entities.role">
+            <EntityTypeMapping TypeName="resotelModel.role">
               <MappingFragment StoreEntitySet="role">
                 <ScalarProperty Name="role_name" ColumnName="role_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="user">
-            <EntityTypeMapping TypeName="Entities.user">
+            <EntityTypeMapping TypeName="resotelModel.user">
               <MappingFragment StoreEntitySet="user">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="user_identifiant" ColumnName="user_identifiant" />
@@ -534,15 +583,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="concerner" TypeName="Entities.concerner" StoreEntitySet="concerner">
-            <EndProperty Name="booking">
-              <ScalarProperty Name="booking_id" ColumnName="booking_id" />
-            </EndProperty>
-            <EndProperty Name="feature">
-              <ScalarProperty Name="feature_id" ColumnName="feature_id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="effectuer" TypeName="Entities.effectuer" StoreEntitySet="effectuer">
+          <AssociationSetMapping Name="effectuer" TypeName="resotelModel.effectuer" StoreEntitySet="effectuer">
             <EndProperty Name="booking">
               <ScalarProperty Name="booking_id" ColumnName="booking_id" />
             </EndProperty>
@@ -550,7 +591,7 @@
               <ScalarProperty Name="client_id" ColumnName="client_id" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="posseder" TypeName="Entities.posseder" StoreEntitySet="posseder">
+          <AssociationSetMapping Name="posseder" TypeName="resotelModel.posseder" StoreEntitySet="posseder">
             <EndProperty Name="bedroom">
               <ScalarProperty Name="bedroom_id" ColumnName="bedroom_id" />
             </EndProperty>

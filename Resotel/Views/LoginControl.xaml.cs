@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Resotel
+namespace Resotel.Views
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour LoginControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginControl : UserControl
     {
-        public MainWindow()
+        public LoginControl()
         {
             InitializeComponent();
         }

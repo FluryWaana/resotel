@@ -17,7 +17,7 @@ namespace Resotel.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public booking()
         {
-            this.feature = new HashSet<feature>();
+            this.concerner = new HashSet<concerner>();
             this.client = new HashSet<client>();
         }
     
@@ -30,7 +30,7 @@ namespace Resotel.Entities
         public virtual bedroom bedroom { get; set; }
         public virtual invoice invoice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<feature> feature { get; set; }
+        public virtual ICollection<concerner> concerner { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<client> client { get; set; }
     }
