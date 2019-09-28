@@ -1,14 +1,17 @@
-﻿using Resotel.Shared;
+﻿using Meziantou.WpfFontAwesome;
+using Resotel.Shared;
 using Resotel.Views;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
-using Meziantou.WpfFontAwesome;
 
 namespace Resotel.ViewsModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel() { }
+        public MainViewModel()
+        {
+        }
 
         /**
          * Commande pour réduire la fenêtre de l'application
@@ -30,34 +33,6 @@ namespace Resotel.ViewsModels
                 }
                 return reduceApp;
             }
-        }
-
-        /**
-         * Commande pour réduire la fenêtre de l'application
-         */
-        private ICommand moveApp;
-        public ICommand MoveApp
-        {
-            get
-            {
-                if (moveApp == null)
-                {
-                    moveApp = new RelayCommand((window) =>
-                    {
-                        if (window != null)
-                        {
-                            MainWindow temp = (MainWindow)window;
-                            temp.btnMoveWindow.PreviewMouseDown += teeeest;
-                        }
-                    });
-                }
-                return reduceApp;
-            }
-        }
-
-        private void teeeest( object obj, MouseEventArgs e  )
-        {
-    
         }
 
         /**

@@ -1,5 +1,6 @@
 ﻿using Resotel.ViewsModels;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Resotel.Views
 {
@@ -8,8 +9,12 @@ namespace Resotel.Views
         public MainWindow()
         {
             InitializeComponent();
-
             DataContext = new MainViewModel();
+        }
+
+        private void BtnDragMove(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

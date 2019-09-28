@@ -14,7 +14,7 @@
         WindowStartupLocation="CenterScreen"
         Height="600"
         Width="1200" 
-        MinWidth="750"
+        MinWidth="845"
         MinHeight="450"
         x:Name="Window">
 
@@ -98,7 +98,11 @@
                 </MenuItem>
             </Menu>
 
-            <Button Grid.Column="1" HorizontalAlignment="Stretch" x:Name="btnMoveWindow" />
+            <Button Grid.Column="1" HorizontalAlignment="Stretch" x:Name="btnMoveWindow"
+                    PreviewMouseDown="BtnDragMove" 
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Arrow"/>
 
             <Button Grid.Column="2" Background="Transparent" BorderBrush="Transparent"
                     Command="{Binding ReduceApp, Mode=OneWay}" 
