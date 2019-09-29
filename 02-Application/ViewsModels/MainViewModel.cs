@@ -1,6 +1,7 @@
 ﻿using Meziantou.WpfFontAwesome;
 using Resotel.Shared;
 using Resotel.Views;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,8 +10,54 @@ namespace Resotel.ViewsModels
 {
     public class MainViewModel : ViewModelBase
     {
+        /**
+         * Vue Modèle qui gère l'authentification
+         */
+        public AuthenticationViewModel AuthVM { get; set; }
+
         public MainViewModel()
         {
+            AuthVM = new AuthenticationViewModel();
+        }
+
+        /**
+         * Methode pour connecter un utilisateur
+         */
+        private ICommand login;
+        public ICommand Login
+        {
+            get
+            {
+                if( login == null )
+                {
+                    login = new RelayCommand((passwordBox) =>
+                    {
+                        PasswordBox pb  = (PasswordBox)passwordBox;
+                        string password = BCrypt.Net.BCrypt.HashPassword( pb.Password );
+                        AuthVM.Login( password );
+                    });
+                }
+                return login;
+            }
+        }
+
+        /**
+         *  Methode pour déconnecter un utilisateur
+         */
+        private ICommand logout;
+        public ICommand Logout
+        {
+            get
+            {
+                if (logout == null)
+                {
+                    logout = new RelayCommand((window) =>
+                    {
+                        AuthVM.Logout();
+                    });
+                }
+                return logout;
+            }
         }
 
         /**
