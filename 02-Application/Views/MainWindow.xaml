@@ -1,9 +1,10 @@
 ﻿<Window
+        x:Class="Resotel.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
-        xmlns:Views="clr-namespace:Resotel.Views" x:Class="Resotel.Views.MainWindow"
+        xmlns:Views="clr-namespace:Resotel.Views" 
+        xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -18,15 +19,47 @@
         MinWidth="845"
         MinHeight="450"
         x:Name="Window">
-
+    
+    <!-- Permet de supprimer le Titlebar par défaut -->
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0" CornerRadius="0" CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
 
+    <!-- Déclaration du DataContext dans le .XAML au lieu du .CS (cela ne change rien) -->
+    <Window.DataContext>
+        <ViewsModels:MainViewModel/>
+    </Window.DataContext>
+
+    <!-- Déclaration des Ressources de la fenêtre -->
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+
+        <!-- Template de la page d'authentification -->
+        <DataTemplate DataType="{x:Type ViewsModels:LoginViewModel}" >
+            <Views:LoginControl/>
+        </DataTemplate>
+
+        <!-- Template de la page dashboard -->
+        <DataTemplate DataType="{x:Type ViewsModels:DashboardViewModel}">
+            <Views:DashboardControl/>
+        </DataTemplate>
+
+        <!-- Template de la page de client -->
+        <DataTemplate DataType="{x:Type ViewsModels:ClientViewModel}">
+            <Views:ClientControl/>
+        </DataTemplate>
+
+        <!-- Template de la page des chambres -->
+        <DataTemplate DataType="{x:Type ViewsModels:BedroomViewModel}">
+            <Views:BedroomControl/>
+        </DataTemplate>
+
+        <!-- Template de la page de réservation -->
+        <DataTemplate DataType="{x:Type ViewsModels:BookingViewModel}">
+            <Views:BookingControl/>
+        </DataTemplate>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -61,7 +94,7 @@
                     </Style>
                 </Menu.Resources>
 
-                <MenuItem>
+                <MenuItem Command="{Binding BtnAccueil}">
                     <MenuItem.Header>
                         <StackPanel>
                             <fa:FontAwesomeIcon SolidIcon="Home"/>
@@ -69,7 +102,7 @@
                         </StackPanel>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem Command="{Binding BtnClient}">
                     <MenuItem.Header>
                         <StackPanel >
                             <fa:FontAwesomeIcon SolidIcon="Users"/>
@@ -77,7 +110,7 @@
                         </StackPanel>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem Command="{Binding BtnBedroom}">
                     <MenuItem.Header>
                         <StackPanel>
                             <fa:FontAwesomeIcon SolidIcon="Bed"/>
@@ -85,7 +118,7 @@
                         </StackPanel>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem Command="{Binding BtnBooking}">
                     <MenuItem.Header>
                         <StackPanel>
                             <fa:FontAwesomeIcon SolidIcon="Book"/>
@@ -93,7 +126,7 @@
                         </StackPanel>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Command="{Binding Logout}">
+                <MenuItem Command="{Binding BtnLogout}">
                     <MenuItem.Header>
                         <StackPanel>
                             <fa:FontAwesomeIcon SolidIcon="SignOutAlt"/>
@@ -127,10 +160,9 @@
         </Grid>
 
         <Rectangle Grid.Row="1" Fill="WhiteSmoke" />
-
-        <Views:LoginControl Grid.Row="2" VerticalAlignment="Stretch"/>
-
+        
+        <!-- Affiche ma vue qui est dans SelectedViewModel -->
+        <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}" Grid.Row="2" VerticalAlignment="Stretch" />
+        
     </Grid>
-
-
 </Window>

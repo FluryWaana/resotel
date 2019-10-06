@@ -76,6 +76,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -95,49 +96,73 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\bedroom.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\booking.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\client.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\concerner.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\feature.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\invoice.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Model1.Context.cs">
+    <Compile Include="Entities\resotelEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>resotelEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Model1.cs">
+    <Compile Include="Entities\resotelEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Model1.Designer.cs">
+    <Compile Include="Entities\resotelEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>resotelEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entities\role.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\user.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\BedroomRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Shared\LogSystem.cs" />
     <Compile Include="Shared\RelayCommand.cs" />
+    <Compile Include="Shared\TypeLog.cs" />
     <Compile Include="ViewsModels\AuthenticationViewModel.cs" />
+    <Compile Include="ViewsModels\BedroomViewModel.cs" />
+    <Compile Include="ViewsModels\BookingViewModel.cs" />
+    <Compile Include="ViewsModels\ClientViewModel.cs" />
+    <Compile Include="ViewsModels\DashboardViewModel.cs" />
     <Compile Include="ViewsModels\LoginViewModel.cs" />
     <Compile Include="ViewsModels\MainViewModel.cs" />
     <Compile Include="ViewsModels\ViewModelBase.cs" />
+    <Compile Include="Views\BookingControl.xaml.cs">
+      <DependentUpon>BookingControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\BedroomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClientControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +175,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\BedroomControl.xaml.cs">
+      <DependentUpon>BedroomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClientControl.xaml.cs">
+      <DependentUpon>ClientControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DashboardControl.xaml.cs">
+      <DependentUpon>DashboardControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginControl.xaml.cs">
       <DependentUpon>LoginControl.xaml</DependentUpon>
     </Compile>
@@ -157,6 +191,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\BookingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -176,12 +214,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Entities\Model1.edmx">
+    <EntityDeploy Include="Entities\resotelEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>resotelEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Entities\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="Entities\resotelEntities.edmx.diagram">
+      <DependentUpon>resotelEntities.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -196,15 +234,18 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Entities\Model1.Context.tt">
+    <Folder Include="Logs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\resotelEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>resotelEntities.edmx</DependentUpon>
+      <LastGenOutput>resotelEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Entities\Model1.tt">
+    <Content Include="Entities\resotelEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>resotelEntities.edmx</DependentUpon>
+      <LastGenOutput>resotelEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

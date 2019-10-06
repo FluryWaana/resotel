@@ -1,9 +1,7 @@
 ﻿using Meziantou.WpfFontAwesome;
 using Resotel.Shared;
 using Resotel.Views;
-using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Resotel.ViewsModels
@@ -15,10 +13,39 @@ namespace Resotel.ViewsModels
          */
         public AuthenticationViewModel AuthVM { get; set; }
 
+        //--------------------------------------------------------------------
+
+        /**
+         * Constructeur
+         */
         public MainViewModel()
         {
-            AuthVM = new AuthenticationViewModel();
+            AuthVM            = new AuthenticationViewModel();
+            SelectedViewModel = new LoginViewModel();
         }
+
+        //--------------------------------------------------------------------
+
+        private object selectedViewModel;
+
+        public object SelectedViewModel
+
+        {
+
+            get
+            {
+                return selectedViewModel;
+            }
+
+            set
+            {
+                selectedViewModel = value;
+                NotifyPropertyChanged("SelectedViewModel");
+            }
+
+        }
+
+        //--------------------------------------------------------------------
 
         /**
          * Methode pour connecter un utilisateur
@@ -30,11 +57,22 @@ namespace Resotel.ViewsModels
             {
                 if( login == null )
                 {
-                    login = new RelayCommand((passwordBox) =>
+                    login = new RelayCommand((window) =>
                     {
-                        PasswordBox pb  = (PasswordBox)passwordBox;
-                        string password = BCrypt.Net.BCrypt.HashPassword( pb.Password );
-                        AuthVM.Login( password );
+                        LoginControl lc = (LoginControl)window;
+
+                        if (AuthVM.Login(lc))
+                        {
+                            SelectedViewModel = new DashboardViewModel();
+                        }
+                    },
+                    (window) =>
+                    {
+                        if (string.IsNullOrWhiteSpace(AuthVM.CurrentUser.user_identifiant) || string.IsNullOrWhiteSpace(((LoginControl)window).passwordBox.Password) )
+                        {
+                            return false;
+                        }
+                        return true;
                     });
                 }
                 return login;
@@ -44,19 +82,20 @@ namespace Resotel.ViewsModels
         /**
          *  Methode pour déconnecter un utilisateur
          */
-        private ICommand logout;
-        public ICommand Logout
+        private ICommand btnlogout;
+        public ICommand BtnLogout
         {
             get
             {
-                if (logout == null)
+                if (btnlogout == null)
                 {
-                    logout = new RelayCommand((window) =>
+                    btnlogout = new RelayCommand((window) =>
                     {
                         AuthVM.Logout();
+                        SelectedViewModel = new LoginViewModel();
                     });
                 }
-                return logout;
+                return btnlogout;
             }
         }
 
@@ -133,6 +172,82 @@ namespace Resotel.ViewsModels
                     });
                 }
                 return closeApp;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Accueil"
+         */
+        private ICommand btnAccueil;
+        public ICommand BtnAccueil
+        {
+            get
+            {
+                if (btnAccueil == null)
+                {
+                    btnAccueil = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new DashboardViewModel();
+                    });
+                }
+                return btnAccueil;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Client"
+         */
+        private ICommand btnClient;
+        public ICommand BtnClient
+        {
+            get
+            {
+                if (btnClient == null)
+                {
+                    btnClient = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new ClientViewModel();
+                    });
+                }
+                return btnClient;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Chambre"
+         */
+        private ICommand btnBedroom;
+        public ICommand BtnBedroom
+        {
+            get
+            {
+                if (btnBedroom == null)
+                {
+                    btnBedroom = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new BedroomViewModel();
+                    });
+                }
+                return btnBedroom;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Chambre"
+         */
+        private ICommand btnBooking;
+        public ICommand BtnBooking
+        {
+            get
+            {
+                if (btnBooking == null)
+                {
+                    btnBooking = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new BookingViewModel();
+                    });
+                }
+                return btnBooking;
             }
         }
     }

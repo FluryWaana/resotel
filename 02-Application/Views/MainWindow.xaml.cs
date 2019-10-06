@@ -9,7 +9,6 @@ namespace Resotel.Views
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
 
         private void BtnDragMove(object sender, MouseButtonEventArgs e)
