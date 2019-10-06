@@ -1,9 +1,7 @@
 # Bienvenue sur le projet Resotel 👋
 ![Version](https://img.shields.io/badge/version-0.1-blue.svg?cacheSeconds=2592000)
-![Prerequisite](https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg)
-![Prerequisite](https://img.shields.io/badge/node-%3E%3D9.3.0-blue.svg)
-[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://github.com/kefranabg/readme-md-generator#readme)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/kefranabg/readme-md-generator/graphs/commit-activity)
+[![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)]()
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE)
 
 > This project is carried out as part of a group exercise. This project is developed with C#.
