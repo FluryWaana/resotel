@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows;
 
 namespace Resotel.Shared
 {
@@ -13,12 +14,27 @@ namespace Resotel.Shared
         {
             string mess     = DateTime.Now.ToString("dd/MM/yy HH:mm:ss") + " - [" + tl + "] - " + message;
             string fileName = "logs-" + DateTime.Now.ToString("dd-MM-yy") + ".txt";
-            string path     = @"../../Logs/" + fileName;
+            string APP_ENV  = Application.Current.FindResource( "APP_ENV" ).ToString();
+            string path = "";
+
+            if ( APP_ENV.Equals( "dev" ) )
+            {
+                path = @"../../Logs/" + fileName;
+            }
+            else
+            {
+                if ( ! Directory.Exists( @"Logs/" ) )
+                {
+                    Directory.CreateDirectory( @"Logs/" );
+                }
+
+                path = @"Logs/" + fileName;
+            }                      
 
             Console.WriteLine(mess);
 
             // Vérifie si le fichier logs existe
-            if( File.Exists("../../Logs/" + fileName ) )
+            if( File.Exists( path ) )
             {
                 using ( StreamWriter file = new StreamWriter( path, true ) )
                 {

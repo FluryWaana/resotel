@@ -1,5 +1,6 @@
 ﻿using Resotel.Entities;
 using Resotel.Repositories;
+using Resotel.Shared;
 using Resotel.Views;
 using System;
 using System.Data.Entity.Core;
@@ -121,6 +122,7 @@ namespace Resotel.ViewsModels
          */
         public bool Login( LoginControl lc )
         {
+            LogSystem.WriteLog("hello", TypeLog.Information);
             try
             {
                 // Récupération de l'utilisateur 
