@@ -68,16 +68,37 @@ CREATE TABLE IF NOT EXISTS `client` (
   `client_id` int(11) NOT NULL AUTO_INCREMENT,
   `client_lastname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `client_firstname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `client_addres` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `client_address` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `client_city` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `client_postalCode` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `client_email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `client_email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `client_phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table resotel.client : ~0 rows (environ)
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
+	INSERT INTO `client` (`client_id`, `client_lastname`, `client_firstname`, `client_address`, `client_city`, `client_postalCode`, `client_email`, `client_phone`) VALUES
+	(1, 'blais', 'laetitia', '32, Avenue des Pr\'es', 'MONTIGNY-LE-BRETONNEUX', '78180', 'laetitiablais@teleworm.us', '0192237548'),
+	(2, 'tétrault', 'cloridan', '45, rue du Château', 'SAINT-ÉTIENNE-DU-ROUVRAY', '76800', 'cloridantetrault@dayrep.com', '0203685754'),
+	(3, 'saucier', 'robert', '82, rue Adolphe Wurtz', 'LE PUY-EN-VELAY', '43000', 'robertsaucier@rhyta.com', '0460177355'),
+	(4, '', '', '', '', '', '', ''),
+	(5, '', '', '', '', '', '', ''),
+	(6, '', '', '', '', '', '', ''),
+	(7, '', '', '', '', '', '', ''),
+	(8, '', '', '', '', '', '', ''),
+	(9, '', '', '', '', '', '', ''),
+	(10, '', '', '', '', '', '', ''),
+	(11, '', '', '', '', '', '', ''),
+	(12, '', '', '', '', '', '', ''),
+	(13, '', '', '', '', '', '', ''),
+	(14, '', '', '', '', '', '', ''),
+	(15, '', '', '', '', '', '', ''),
+	(16, '', '', '', '', '', '', ''),
+	(17, '', '', '', '', '', '', ''),
+	(18, '', '', '', '', '', '', ''),
+	(19, '', '', '', '', '', '', '')
+	(20, '', '', '', '', '', '', '');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
 -- Listage de la structure de la table resotel. concerner
@@ -167,10 +188,9 @@ CREATE TABLE IF NOT EXISTS `role` (
 -- Listage des données de la table resotel.role : ~5 rows (environ)
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
 INSERT INTO `role` (`role_name`) VALUES
-	('cuisinier'),
 	('hote d\'accueil'),
-	('responsable hygiène'),
-	('responsable restauration'),
+	('responsable de l\'hygiène'),
+	('responsable de la restauration'),
 	('standardiste');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 
@@ -191,11 +211,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Listage des données de la table resotel.user : ~5 rows (environ)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`user_id`, `user_identifiant`, `user_password`, `user_lastname`, `user_firstname`, `role_name`) VALUES
-	(1, 'standardiste', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'lamen', 'table', 'standardiste'),
-	(2, 'cuisinier', '$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'cuisi', 'nier', 'cuisinier'),
-	(3, 'hote', '$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'hote', 'acc', 'hote d\'accueil'),
-	(4, 'resphyg', '$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'responsable', 'hygiène', 'responsable hygiène'),
-	(5, 'resprest', '$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'responsable', 'restauration', 'responsable restauration');
+	(1, 'sarah.pell', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'pell', 'sarah', 'standardiste'),
+	(2, 'henriette.dumans', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'dumans', 'henriette', 'hote d\'accueil'),
+	(3, 'harry.golade', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'golade', 'harry', 'hote d\'accueil'),
+	(4, 'marc.menager', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'menager', 'marc', 'responsable de l\'hygiène'),
+	(5, 'jean.bonnot', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'bonnot', 'jean', 'responsable de la restauration');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

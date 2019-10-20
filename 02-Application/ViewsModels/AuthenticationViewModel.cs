@@ -79,7 +79,7 @@ namespace Resotel.ViewsModels
                 if (value != isAuthenticated)
                 {
                     isAuthenticated = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("IsAuthenticated");
                     NotifyPropertyChanged("IsNotAuthenticated");
                 }
             }
@@ -98,7 +98,7 @@ namespace Resotel.ViewsModels
                 if (value != currentUser)
                 {
                     currentUser = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("CurrentUser");
                 }
             }
         }
@@ -117,12 +117,12 @@ namespace Resotel.ViewsModels
 
         /**
          * Connecte un utilisateur
+         * Cas particulier où il ne faut pas respecter l'architecture MVVM
          * Il est impossible de binder un Password Box pour des raisons de sécurité.
          * Celui-ci ne doit pas être stocker en mémoire
          */
         public bool Login( LoginControl lc )
         {
-            LogSystem.WriteLog("hello", TypeLog.Information);
             try
             {
                 // Récupération de l'utilisateur 
@@ -131,12 +131,11 @@ namespace Resotel.ViewsModels
                 if (temp != null)
                 {
                     CurrentUser = temp;
-
+                    
                     // Vérification du mot de passe
                     if (BCrypt.Net.BCrypt.Verify(lc.passwordBox.Password, CurrentUser.user_password))
                     {
                         // Suppression du mot de passe dans la mémoire
-                        CurrentUser.user_password = "";
                         lc.passwordBox.Password   = "";
 
                         // Change le statut
@@ -145,10 +144,7 @@ namespace Resotel.ViewsModels
                         return true;
                     }
                 }
-                else
-                {
-                    messageError(lc, true, "Identifiants incorrects, veuillez vérifier votre email et mot de passe.");
-                }                    
+                messageError(lc, true, "Identifiants incorrects, veuillez vérifier votre email et mot de passe.");                     
             }
             catch( EntityException e )
             {

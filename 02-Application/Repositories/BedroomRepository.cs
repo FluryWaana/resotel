@@ -18,6 +18,23 @@ namespace Resotel.Repositories
         //--------------------------------------------------------------------
 
         /**
+         * 
+         */
+        public bedroom addBedroom()
+        {
+            bedroom br = new bedroom();
+            br.bedroom_floor  = 1;
+            br.bedroom_number = 100;
+            br.bedroom_price = 124;
+
+            var query = entities.bedroom.Add( br );
+
+            return null;
+        }
+
+        //--------------------------------------------------------------------
+
+        /**
          * Récupère toutes les chambres selons les filtres
          */
         public List<bedroom> GetBedrooms( string statut = "", string floor = "" )

@@ -24,7 +24,7 @@ namespace Resotel.Entities
         public int client_id { get; set; }
         public string client_lastname { get; set; }
         public string client_firstname { get; set; }
-        public string client_addres { get; set; }
+        public string client_address { get; set; }
         public string client_city { get; set; }
         public string client_postalCode { get; set; }
         public string client_email { get; set; }
