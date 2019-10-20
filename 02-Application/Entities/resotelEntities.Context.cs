@@ -26,11 +26,14 @@ namespace Resotel.Entities
         }
     
         public virtual DbSet<bedroom> bedroom { get; set; }
+        public virtual DbSet<bedroom_type> bedroom_type { get; set; }
         public virtual DbSet<booking> booking { get; set; }
         public virtual DbSet<client> client { get; set; }
-        public virtual DbSet<concerner> concerner { get; set; }
+        public virtual DbSet<concern> concern { get; set; }
         public virtual DbSet<feature> feature { get; set; }
         public virtual DbSet<invoice> invoice { get; set; }
+        public virtual DbSet<promotion> promotion { get; set; }
+        public virtual DbSet<rate> rate { get; set; }
         public virtual DbSet<role> role { get; set; }
         public virtual DbSet<user> user { get; set; }
     }

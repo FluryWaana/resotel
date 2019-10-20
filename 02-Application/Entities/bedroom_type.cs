@@ -12,26 +12,21 @@ namespace Resotel.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class booking
+    public partial class bedroom_type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public booking()
+        public bedroom_type()
         {
-            this.concern = new HashSet<concern>();
-            this.client = new HashSet<client>();
+            this.bedroom = new HashSet<bedroom>();
+            this.rate = new HashSet<rate>();
         }
     
-        public int booking_id { get; set; }
-        public System.DateTime booking_start { get; set; }
-        public System.DateTime booking_end { get; set; }
-        public int bedroom_number { get; set; }
-        public int invoice_reference { get; set; }
+        public int bedroom_type_id { get; set; }
+        public string bedroom_type1 { get; set; }
     
-        public virtual bedroom bedroom { get; set; }
-        public virtual invoice invoice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concern> concern { get; set; }
+        public virtual ICollection<bedroom> bedroom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<client> client { get; set; }
+        public virtual ICollection<rate> rate { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Resotel.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class concerner
+    public partial class concern
     {
         public int feature_id { get; set; }
         public int booking_id { get; set; }

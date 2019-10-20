@@ -12,14 +12,14 @@ namespace Resotel.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class promotion
     {
-        public string user_identifiant { get; set; }
-        public string user_password { get; set; }
-        public string user_lastname { get; set; }
-        public string user_firstname { get; set; }
-        public string role_name { get; set; }
+        public int promotion_id { get; set; }
+        public System.DateTime promotion_date_start { get; set; }
+        public System.DateTime promotion_date_end { get; set; }
+        public int promotion_percentage { get; set; }
+        public int feature_id { get; set; }
     
-        public virtual role role { get; set; }
+        public virtual feature feature { get; set; }
     }
 }

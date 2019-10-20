@@ -98,19 +98,28 @@
     <Compile Include="Entities\bedroom.cs">
       <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\bedroom_type.cs">
+      <DependentUpon>resotelEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\booking.cs">
       <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\client.cs">
       <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\concerner.cs">
+    <Compile Include="Entities\concern.cs">
       <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\feature.cs">
       <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\invoice.cs">
+      <DependentUpon>resotelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\promotion.cs">
+      <DependentUpon>resotelEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\rate.cs">
       <DependentUpon>resotelEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\resotelEntities.Context.cs">

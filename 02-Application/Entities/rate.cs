@@ -12,14 +12,13 @@ namespace Resotel.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class rate
     {
-        public string user_identifiant { get; set; }
-        public string user_password { get; set; }
-        public string user_lastname { get; set; }
-        public string user_firstname { get; set; }
-        public string role_name { get; set; }
+        public int rate_id { get; set; }
+        public int rate_days_number { get; set; }
+        public float rate_price { get; set; }
+        public int bedroom_type_id { get; set; }
     
-        public virtual role role { get; set; }
+        public virtual bedroom_type bedroom_type { get; set; }
     }
 }

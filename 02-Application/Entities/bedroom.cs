@@ -21,12 +21,12 @@ namespace Resotel.Entities
             this.feature = new HashSet<feature>();
         }
     
-        public int bedroom_id { get; set; }
-        public int bedroom_floor { get; set; }
         public int bedroom_number { get; set; }
-        public float bedroom_price { get; set; }
+        public int bedroom_floor { get; set; }
         public string bedroom_status { get; set; }
+        public int bedroom_type_id { get; set; }
     
+        public virtual bedroom_type bedroom_type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<booking> booking { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

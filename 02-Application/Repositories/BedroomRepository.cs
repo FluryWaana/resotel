@@ -25,7 +25,6 @@ namespace Resotel.Repositories
             bedroom br = new bedroom();
             br.bedroom_floor  = 1;
             br.bedroom_number = 100;
-            br.bedroom_price = 124;
 
             var query = entities.bedroom.Add( br );
 

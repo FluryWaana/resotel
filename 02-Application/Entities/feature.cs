@@ -17,7 +17,8 @@ namespace Resotel.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public feature()
         {
-            this.concerner = new HashSet<concerner>();
+            this.concern = new HashSet<concern>();
+            this.promotion = new HashSet<promotion>();
             this.bedroom = new HashSet<bedroom>();
         }
     
@@ -27,7 +28,9 @@ namespace Resotel.Entities
         public Nullable<float> feature_price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concerner> concerner { get; set; }
+        public virtual ICollection<concern> concern { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<promotion> promotion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bedroom> bedroom { get; set; }
     }
