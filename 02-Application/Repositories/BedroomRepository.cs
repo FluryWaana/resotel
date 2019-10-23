@@ -39,7 +39,7 @@ namespace Resotel.Repositories
         public List<bedroom> GetBedrooms( string statut = "", string floor = "" )
         {
             // Récupère toutes les chambres
-            var query  = entities.bedroom.Select(x => new bedroom { bedroom_floor = x.bedroom_floor });
+            var query  = entities.bedroom.Select(x => x);
 
             // Si un statut est mis dans les filtres de recherche
             if( ! statut.Equals( "" ) )
