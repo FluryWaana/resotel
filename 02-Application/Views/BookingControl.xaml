@@ -8,6 +8,20 @@
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}" >
     <Grid>
-        <TextBlock Text="Page Réservation" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Page Réservations" Grid.Row="0" />
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Bookings}" 
+                  CanUserReorderColumns="True" 
+                  CanUserResizeColumns="False" 
+                  CanUserResizeRows="False" 
+                  CanUserSortColumns="True"
+                  AlternatingRowBackground="Gainsboro"  
+                  AlternationCount="2"
+                  IsReadOnly="True"  />
     </Grid>
 </UserControl>

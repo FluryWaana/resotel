@@ -159,6 +159,7 @@
     </Compile>
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\BedroomRepository.cs" />
+    <Compile Include="Repositories\BookingRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Shared\LogSystem.cs" />
     <Compile Include="Shared\RelayCommand.cs" />
