@@ -136,7 +136,8 @@
                 </MenuItem>
             </Menu>
 
-            <Button Grid.Column="1" HorizontalAlignment="Stretch" x:Name="btnMoveWindow"
+            <Button Grid.Column="1" 
+                    HorizontalAlignment="Stretch" 
                     PreviewMouseDown="BtnDragMove" 
                     Background="Transparent"
                     BorderBrush="Transparent"

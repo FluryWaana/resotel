@@ -2,31 +2,51 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-
              xmlns:local="clr-namespace:Resotel.Views"
              xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
-             Height="450" Width="800" >
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch"
+             >
     
     <!-- Déclaration du DataContext dans le .XAML au lieu du .CS (cela ne change rien) -->
     <UserControl.DataContext>
         <ViewsModels:BedroomViewModel/>
     </UserControl.DataContext>
     
-    <Grid>
+    <Grid Margin="8 0 8 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock Text="Page Chambres" Grid.Row="0" />
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Bedrooms}" 
-                  CanUserReorderColumns="True" 
+        <TextBlock Text="Page Chambres" Grid.Row="0" Margin="0 5 0 0" />
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Bedrooms}"
+                  VerticalScrollBarVisibility="Visible"
+                  CanUserReorderColumns="False" 
                   CanUserResizeColumns="False" 
                   CanUserResizeRows="False" 
                   CanUserSortColumns="True"
-                  AlternatingRowBackground="Gainsboro"  
+                  AlternatingRowBackground="Chocolate"
                   AlternationCount="2"
-                  IsReadOnly="True"  />
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow">
+            
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="DimGray" />
+                            <Setter Property="BorderBrush" Value="DimGray" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+            
+        </DataGrid>
+
     </Grid>
 </UserControl>

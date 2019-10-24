@@ -40,6 +40,7 @@ namespace Resotel.ViewsModels
             IsAuthenticated = false;
             CurrentUser     = new user();
             userRepository  = new UserRepository();
+            LogSystem.WriteLog("le message", TypeLog.Information);
         }
 
         //--------------------------------------------------------------------
