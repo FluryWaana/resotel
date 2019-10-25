@@ -48,7 +48,7 @@ namespace Resotel.Repositories
 
             }
 
-            // Si étage est mis dans les filtres de recherche
+            // Si un étage est mis dans les filtres de recherche
             if( ! floor.Equals( "" ) )
             {
                 query = query.Where( x => x.bedroom_floor == int.Parse( floor ) );
