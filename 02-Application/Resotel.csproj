@@ -294,6 +294,10 @@
     <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Entities\resotelEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>resotelEntities.edmx</DependentUpon>
@@ -304,8 +308,6 @@
       <DependentUpon>resotelEntities.edmx</DependentUpon>
       <LastGenOutput>resotelEntities.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\Entypo-license.txt" />
-    <Resource Include="Resources\WindowsIcons-license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
