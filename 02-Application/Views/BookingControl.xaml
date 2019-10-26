@@ -22,20 +22,20 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- <DataGrid Grid.Row="1" ItemsSource="{Binding Bookings}" 
+        <Button Grid.Row="0" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.BtnShowFormBooking}" Margin=" 5 0 0 0" >
+            <StackPanel Orientation="Horizontal">
+                <fa:FontAwesomeIcon SolidIcon="CalendarPlus" Foreground="White" Height="16"  />
+                <TextBlock Text="Réserver" Margin="5 0 0 0" />
+            </StackPanel>
+        </Button>
+        
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Bookings}" 
                   CanUserReorderColumns="True" 
                   CanUserResizeColumns="False" 
                   CanUserResizeRows="False" 
                   CanUserSortColumns="True"
                   AlternatingRowBackground="Gainsboro"  
                   AlternationCount="2"
-                  IsReadOnly="True"  /> -->
-
-        <Button  Grid.Row="2" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.BtnShowBedroom}" Margin=" 5 0 0 0" >
-            <StackPanel Orientation="Horizontal">
-                <fa:FontAwesomeIcon SolidIcon="Trash" Foreground="White" Height="16"  />
-                <TextBlock Text="Supprimer" Margin="5 0 0 0" />
-            </StackPanel>
-        </Button>
+                  IsReadOnly="True"  />
     </Grid>
 </UserControl>

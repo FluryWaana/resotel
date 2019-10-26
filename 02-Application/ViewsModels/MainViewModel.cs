@@ -271,21 +271,21 @@ namespace Resotel.ViewsModels
         }
 
         /**
- * Commande sur le bouton "Chambre"
- */
-        private ICommand btnShowBooking;
-        public ICommand BtnShowBooking
+         * Commande sur le bouton "Chambre"
+         */
+        private ICommand btnShowFormBooking;
+        public ICommand BtnShowFormBooking
         {
             get
             {
-                if (btnShowBooking == null)
+                if (btnShowFormBooking == null)
                 {
-                    btnShowBooking= new RelayCommand((window) =>
+                    btnShowFormBooking = new RelayCommand((window) =>
                     {
                         SelectedViewModel = new FormBookingViewModel();
                     });
                 }
-                return btnShowBooking;
+                return btnShowFormBooking;
             }
         }
 

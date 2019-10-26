@@ -178,14 +178,14 @@
     <Compile Include="Views\BookingControl.xaml.cs">
       <DependentUpon>BookingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FormBookingControl.xaml.cs">
+      <DependentUpon>FormBookingControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShowBedroomControl.xaml.cs">
       <DependentUpon>ShowBedroomControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ucDetailClient.xaml.cs">
       <DependentUpon>ucDetailClient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ucFormBooking.xaml.cs">
-      <DependentUpon>ucFormBooking.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ucListeClient.xaml.cs">
       <DependentUpon>ucListeClient.xaml</DependentUpon>
@@ -207,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FormBookingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,10 +253,6 @@
     <Page Include="Views\ucDetailClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\ucFormBooking.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ucListeClient.xaml">
       <Generator>MSBuild:Compile</Generator>

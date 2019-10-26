@@ -1,17 +1,18 @@
-﻿<UserControl x:Class="Resotel.Views.UcDetailClient"
+﻿<UserControl x:Class="Resotel.Views.FormBookingControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
              xmlns:local="clr-namespace:Resotel.Views"
+             xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
              xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
              HorizontalAlignment="Stretch" 
              VerticalAlignment="Stretch">
+    
     <UserControl.DataContext>
         <ViewsModels:FormBookingViewModel/>
     </UserControl.DataContext>
-    
+
     <Grid>
         <Grid>
             <Grid.Resources>
@@ -48,9 +49,9 @@
             <TextBlock Grid.Row="2"  Grid.Column="1" Text="Date de début" />
             <TextBlock Grid.Row="3"  Grid.Column="1" Text="Date de fin" />
             <TextBlock Grid.Row="4"  Grid.Column="1" Text="Numéro de chambre" />
-           
 
-           
+
+
             <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Booking.booking_start}" />
             <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Booking.booking_end}" />
             <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding Booking.bedroom_number}" />
@@ -63,7 +64,6 @@
                         <TextBlock Text="Enregistrer" Margin="5 0 0 0" />
                     </StackPanel>
                 </Button>
-
             </StackPanel>
         </Grid>
     </Grid>
