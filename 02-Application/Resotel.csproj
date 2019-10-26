@@ -170,6 +170,7 @@
     <Compile Include="ViewsModels\BookingViewModel.cs" />
     <Compile Include="ViewsModels\ClientViewModel.cs" />
     <Compile Include="ViewsModels\DashboardViewModel.cs" />
+    <Compile Include="ViewsModels\FormBookingViewModel.cs" />
     <Compile Include="ViewsModels\LoginViewModel.cs" />
     <Compile Include="ViewsModels\MainViewModel.cs" />
     <Compile Include="ViewsModels\ShowBedroomViewModel.cs" />
@@ -182,6 +183,9 @@
     </Compile>
     <Compile Include="Views\ucDetailClient.xaml.cs">
       <DependentUpon>ucDetailClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ucFormBooking.xaml.cs">
+      <DependentUpon>ucFormBooking.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ucListeClient.xaml.cs">
       <DependentUpon>ucListeClient.xaml</DependentUpon>
@@ -245,6 +249,10 @@
     <Page Include="Views\ucDetailClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ucFormBooking.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ucListeClient.xaml">
       <Generator>MSBuild:Compile</Generator>

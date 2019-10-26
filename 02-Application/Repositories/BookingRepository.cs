@@ -23,23 +23,32 @@ namespace Resotel.Repositories
             booking book = new booking();
 
             // ici ajouter des fake reservations pour test
-            book.bedroom_number = 10;
-            
-
+            book.bedroom_number = 10;  
 
             var query = entities.booking.Add(book);
 
             return null;
 
         }
-
-
         public List<booking> GetBookings()
         {
-            // Récupère toutes les reservations
-            var query = entities.booking.Select(x => x);
+            return entities.booking.Select(x => x).ToList();
+        }
 
-            return query.ToList();
+        public booking SaveBooking( int booking_id)
+
+        {
+            // Recupère la véservation
+            booking caca = entities.booking.Where(x => x.booking_id == booking_id).FirstOrDefault();
+
+            // Modifie les attributs
+            caca.bedroom_number = 20;
+
+            // Sauvegarde les modifications
+            entities.SaveChanges();
+
+            // Retourne la réservation
+            return caca;
         }
     }
 }

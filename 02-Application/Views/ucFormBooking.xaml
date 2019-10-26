@@ -5,7 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
              xmlns:local="clr-namespace:Resotel.Views"
-             mc:Ignorable="d" >
+             xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch">
+    <UserControl.DataContext>
+        <ViewsModels:FormBookingViewModel/>
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid>
             <Grid.Resources>
@@ -39,37 +45,25 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Référence Client" Visibility="{Binding VisibilityClient}" />
-            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Nom" />
-            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Prenom" />
-            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Adresse" />
-            <TextBlock Grid.Row="5"  Grid.Column="1" Text="CodePostal" />
-            <TextBlock Grid.Row="6"  Grid.Column="1" Text="Ville" />
-            <TextBlock Grid.Row="7"  Grid.Column="1" Text="Telephone" />
-            <TextBlock Grid.Row="8"  Grid.Column="1" Text="Email" />
+            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Date de début" />
+            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Date de fin" />
+            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Numéro de chambre" />
+           
 
-            <TextBox IsReadOnly="True" Grid.Row="1"  Grid.Column="2" Text="{Binding Contact.RefClient}" Visibility="{Binding VisibilityClient}"  />
-            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding Contact.Adresse}" />
-            <TextBox Grid.Row="5"  Grid.Column="2" Text="{Binding Contact.CodePostal}" />
-            <TextBox Grid.Row="6"  Grid.Column="2" Text="{Binding Contact.Ville}" />
-            <TextBox Grid.Row="7"  Grid.Column="2" Text="{Binding Contact.Telephone}" />
-            <TextBox Grid.Row="8"  Grid.Column="2" Text="{Binding Contact.Email}" />
+           
+            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Booking.booking_start}" />
+            <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Booking.booking_end}" />
+            <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding Booking.bedroom_number}" />
+
 
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center">
-                <Button Command="{Binding CommandSave}">
+                <Button Command="{Binding SaveBooking}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesomeIcon SolidIcon="Save" Foreground="White" Height="16"  />
                         <TextBlock Text="Enregistrer" Margin="5 0 0 0" />
                     </StackPanel>
                 </Button>
-                <Button Command="{Binding CommandDelete}" Margin=" 5 0 0 0" >
-                    <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesomeIcon SolidIcon="Trash" Foreground="White" Height="16"  />
-                        <TextBlock Text="Supprimer" Margin="5 0 0 0" />
-                    </StackPanel>
-                </Button>
+
             </StackPanel>
         </Grid>
     </Grid>

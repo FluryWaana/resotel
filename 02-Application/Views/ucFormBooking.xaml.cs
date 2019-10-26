@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Resotel.Views
 {
     /// <summary>
-    /// Logique d'interaction pour ucDetailClient.xaml
+    /// Logique d'interaction pour ucFormBooking.xaml
     /// </summary>
-    public partial class UcDetailClient : UserControl
+    public partial class ucFormBooking : UserControl
     {
-        public UcDetailClient()
+        public ucFormBooking()
         {
             InitializeComponent();
         }
