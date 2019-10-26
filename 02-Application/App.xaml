@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="pack://application:,,,/Meziantou.WpfFontAwesome;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <sys:String x:Key="APP_ENV">dev</sys:String>
+            <SolidColorBrush x:Key="ButtonBrush" Color="{StaticResource Primary300}" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

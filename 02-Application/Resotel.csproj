@@ -160,6 +160,7 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\BedroomRepository.cs" />
     <Compile Include="Repositories\BookingRepository.cs" />
+    <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Shared\LogSystem.cs" />
     <Compile Include="Shared\RelayCommand.cs" />
@@ -178,6 +179,12 @@
     </Compile>
     <Compile Include="Views\ShowBedroomControl.xaml.cs">
       <DependentUpon>ShowBedroomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ucDetailClient.xaml.cs">
+      <DependentUpon>ucDetailClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ucListeClient.xaml.cs">
+      <DependentUpon>ucListeClient.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -234,6 +241,14 @@
     <Page Include="Views\ShowBedroomControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ucDetailClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ucListeClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Resotel.Views.ucListeClient"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
+             xmlns:local="clr-namespace:Resotel.Views"
+             mc:Ignorable="d">
+
+    <!-- Déclaration du DataContext dans le .XAML au lieu du .CS (cela ne change rien) -->
+    <UserControl.DataContext>
+        <ViewsModels:ClientViewModel/>
+    </UserControl.DataContext>
+
+    <ListBox ItemsSource="{Binding Clients}" IsSynchronizedWithCurrentItem="True">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding NomPrenom}" />
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+
+</UserControl>
