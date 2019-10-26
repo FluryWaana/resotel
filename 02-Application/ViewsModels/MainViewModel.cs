@@ -250,5 +250,24 @@ namespace Resotel.ViewsModels
                 return btnBooking;
             }
         }
+
+        /**
+         * Commande sur le bouton "Chambre"
+         */
+        private ICommand btnShowBedroom;
+        public ICommand BtnShowBedroom
+        {
+            get
+            {
+                if (btnShowBedroom == null)
+                {
+                    btnShowBedroom = new RelayCommand(( bedroom_number ) =>
+                    {
+                        SelectedViewModel = new ShowBedroomViewModel( ( int ) bedroom_number );
+                    });
+                }
+                return btnShowBedroom;
+            }
+        }
     }
 }

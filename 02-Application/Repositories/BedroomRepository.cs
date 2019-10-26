@@ -34,6 +34,16 @@ namespace Resotel.Repositories
         //--------------------------------------------------------------------
 
         /**
+         * Retourne une chambre en fonction de son numéro
+         */
+        public bedroom GetBedroom( int number  )
+        {
+            return entities.bedroom.Where( x => x.bedroom_number == number ).FirstOrDefault();
+        }
+
+        //--------------------------------------------------------------------
+
+        /**
          * Récupère toutes les chambres selons les filtres
          */
         public List<bedroom> GetBedrooms( string statut = "", string floor = "" )

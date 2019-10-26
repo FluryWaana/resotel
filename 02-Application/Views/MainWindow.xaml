@@ -58,6 +58,11 @@
         <DataTemplate DataType="{x:Type ViewsModels:BookingViewModel}">
             <Views:BookingControl/>
         </DataTemplate>
+
+        <!-- Template de la page de l'affichage d'une chambre -->
+        <DataTemplate DataType="{x:Type ViewsModels:ShowBedroomViewModel}">
+            <Views:ShowBedroomControl/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>

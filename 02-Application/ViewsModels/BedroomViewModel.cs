@@ -11,6 +11,9 @@ namespace Resotel.ViewsModels
          */
         private List<bedroom> bedrooms;
 
+        /**
+         * Repository pour la gestion requêtes
+         */
         private BedroomRepository bedroomRepository;
 
         //--------------------------------------------------------------------
@@ -23,8 +26,12 @@ namespace Resotel.ViewsModels
             bedroomRepository = new BedroomRepository();
             Bedrooms          = bedroomRepository.GetBedrooms();
         }
-        
 
+        //--------------------------------------------------------------------        
+
+        /**
+        * Getter & Setter
+        */
         public List<bedroom> Bedrooms
         {
             get

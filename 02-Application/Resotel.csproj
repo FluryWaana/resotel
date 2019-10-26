@@ -171,9 +171,13 @@
     <Compile Include="ViewsModels\DashboardViewModel.cs" />
     <Compile Include="ViewsModels\LoginViewModel.cs" />
     <Compile Include="ViewsModels\MainViewModel.cs" />
+    <Compile Include="ViewsModels\ShowBedroomViewModel.cs" />
     <Compile Include="ViewsModels\ViewModelBase.cs" />
     <Compile Include="Views\BookingControl.xaml.cs">
       <DependentUpon>BookingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShowBedroomControl.xaml.cs">
+      <DependentUpon>ShowBedroomControl.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -224,6 +228,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\BookingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShowBedroomControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
