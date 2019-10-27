@@ -1,6 +1,8 @@
 ﻿using Resotel.Entities;
 using Resotel.Repositories;
+using Resotel.Shared;
 using System.Collections.Generic;
+using System.Windows.Controls;
 
 namespace Resotel.ViewsModels
 {
@@ -44,6 +46,50 @@ namespace Resotel.ViewsModels
                 bedrooms = value;
                 NotifyPropertyChanged("Bedrooms");
             }
+        }
+
+        private string statutString = "";
+        public string StatutString
+        {
+            get
+            {
+                return statutString;
+            }
+
+            set
+            {
+                LogSystem.WriteLog((string)value, TypeLog.Information);
+                statutString = value;
+                NotifyPropertyChanged("StatutString");
+                UpdateBedrooms();
+            }
+        }
+
+        private string floorString = "";
+        public string FloorString
+        {
+            get
+            {
+                return floorString;
+            }
+
+            set
+            {
+                LogSystem.WriteLog( value, TypeLog.Information);
+                floorString = value;
+                NotifyPropertyChanged("FloorString");
+                UpdateBedrooms();
+            }
+        }
+
+        //--------------------------------------------------------------------
+
+        /**
+         * Permet de mettre à jour la liste des chambres
+         */
+        private void UpdateBedrooms()
+        {
+            Bedrooms = bedroomRepository.GetBedrooms( "", FloorString);
         }
     }
 }
