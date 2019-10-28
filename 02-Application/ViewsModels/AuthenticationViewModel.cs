@@ -39,8 +39,9 @@ namespace Resotel.ViewsModels
         {
             IsAuthenticated = false;
             CurrentUser     = new user();
+            CurrentUser.user_identifiant = "sarah.pell";
+            CurrentUser.user_password = "test";
             userRepository  = new UserRepository();
-            LogSystem.WriteLog("le message", TypeLog.Information);
         }
 
         //--------------------------------------------------------------------

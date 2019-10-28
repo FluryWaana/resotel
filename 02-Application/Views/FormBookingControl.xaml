@@ -1,11 +1,18 @@
-﻿<UserControl x:Class="Resotel.Views.UcDetailClient"
+﻿<UserControl x:Class="Resotel.Views.FormBookingControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
              xmlns:local="clr-namespace:Resotel.Views"
-             mc:Ignorable="d" >
+             xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
+             xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch">
+    
+    <UserControl.DataContext>
+        <ViewsModels:FormBookingViewModel/>
+    </UserControl.DataContext>
+
     <Grid>
         <Grid>
             <Grid.Resources>
@@ -19,14 +26,12 @@
                 </Style>
 
             </Grid.Resources>
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
@@ -41,34 +46,25 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Nom" />
-            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Prenom" />
-            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Adresse" />
-            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Code Postal" />
-            <TextBlock Grid.Row="5"  Grid.Column="1" Text="Ville" />
-            <TextBlock Grid.Row="6"  Grid.Column="1" Text="Telephone" />
-            <TextBlock Grid.Row="7"  Grid.Column="1" Text="Email" />
+            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Date de début" />
+            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Date de fin" />
+            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Numéro de chambre" />
+            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Client" />
 
 
-            <TextBox Grid.Row="1"  Grid.Column="2" Text="{Binding Client.client_lastname}" />
-            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Client.client_firstname}" />
-            <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Client.client_address}" />
-            <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding Client.client_postalCode}" />
-            <TextBox Grid.Row="5"  Grid.Column="2" Text="{Binding Client.client_city}" />
-            <TextBox Grid.Row="6"  Grid.Column="2" Text="{Binding Client.client_phone}" />
-            <TextBox Grid.Row="7"  Grid.Column="2" Text="{Binding Client.client_email}" />
+
+            <TextBox Grid.Row="1"  Grid.Column="2" Text="{Binding Booking.booking_start}" />
+            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Booking.booking_end}" />
+            <ComboBox Grid.Row="3"  Grid.Column="2" Text="{Binding Booking.bedroom_number}" />
+            <ComboBox Grid.Row="4"  Grid.Column="2" Text="{Binding Clients.client_lastname}" />
+            
+        <!-- Ici mettre une liste de l'ensemble des clients-->
 
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center">
-                <Button Command="{Binding CommandSave}">
+                <Button Command="{Binding SaveBooking}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesomeIcon SolidIcon="Save" Foreground="White" Height="16"  />
                         <TextBlock Text="Enregistrer" Margin="5 0 0 0" />
-                    </StackPanel>
-                </Button>
-                <Button Command="{Binding CommandDelete}" Margin=" 5 0 0 0" >
-                    <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesomeIcon SolidIcon="Trash" Foreground="White" Height="16"  />
-                        <TextBlock Text="Supprimer" Margin="5 0 0 0" />
                     </StackPanel>
                 </Button>
             </StackPanel>

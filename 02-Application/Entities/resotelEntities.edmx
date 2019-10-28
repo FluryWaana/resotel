@@ -29,7 +29,7 @@
           <Property Name="booking_start" Type="date" Nullable="false" />
           <Property Name="booking_end" Type="date" Nullable="false" />
           <Property Name="bedroom_number" Type="int" Nullable="false" />
-          <Property Name="invoice_reference" Type="int" Nullable="false" />
+          <Property Name="invoice_reference" Type="int" />
         </EntityType>
         <EntityType Name="carry_out">
           <Key>
@@ -148,7 +148,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="booking_invoice0_FK">
-          <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="0..1" />
           <End Role="booking" Type="Self.booking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="invoice">
@@ -380,7 +380,7 @@
           <Property Name="booking_start" Type="DateTime" Nullable="false" />
           <Property Name="booking_end" Type="DateTime" Nullable="false" />
           <Property Name="bedroom_number" Type="Int32" Nullable="false" />
-          <Property Name="invoice_reference" Type="Int32" Nullable="false" />
+          <Property Name="invoice_reference" Type="Int32" />
           <NavigationProperty Name="bedroom" Relationship="Self.booking_bedroom_FK" FromRole="booking" ToRole="bedroom" />
           <NavigationProperty Name="invoice" Relationship="Self.booking_invoice0_FK" FromRole="booking" ToRole="invoice" />
           <NavigationProperty Name="concern" Relationship="Self.concern_booking0_FK" FromRole="booking" ToRole="concern" />
@@ -512,7 +512,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="booking_invoice0_FK">
-          <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+          <End Role="invoice" Type="Self.invoice" Multiplicity="0..1" />
           <End Role="booking" Type="Self.booking" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="invoice">

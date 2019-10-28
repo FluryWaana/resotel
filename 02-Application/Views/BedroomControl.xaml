@@ -23,6 +23,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition  Width="*" />
@@ -30,14 +32,39 @@
                 <ColumnDefinition  Width="*" />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="Type de chambre" Grid.Row="0" Grid.Column="0" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Type de chambre" />
             <ComboBox Grid.Row="1" Grid.Column="0">
-                <ComboBoxItem IsSelected="True">Type de chambre...</ComboBoxItem>
+                <ComboBoxItem IsSelected="True">Choix...</ComboBoxItem>
                 <ComboBoxItem>Chambre 1 place</ComboBoxItem>
                 <ComboBoxItem>Chambre 2 places</ComboBoxItem>
                 <ComboBoxItem>Chambre 3 places</ComboBoxItem>
             </ComboBox>
-        
+
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Étage" />
+            <ComboBox Grid.Row="1" Grid.Column="1" 
+                      SelectedItem="{Binding FloorString, Mode=TwoWay}" 
+                      SelectedValuePath="Content">
+                <ComboBoxItem IsSelected="True">Choix...</ComboBoxItem>
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+                <ComboBoxItem>4</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Statut" />
+            <ComboBox Grid.Row="1" Grid.Column="2">
+                <ComboBoxItem IsSelected="True">Choix...</ComboBoxItem>
+                <ComboBoxItem>Libre</ComboBoxItem>
+                <ComboBoxItem>Occupée</ComboBoxItem>
+                <ComboBoxItem>à nettoyer</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="Libre du" />
+            <DatePicker Grid.Row="4" Grid.Column="1" Language="fr"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="2" Text="au" />
+            <DatePicker Grid.Row="4" Grid.Column="2"/>
+
         </Grid>
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Bedrooms}"
