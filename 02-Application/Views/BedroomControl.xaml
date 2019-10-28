@@ -19,7 +19,26 @@
             <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Page Chambres" Grid.Row="0" Margin="0 5 0 0" />
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*" />
+                <ColumnDefinition  Width="*" />
+                <ColumnDefinition  Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Type de chambre" Grid.Row="0" Grid.Column="0" />
+            <ComboBox Grid.Row="1" Grid.Column="0">
+                <ComboBoxItem IsSelected="True">Type de chambre...</ComboBoxItem>
+                <ComboBoxItem>Chambre 1 place</ComboBoxItem>
+                <ComboBoxItem>Chambre 2 places</ComboBoxItem>
+                <ComboBoxItem>Chambre 3 places</ComboBoxItem>
+            </ComboBox>
+        
+        </Grid>
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Bedrooms}"
                   VerticalScrollBarVisibility="Visible"

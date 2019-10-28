@@ -19,12 +19,14 @@
                 </Style>
 
             </Grid.Resources>
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
@@ -39,23 +41,22 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Référence Client" />
-            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Nom" />
-            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Prenom" />
-            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Adresse" />
-            <TextBlock Grid.Row="5"  Grid.Column="1" Text="CodePostal" />
-            <TextBlock Grid.Row="6"  Grid.Column="1" Text="Ville" />
-            <TextBlock Grid.Row="7"  Grid.Column="1" Text="Telephone" />
-            <TextBlock Grid.Row="8"  Grid.Column="1" Text="Email" />
+            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Nom" />
+            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Prenom" />
+            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Adresse" />
+            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Code Postal" />
+            <TextBlock Grid.Row="5"  Grid.Column="1" Text="Ville" />
+            <TextBlock Grid.Row="6"  Grid.Column="1" Text="Telephone" />
+            <TextBlock Grid.Row="7"  Grid.Column="1" Text="Email" />
 
-            <TextBox Grid.Row="1"  Grid.Column="2" Text="{Binding client_ref}"  />
-            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding client_lastname}" />
-            <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Contact.Prenom}" />
-            <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding Contact.Adresse}" />
-            <TextBox Grid.Row="5"  Grid.Column="2" Text="{Binding Contact.CodePostal}" />
-            <TextBox Grid.Row="6"  Grid.Column="2" Text="{Binding Contact.Ville}" />
-            <TextBox Grid.Row="7"  Grid.Column="2" Text="{Binding Contact.Telephone}" />
-            <TextBox Grid.Row="8"  Grid.Column="2" Text="{Binding Contact.Email}" />
+
+            <TextBox Grid.Row="1"  Grid.Column="2" Text="{Binding Client.client_lastname}" />
+            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Client.client_firstname}" />
+            <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Client.client_address}" />
+            <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding Client.client_postalCode}" />
+            <TextBox Grid.Row="5"  Grid.Column="2" Text="{Binding Client.client_city}" />
+            <TextBox Grid.Row="6"  Grid.Column="2" Text="{Binding Client.client_phone}" />
+            <TextBox Grid.Row="7"  Grid.Column="2" Text="{Binding Client.client_email}" />
 
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center">
                 <Button Command="{Binding CommandSave}">
