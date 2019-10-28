@@ -39,7 +39,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Référence Client" Visibility="{Binding VisibilityClient}" />
+            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Référence Client" />
             <TextBlock Grid.Row="2"  Grid.Column="1" Text="Nom" />
             <TextBlock Grid.Row="3"  Grid.Column="1" Text="Prenom" />
             <TextBlock Grid.Row="4"  Grid.Column="1" Text="Adresse" />
@@ -48,9 +48,9 @@
             <TextBlock Grid.Row="7"  Grid.Column="1" Text="Telephone" />
             <TextBlock Grid.Row="8"  Grid.Column="1" Text="Email" />
 
-            <TextBox IsReadOnly="True" Grid.Row="1"  Grid.Column="2" Text="{Binding Contact.RefClient}" Visibility="{Binding VisibilityClient}"  />
-            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Nom, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Prenom, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1"  Grid.Column="2" Text="{Binding client_ref}"  />
+            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding client_lastname}" />
+            <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Contact.Prenom}" />
             <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding Contact.Adresse}" />
             <TextBox Grid.Row="5"  Grid.Column="2" Text="{Binding Contact.CodePostal}" />
             <TextBox Grid.Row="6"  Grid.Column="2" Text="{Binding Contact.Ville}" />

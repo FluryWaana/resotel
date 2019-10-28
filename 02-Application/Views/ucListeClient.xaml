@@ -15,7 +15,11 @@
     <ListBox ItemsSource="{Binding Clients}" IsSynchronizedWithCurrentItem="True">
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding NomPrenom}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding client_lastname}" />
+                    <TextBlock Text=" " />
+                    <TextBlock Text="{Binding client_firstname}" />
+                </StackPanel>
             </DataTemplate>
         </ListBox.ItemTemplate>
     </ListBox>
