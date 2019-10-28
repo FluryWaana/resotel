@@ -39,7 +39,8 @@
         <GridSplitter Grid.Column ="1" Grid.Row="1" 
                       Background="{DynamicResource ButtonBrush}" Width="4" VerticalAlignment="Stretch"/>
 
-        <local:ucDetailClient Grid.Column="2" Grid.Row="1" DataContext="{Binding ClientSelected}" />
+        <local:UcDetailClient Grid.Column="2" Grid.Row="1" DataContext="{Binding ClientSelected
+}" />
 
     </Grid>
 

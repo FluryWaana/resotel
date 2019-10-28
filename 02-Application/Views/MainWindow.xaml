@@ -63,6 +63,11 @@
         <DataTemplate DataType="{x:Type ViewsModels:ShowBedroomViewModel}">
             <Views:ShowBedroomControl/>
         </DataTemplate>
+
+        <!-- Template de la page de booking formulaire -->
+        <DataTemplate DataType="{x:Type ViewsModels:FormBookingViewModel}">
+            <Views:FormBookingControl/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid>
