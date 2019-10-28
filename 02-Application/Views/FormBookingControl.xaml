@@ -8,7 +8,7 @@
              xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
              HorizontalAlignment="Stretch" 
              VerticalAlignment="Stretch">
-    
+
     <UserControl.DataContext>
         <ViewsModels:FormBookingViewModel/>
     </UserControl.DataContext>
@@ -53,17 +53,20 @@
 
 
 
-            <TextBox Grid.Row="1"  Grid.Column="2" Text="{Binding Booking.booking_start}" />
-            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Booking.booking_end}" />
-            <ComboBox Grid.Row="3"  Grid.Column="2" Text="{Binding Booking.bedroom_number}" />
-            <ComboBox Grid.Row="4"  Grid.Column="2" Text="{Binding Clients.client_lastname}" />
-            
-        <!-- Ici mettre une liste de l'ensemble des clients-->
+
+            <DatePicker Grid.Row="1"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_start" SelectedDate="{Binding Booking.booking_start}" />
+            <DatePicker Grid.Row="2"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_end" SelectedDate="{Binding Booking.booking_end}" />
+            <ComboBox Grid.Row="3"  Grid.Column="2" Text="{Binding Bedrooms.bedroom_number}" />
+            <ComboBox Grid.Row="4"  Grid.Column="2" Text="{Binding Clients.client_lastname}" >
+
+            </ComboBox>
+
+            <!-- Ici mettre une liste de l'ensemble des clients-->
 
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center">
                 <Button Command="{Binding SaveBooking}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesomeIcon SolidIcon="Save" Foreground="White" Height="16"  />
+                        <fa:FontAwesomeIcon SolidIcon="Save"  Foreground="White" Height="16"  />
                         <TextBlock Text="Enregistrer" Margin="5 0 0 0" />
                     </StackPanel>
                 </Button>

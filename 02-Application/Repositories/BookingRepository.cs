@@ -42,7 +42,6 @@ namespace Resotel.Repositories
             booking resa = entities.booking.Where(x => x.booking_id == booking_id).FirstOrDefault();
 
             // Modifie les attributs
-            resa.bedroom_number = 20;
 
             // Sauvegarde les modifications
             entities.SaveChanges();
