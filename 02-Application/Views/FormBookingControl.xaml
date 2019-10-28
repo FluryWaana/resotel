@@ -46,16 +46,19 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Date de début" />
-            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Date de fin" />
-            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Numéro de chambre" />
+            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Date de début" />
+            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Date de fin" />
+            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Numéro de chambre" />
+            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Client" />
 
 
 
-            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Booking.booking_start}" />
-            <TextBox Grid.Row="3"  Grid.Column="2" Text="{Binding Booking.booking_end}" />
-            <TextBox Grid.Row="4"  Grid.Column="2" Text="{Binding Booking.bedroom_number}" />
-
+            <TextBox Grid.Row="1"  Grid.Column="2" Text="{Binding Booking.booking_start}" />
+            <TextBox Grid.Row="2"  Grid.Column="2" Text="{Binding Booking.booking_end}" />
+            <ComboBox Grid.Row="3"  Grid.Column="2" Text="{Binding Booking.bedroom_number}" />
+            <ComboBox Grid.Row="4"  Grid.Column="2" Text="{Binding Clients.client_lastname}" />
+            
+        <!-- Ici mettre une liste de l'ensemble des clients-->
 
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center">
                 <Button Command="{Binding SaveBooking}">

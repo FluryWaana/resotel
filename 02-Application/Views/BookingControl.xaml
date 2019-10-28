@@ -18,24 +18,77 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
+     
 
-        <Button Grid.Row="0" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.BtnShowFormBooking}" Margin=" 5 0 0 0" >
+
+        <Button Grid.Row="0" Grid.Column="0" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.BtnShowFormBooking}" Margin=" 5 0 0 0" >
             <StackPanel Orientation="Horizontal">
                 <fa:FontAwesomeIcon SolidIcon="CalendarPlus" Foreground="White" Height="16"  />
                 <TextBlock Text="Réserver" Margin="5 0 0 0" />
             </StackPanel>
         </Button>
-        
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Bookings}" 
-                  CanUserReorderColumns="True" 
+
+        <DataGrid Grid.Row="1"  ItemsSource="{Binding Bookings}" 
+                  VerticalScrollBarVisibility="Visible"
+                  CanUserReorderColumns="False" 
                   CanUserResizeColumns="False" 
                   CanUserResizeRows="False" 
                   CanUserSortColumns="True"
                   AlternatingRowBackground="Gainsboro"  
-                  AlternationCount="2"
-                  IsReadOnly="True"  />
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  AutoGenerateColumns="False">
+
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="DimGray" />
+                            <Setter Property="BorderBrush" Value="DimGray" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Numéro de réservation" Width="Auto" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding booking_id}" TextAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Date de début" Width="Auto" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding booking_start}" TextAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Date de fin" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding booking_end}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn Width="Auto" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Consulter" 
+                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, 
+                                             Path=DataContext.BtnShowBedroom}"
+                                    CommandParameter="{Binding booking_start}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn-->
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

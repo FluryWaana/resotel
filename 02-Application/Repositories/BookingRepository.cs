@@ -39,16 +39,16 @@ namespace Resotel.Repositories
 
         {
             // Recupère la véservation
-            booking caca = entities.booking.Where(x => x.booking_id == booking_id).FirstOrDefault();
+            booking resa = entities.booking.Where(x => x.booking_id == booking_id).FirstOrDefault();
 
             // Modifie les attributs
-            caca.bedroom_number = 20;
+            resa.bedroom_number = 20;
 
             // Sauvegarde les modifications
             entities.SaveChanges();
 
             // Retourne la réservation
-            return caca;
+            return resa;
         }
     }
 }
