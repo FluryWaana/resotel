@@ -56,8 +56,8 @@
 
             <DatePicker Grid.Row="1"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_start" SelectedDate="{Binding Booking.booking_start}" />
             <DatePicker Grid.Row="2"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_end" SelectedDate="{Binding Booking.booking_end}" />
-            <ComboBox Grid.Row="3"  Grid.Column="2" Text="{Binding Bedrooms.bedroom_number}" />
-            <ComboBox Grid.Row="4"  Grid.Column="2" Text="{Binding Clients.client_lastname}" >
+            <ComboBox Grid.Row="3"  Grid.Column="2" ItemsSource="{Binding Bedrooms.bedroom_number}" />
+            <ComboBox Grid.Row="4"  Grid.Column="2" ItemsSource="{Binding Client}" >
 
             </ComboBox>
 

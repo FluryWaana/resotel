@@ -18,6 +18,12 @@ namespace Resotel.Repositories
 
         //--------------------------------------------------------------------
 
+        //-----------Ajout par clem construct liste client dans bookingForm
+        public List<client> GetClients()
+        {
+            return entities.client.Select(x => x).ToList();
+        }
+
         public booking addBooking()
         {
             booking book = new booking();
@@ -34,6 +40,8 @@ namespace Resotel.Repositories
         {
             return entities.booking.Select(x => x).ToList();
         }
+
+        
 
         public booking SaveBooking( int booking_id)
 

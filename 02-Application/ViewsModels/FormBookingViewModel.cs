@@ -11,6 +11,7 @@ namespace Resotel.ViewsModels
     class FormBookingViewModel : ViewModelBase
     {
         private booking booking;
+        private List<client> clients;
 
         public booking Booking
         {
@@ -23,6 +24,20 @@ namespace Resotel.ViewsModels
             {
                 booking = value;
                 NotifyPropertyChanged("Booking");
+            }
+        }
+
+        public List<client> Client
+        {
+            get
+            {
+                return clients;
+            }
+
+            set
+            {
+                clients = value;
+                NotifyPropertyChanged("Client");
             }
         }
 
