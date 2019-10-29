@@ -12,10 +12,13 @@
         <ViewsModels:ClientViewModel/>
     </UserControl.DataContext>
 
-    <ListBox ItemsSource="{Binding Clients}" IsSynchronizedWithCurrentItem="True">
+    <ListBox ItemsSource="{Binding ListClient}" IsSynchronizedWithCurrentItem="True">
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <TextBlock Text="{Binding NomPrenom}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Client.client_lastname}" />
+                    <TextBlock Text="{Binding Client.client_firstname}" Margin="5 0 0 0" />
+                </StackPanel>                
             </DataTemplate>
         </ListBox.ItemTemplate>
     </ListBox>

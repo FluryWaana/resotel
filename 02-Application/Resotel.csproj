@@ -171,6 +171,7 @@
     <Compile Include="ViewsModels\ClientViewModel.cs" />
     <Compile Include="ViewsModels\DashboardViewModel.cs" />
     <Compile Include="ViewsModels\FormBookingViewModel.cs" />
+    <Compile Include="ViewsModels\FormClientViewModel.cs" />
     <Compile Include="ViewsModels\LoginViewModel.cs" />
     <Compile Include="ViewsModels\MainViewModel.cs" />
     <Compile Include="ViewsModels\ShowBedroomViewModel.cs" />
@@ -211,8 +212,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FormBookingControl.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LoginControl.xaml">
       <SubType>Designer</SubType>
@@ -301,6 +302,10 @@
     <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Entypo-license.txt" />
+    <Resource Include="Resources\WindowsIcons-license.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Entities\resotelEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>resotelEntities.edmx</DependentUpon>
@@ -311,8 +316,6 @@
       <DependentUpon>resotelEntities.edmx</DependentUpon>
       <LastGenOutput>resotelEntities.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\Entypo-license.txt" />
-    <Resource Include="Resources\WindowsIcons-license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

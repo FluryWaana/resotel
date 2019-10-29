@@ -25,7 +25,7 @@ namespace Resotel.Entities
         public System.DateTime booking_start { get; set; }
         public System.DateTime booking_end { get; set; }
         public int bedroom_number { get; set; }
-        public int invoice_reference { get; set; }
+        public Nullable<int> invoice_reference { get; set; }
     
         public virtual bedroom bedroom { get; set; }
         public virtual invoice invoice { get; set; }

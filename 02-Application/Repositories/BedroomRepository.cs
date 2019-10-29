@@ -1,5 +1,6 @@
 ﻿using Resotel.Entities;
 using Resotel.Shared;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -61,9 +62,14 @@ namespace Resotel.Repositories
             // Si un étage est mis dans les filtres de recherche
             if( ! floor.Equals( "" ) )
             {
-                query = query.Where( x => x.bedroom_floor == int.Parse( floor ) );
-            }
+                // Vérifie si l'étage est un nombre
+                bool success = Int32.TryParse(floor, out int temp);
 
+                if ( success )
+                {
+                    query = query.Where(x => x.bedroom_floor == temp);
+                }
+            }
             return query.ToList();
         }
     }
