@@ -10,19 +10,30 @@ namespace Resotel.ViewsModels
 {
     class FormBookingViewModel : ViewModelBase
     {
-        private booking booking;
         private List<client> clients;
+        private List<booking> bookings;
+        private List<bedroom> bedrooms;
 
-        public booking Booking
+        public FormBookingViewModel()
+        {
+            bookingRepository = new BookingRepository();
+            Client = bookingRepository.GetClients();
+            Booking = bookingRepository.GetBookings();
+            Bedroom = bookingRepository.GetBedrooms();
+        }
+
+        private BookingRepository bookingRepository;
+
+        public List<booking> Booking
         {
             get
             {
-                return booking;
+                return bookings;
             }
 
             set
             {
-                booking = value;
+                bookings = value;
                 NotifyPropertyChanged("Booking");
             }
         }
@@ -38,6 +49,20 @@ namespace Resotel.ViewsModels
             {
                 clients = value;
                 NotifyPropertyChanged("Client");
+            }
+        }
+
+        public List<bedroom> Bedroom
+        {
+            get
+            {
+                return bedrooms;
+            }
+
+            set
+            {
+                bedrooms = value;
+                NotifyPropertyChanged("Bedroom");
             }
         }
 

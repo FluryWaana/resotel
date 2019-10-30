@@ -18,38 +18,42 @@ namespace Resotel.Repositories
 
         //--------------------------------------------------------------------
 
-        //-----------Ajout par clem construct liste client dans bookingForm
+        //-----------List accès aux champs
         public List<client> GetClients()
         {
             return entities.client.Select(x => x).ToList();
         }
 
-        public booking addBooking()
-        {
-            booking book = new booking();
-
-            // ici ajouter des fake reservations pour test
-            book.bedroom_number = 10;  
-
-            var query = entities.booking.Add(book);
-
-            return null;
-
-        }
         public List<booking> GetBookings()
         {
             return entities.booking.Select(x => x).ToList();
         }
+
+        public List<bedroom> GetBedrooms()
+        {
+            return entities.bedroom.Select(x => x).ToList();
+        }
+
+
+
+        //----------Ajout reservation table booking
+        public booking AddBooking(booking book)
+        {  
+
+            entities.booking.Add(book);
+
+            return null;
+
+        }
+
 
         
 
         public booking SaveBooking( int booking_id)
 
         {
-            // Recupère la véservation
+            // Recupère la réservation
             booking resa = entities.booking.Where(x => x.booking_id == booking_id).FirstOrDefault();
-
-            // Modifie les attributs
 
             // Sauvegarde les modifications
             entities.SaveChanges();
