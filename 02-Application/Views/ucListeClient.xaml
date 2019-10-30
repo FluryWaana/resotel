@@ -7,11 +7,6 @@
              xmlns:local="clr-namespace:Resotel.Views"
              mc:Ignorable="d">
 
-    <!-- Déclaration du DataContext dans le .XAML au lieu du .CS (cela ne change rien) -->
-    <UserControl.DataContext>
-        <ViewsModels:ClientViewModel/>
-    </UserControl.DataContext>
-
     <ListBox ItemsSource="{Binding ListClient}" IsSynchronizedWithCurrentItem="True">
         <ListBox.ItemTemplate>
             <DataTemplate>
