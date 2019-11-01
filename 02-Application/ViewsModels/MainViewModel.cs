@@ -23,6 +23,7 @@ namespace Resotel.ViewsModels
         {
             AuthVM            = new AuthenticationViewModel();
             SelectedViewModel = new LoginViewModel();
+
         }
 
         //--------------------------------------------------------------------
