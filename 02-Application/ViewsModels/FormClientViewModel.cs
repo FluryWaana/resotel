@@ -1,4 +1,5 @@
 ﻿using Resotel.Entities;
+using Resotel.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace Resotel.ViewsModels
             set
             {
                 client = value;
+                NotifyPropertyChanged("Client");
             }
         }
 

@@ -37,17 +37,28 @@ namespace Resotel.Repositories
 
 
         //----------Ajout reservation table booking
-        public booking AddBooking(booking book)
-        {  
+        public booking AddBooking(booking book, int client_id, int beedroom_number)
+        {
+            // Récupération du client
+            client client_temp = entities.client.Where(x => x.client_id == client_id).FirstOrDefault();
 
+            // Récupération de la chambre
+            bedroom bedroom_temp = entities.bedroom.Where(x => x.bedroom_number == beedroom_number).FirstOrDefault();
+
+            // TODO : 
+            // Assigne le client à la réservation
+            // book. = client_temp;
+
+            // Assigne la chambre
+            book.bedroom_number = bedroom_temp.bedroom_number;
+
+            // Ajoute la réservation à la base de données
             entities.booking.Add(book);
 
+            //entities.SaveChanges();
+
             return null;
-
         }
-
-
-        
 
         public booking SaveBooking( int booking_id)
 

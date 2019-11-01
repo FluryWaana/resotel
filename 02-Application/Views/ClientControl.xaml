@@ -39,27 +39,7 @@
         <GridSplitter Grid.Column ="1" Grid.Row="1" 
                       Background="{DynamicResource ButtonBrush}" Width="4" VerticalAlignment="Stretch"/>
 
-        <local:UcDetailClient Grid.Column="2" Grid.Row="1" DataContext="{Binding ClientSelected
-}" />
+        <local:UcDetailClient Grid.Column="2" Grid.Row="1" DataContext="{Binding ClientSelected }" />
 
     </Grid>
-
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock Text="Page Client" Grid.Row="0" />
-
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Clients}" 
-                  CanUserReorderColumns="True" 
-                  CanUserResizeColumns="False" 
-                  CanUserResizeRows="False" 
-                  CanUserSortColumns="True"
-                  AlternatingRowBackground="Gainsboro"  
-                  AlternationCount="2"
-                  IsReadOnly="True"  />
-    </Grid>-->
-
 </UserControl>

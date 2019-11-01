@@ -81,7 +81,7 @@ namespace Resotel.ViewsModels
                 if (value != listClient)
                 {
                     listClient = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged("ListClient");
                 }
             }
         }
@@ -118,9 +118,8 @@ namespace Resotel.ViewsModels
 
             set
             {
-                LogSystem.WriteLog("aaaaaa", TypeLog.Information);
                 clientSelected = value;
-                NotifyPropertyChanged();
+                NotifyPropertyChanged("ClientSelected");
             }
         }
 
@@ -131,7 +130,6 @@ namespace Resotel.ViewsModels
         private void addClientList(client client)
         {
             FormClientViewModel temp = new FormClientViewModel(client);
-            temp.ClientEvent += delete;
             listClient.Add(temp);
         }
     }
