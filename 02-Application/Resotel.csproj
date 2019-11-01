@@ -164,6 +164,7 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Shared\LogSystem.cs" />
     <Compile Include="Shared\RelayCommand.cs" />
+    <Compile Include="Shared\SingletonContext.cs" />
     <Compile Include="Shared\TypeLog.cs" />
     <Compile Include="ViewsModels\AuthenticationViewModel.cs" />
     <Compile Include="ViewsModels\BedroomViewModel.cs" />

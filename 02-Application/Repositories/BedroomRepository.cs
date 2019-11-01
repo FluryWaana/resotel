@@ -26,9 +26,11 @@ namespace Resotel.Repositories
             bedroom br = new bedroom();
             br.bedroom_floor  = 1;
             br.bedroom_number = 100;
+            br.bedroom_status = "libre";
+            br.bedroom_type_id = 1;
 
-            var query = entities.bedroom.Add( br );
-
+            entities.bedroom.Add( br );
+            entities.SaveChanges();
             return null;
         }
 
