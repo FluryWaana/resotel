@@ -56,7 +56,6 @@ namespace Resotel.Repositories
             if( ! statut.Equals( "" ) )
             {
                 query = query.Where( x => x.bedroom_status.Equals(statut));
-
             }
 
             // Si un étage est mis dans les filtres de recherche

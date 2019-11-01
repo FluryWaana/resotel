@@ -4,28 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fbc928c15dfa4151bacf07f8aaae871e" Name="Diagram1">
-        <EntityTypeShape EntityType="resotelModel.bedroom" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.bedroom_type" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.booking" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.client" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.concern" Width="1.5" PointX="10.5" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.feature" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.invoice" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.promotion" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.rate" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.role" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="resotelModel.user" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+      <Diagram DiagramId="0da4da6f5e5046de8e9aec844a9e3493" Name="Diagram1">
+        <EntityTypeShape EntityType="resotelModel.bedroom" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.bedroom_type" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.booking" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.client" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.concern" Width="1.5" PointX="7.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.feature" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.invoice" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.promotion" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.rate" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.role" Width="1.5" PointX="9.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="resotelModel.user" Width="1.5" PointX="12" PointY="2.375" IsExpanded="true" />
         <AssociationConnector Association="resotelModel.bedroom_bedroom_type_FK" ManuallyRouted="false" />
         <AssociationConnector Association="resotelModel.booking_bedroom_FK" ManuallyRouted="false" />
         <AssociationConnector Association="resotelModel.rate_bedroom_type_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="resotelModel.booking_invoice0_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.booking_client0_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="resotelModel.booking_invoice1_FK" ManuallyRouted="false" />
         <AssociationConnector Association="resotelModel.concern_booking0_FK" ManuallyRouted="false" />
         <AssociationConnector Association="resotelModel.invoice_client_FK" ManuallyRouted="false" />
         <AssociationConnector Association="resotelModel.concern_feature_FK" ManuallyRouted="false" />
         <AssociationConnector Association="resotelModel.promotion_feature_FK" ManuallyRouted="false" />
         <AssociationConnector Association="resotelModel.user_role_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="resotelModel.carry_out" ManuallyRouted="false" />
         <AssociationConnector Association="resotelModel.own" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
