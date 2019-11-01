@@ -13,8 +13,13 @@
 ## Author
 
 👤 **Picoulet Axel**
-
 * Github: [@FluryWaana](https://github.com/FluryWaana)
+
+👤 **Clémence**
+* Github: [@Kll3m](https://github.com/kll3m)
+
+👤 **Quentin**
+* Github: [@Quentin](https://github.com/QuentinCHABOT)
 
 ## 🤝 Contributing
 
