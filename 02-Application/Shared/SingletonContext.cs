@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace Resotel.Shared
 {
+    /**
+     *  Il faut utiliser un singleton pour utiliser uniquement un seul context dans EntityFramework
+     *  pour éviter d'avoir plusieurs instances de celui-ci qui provoquerai lors d'un ajout
+     *  ou d'une mise à jour d'un object l'erreur :
+     *  An entity object cannot be referenced by multiple instances of IEntityChangeTracker
+     */
     public class SingletonContext
     {
         /**
@@ -14,9 +20,13 @@ namespace Resotel.Shared
          */
         protected resotelEntities entities;
 
-        #region Singleton
-        private static SingletonContext instance = null;
+        //--------------------------------------------------------------------
 
+        #region Singleton
+        /**
+         * Instance du singleton
+         */
+        private static SingletonContext instance = null;
         public static SingletonContext Instance
         {
             get
@@ -30,11 +40,22 @@ namespace Resotel.Shared
         }
         #endregion
 
+        //--------------------------------------------------------------------
+
+        /**
+         * Constructeur en privé pour éviter l'instanciation de classe hors
+         * de celle-ci
+         */
         private SingletonContext()
         {
             entities = new resotelEntities();
         }
+
+        //--------------------------------------------------------------------
         
+        /**
+         * Retourne le contexte d'EntityFramework
+         */
         public resotelEntities getContext()
         {
             return entities;
