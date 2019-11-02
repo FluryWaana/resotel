@@ -130,6 +130,7 @@ namespace Resotel.ViewsModels
         private void addClientList(client client)
         {
             FormClientViewModel temp = new FormClientViewModel(client);
+            temp.OnDeleted += delete;
             listClient.Add(temp);
         }
 
@@ -142,7 +143,7 @@ namespace Resotel.ViewsModels
                 {
                     commandeNewClient = new RelayCommand((window) =>
                     {
-                        listClient.Add( new FormClientViewModel(new  client() ) );
+                        listClient.Add( new FormClientViewModel(new client () ) );
                     });
                 }
                 return commandeNewClient;

@@ -14,6 +14,10 @@ namespace Resotel.ViewsModels
     public class FormClientViewModel : ViewModelBase
     {
         /**
+        *  Evenement de Suppression du client
+        */
+        public event EventHandler OnDeleted;
+        /**
          *  Client
          */
         private client client;
@@ -67,9 +71,37 @@ namespace Resotel.ViewsModels
                     addShowClient = new RelayCommand((window) =>
                     {
                         clientRepository.addClient(client);
+                    },
+                    (window) =>
+                    {
+                        if (string.IsNullOrWhiteSpace(Client.client_lastname) || string.IsNullOrWhiteSpace(Client.client_firstname)
+                            || string.IsNullOrWhiteSpace(Client.client_address) || string.IsNullOrWhiteSpace(Client.client_city)
+                            || string.IsNullOrWhiteSpace(Client.client_postalCode) || string.IsNullOrWhiteSpace(Client.client_email)
+                            || string.IsNullOrWhiteSpace(Client.client_phone))
+                        {
+                            return false;
+                        }
+                        return true;
                     });
                 }
                 return addShowClient;
+            }
+        }
+
+        private ICommand commandDelete;
+        public ICommand CommandDelete
+        {
+            get
+            {
+                if (commandDelete == null)
+                {
+                    commandDelete = new RelayCommand(sender => {
+
+                        if (Client.client_id > 0) clientRepository.DeleteClient(client);
+                        OnDeleted?.Invoke(this, EventArgs.Empty);
+                    });
+                }
+                return commandDelete;
             }
         }
     }
