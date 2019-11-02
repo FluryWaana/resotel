@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:local="clr-namespace:Resotel.Views"
+             xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
              xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
              HorizontalAlignment="Stretch" 
              VerticalAlignment="Stretch"
@@ -13,20 +14,33 @@
         <ViewsModels:BedroomViewModel/>
     </UserControl.DataContext>
     
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </UserControl.Resources>
+    
     <Grid Margin="8 0 8 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
-
-        <Border Grid.Row="0" 
+        
+        <Button Grid.Row="0" Margin="0 10 0 0" Command="{Binding BtnShowFilter}" >
+            <StackPanel Orientation="Horizontal">
+                <fa:FontAwesomeIcon SolidIcon="Filter" Margin="0 0 5 0"/>
+                <TextBlock Text="Filtrer"/>
+            </StackPanel>
+        </Button>
+        <Border Grid.Row="1" 
                 BorderBrush="{DynamicResource PrimaryHueMidBrush}" 
                 BorderThickness="2" 
                 Padding="8"
                 CornerRadius="10"
-                Margin="0 10 0 0">
+                Margin="0 10 0 0"
+                Visibility="{Binding ShowFilter, Converter={StaticResource BoolVisibilityConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -67,16 +81,18 @@
                       ItemsSource="{Binding Statuts}" 
                       SelectedValue="{Binding Path=StatutString}"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="Libre du" />
-                <DatePicker Grid.Row="4" Grid.Column="1" Language="fr"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="Libre du" />
+                <DatePicker Grid.Row="3" Grid.Column="1" Language="fr" SelectedDate="{Binding Date_start}"/>
 
-                <TextBlock Grid.Row="3" Grid.Column="2" Text="au" />
-                <DatePicker Grid.Row="4" Grid.Column="2"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Text="au" />
+                <DatePicker Grid.Row="3" Grid.Column="2" Language="fr" SelectedDate="{Binding Date_end}"/>
+
+                <Button Content="Rénitialiser" Grid.Row="4" Grid.Column="1" Margin="0 10 0 0" Command="{Binding BtnResetFilter}"/>
 
             </Grid>
         </Border>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Bedrooms}"
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Bedrooms}"
                   VerticalScrollBarVisibility="Visible"
                   CanUserReorderColumns="False" 
                   CanUserResizeColumns="False" 

@@ -1,8 +1,10 @@
 ﻿using Resotel.Entities;
 using Resotel.Repositories;
 using Resotel.Shared;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Resotel.ViewsModels
 {
@@ -28,6 +30,9 @@ namespace Resotel.ViewsModels
             Statuts.Add("");
             BedroomType       = bedroomRepository.GetBedroomType();
             BedroomType.Add(new bedroom_type());
+            Date_start        = DateTime.Now;
+            Date_end          = DateTime.Now;
+
         }
 
         //--------------------------------------------------------------------     
@@ -160,8 +165,106 @@ namespace Resotel.ViewsModels
                 NotifyPropertyChanged("Bedroom_type");
                 UpdateBedrooms();
             }
-
         }
+
+        /**
+         * Binding du filtre pour la date de début
+         */
+        private DateTime date_start;
+        public DateTime Date_start
+        {
+            get
+            {
+                return date_start;
+            }
+
+            set
+            {
+                date_start = value;
+                NotifyPropertyChanged("Date_start");
+                UpdateBedrooms();
+            }
+        }
+
+        /**
+         * Binding du filtre pour la date de fin
+         */
+        private DateTime date_end;
+        public DateTime Date_end
+        {
+            get
+            {
+                return date_end;
+            }
+
+            set
+            {
+                date_end = value;
+                NotifyPropertyChanged("Date_end");
+                UpdateBedrooms();
+            }
+        }
+
+        /**
+         * Binding show/hide filter
+         */
+        private bool showFilter;
+        public bool ShowFilter
+        {
+            get
+            {
+                return showFilter;
+            }
+
+            set
+            {
+                showFilter = value;
+                NotifyPropertyChanged("ShowFilter");
+            }
+        }
+        
+        /**
+         *  Reset tous les filtres
+         */
+        private ICommand btnResetFilter;
+        public ICommand BtnResetFilter
+        {
+            get
+            {
+                if (btnResetFilter == null)
+                {
+                    btnResetFilter = new RelayCommand((window) =>
+                    {
+                        Bedroom_type = null;
+                        StatutString = "";
+                        Floor_filter = 0;
+                        Date_start   = DateTime.Now;
+                        Date_end     = DateTime.Now;
+                    });
+                }
+                return btnResetFilter;
+            }
+        }
+
+        /**
+         *  Affiche / Cache les filtres
+         */
+        private ICommand btnShowFilter;
+        public ICommand BtnShowFilter
+        {
+            get
+            {
+                if (btnShowFilter == null)
+                {
+                    btnShowFilter = new RelayCommand((window) =>
+                    {
+                        ShowFilter = !showFilter;
+                    });
+                }
+                return btnShowFilter;
+            }
+        }
+
 
 
         //--------------------------------------------------------------------
