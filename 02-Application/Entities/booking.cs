@@ -18,20 +18,19 @@ namespace Resotel.Entities
         public booking()
         {
             this.concern = new HashSet<concern>();
-            this.client = new HashSet<client>();
         }
     
         public int booking_id { get; set; }
         public System.DateTime booking_start { get; set; }
         public System.DateTime booking_end { get; set; }
         public int bedroom_number { get; set; }
+        public int client_id { get; set; }
         public Nullable<int> invoice_reference { get; set; }
     
         public virtual bedroom bedroom { get; set; }
+        public virtual client client { get; set; }
         public virtual invoice invoice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concern> concern { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<client> client { get; set; }
     }
 }

@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `bedroom_type` (
   PRIMARY KEY (`bedroom_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table resotel.bedroom_type : ~6 rows (environ)
+-- Listage des données de la table resotel.bedroom_type : ~6rows (environ)
 /*!40000 ALTER TABLE `bedroom_type` DISABLE KEYS */;
 	INSERT INTO `bedroom_type` (`bedroom_type_id`, `bedroom_type`) VALUES
 	('1', 'Chambre 1 place'),
@@ -117,30 +117,33 @@ CREATE TABLE IF NOT EXISTS `booking` (
   `booking_start` date NOT NULL,
   `booking_end` date NOT NULL,
   `bedroom_number` int(11) NOT NULL,
+  `client_id` int(11) NOT NULL,
   `invoice_reference` int(11) DEFAULT NULL,
   PRIMARY KEY (`booking_id`),
   KEY `booking_bedroom_FK` (`bedroom_number`),
-  KEY `booking_invoice0_FK` (`invoice_reference`),
+  KEY `booking_client0_FK` (`client_id`),
+  KEY `booking_invoice1_FK` (`invoice_reference`),
   CONSTRAINT `booking_bedroom_FK` FOREIGN KEY (`bedroom_number`) REFERENCES `bedroom` (`bedroom_number`),
-  CONSTRAINT `booking_invoice0_FK` FOREIGN KEY (`invoice_reference`) REFERENCES `invoice` (`invoice_reference`)
+  CONSTRAINT `booking_client0_FK` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`),
+  CONSTRAINT `booking_invoice1_FK` FOREIGN KEY (`invoice_reference`) REFERENCES `invoice` (`invoice_reference`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Listage des données de la table resotel.booking : ~13 rows (environ)
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` (`booking_id`, `booking_start`, `booking_end`, `bedroom_number`) VALUES
- ('1', '2019-10-26', '2019-10-26', '1'),
- ('2', '2019-10-24', '2019-10-26', '2'),
- ('3', '2019-09-26', '2019-09-26', '2'),
- ('4', '2019-08-26', '2019-10-26', '4'),
- ('5', '2019-09-26', '2019-09-26', '4'),
- ('6', '2019-05-26', '2019-05-26', '8'),
- ('7', '2019-10-12', '2019-10-16', '8'),
- ('8', '2019-12-26', '2019-12-26', '20'),
- ('9', '2019-04-26', '2019-04-26', '22'),
- ('10', '2019-11-26', '2019-11-26', '23'),
- ('11', '2019-11-24', '2019-11-26', '25'),
- ('12', '2019-10-26', '2019-10-26', '17'),
- ('13', '2019-04-25', '2019-04-25', '17');
+INSERT INTO `booking` (`booking_id`, `booking_start`, `booking_end`, `bedroom_number`, `client_id`) VALUES
+ ('1', '2019-10-26', '2019-10-26', '1', '1'),
+ ('2', '2019-10-24', '2019-10-26', '2', '3'),
+ ('3', '2019-09-26', '2019-09-26', '2', '5'),
+ ('4', '2019-08-26', '2019-10-26', '4', '3'),
+ ('5', '2019-09-26', '2019-09-26', '4', '6'),
+ ('6', '2019-05-26', '2019-05-26', '8', '4'),
+ ('7', '2019-10-12', '2019-10-16', '8', '4' ),
+ ('8', '2019-12-26', '2019-12-26', '20', '6'),
+ ('9', '2019-04-26', '2019-04-26', '22', '7'),
+ ('10', '2019-11-26', '2019-11-26', '23', '2'),
+ ('11', '2019-11-24', '2019-11-26', '25', '10'),
+ ('12', '2019-10-26', '2019-10-26', '17', '11'),
+ ('13', '2019-04-25', '2019-04-25', '17', '12');
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 
 -- Listage de la structure de la table resotel. client
@@ -174,35 +177,6 @@ CREATE TABLE IF NOT EXISTS `client` (
 	(12, 'fortier', 'paul', '28, Square de la Couronne', 'OZOIR-LA-FERRIÈRE', 'OZOIR-LA-FERRIÈRE', 'paulfortier@teleworm.us', '0141207873');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
--- Listage de la structure de la table resotel. carry_out
-DROP TABLE IF EXISTS `carry_out`;
-CREATE TABLE IF NOT EXISTS `carry_out` (
-  `booking_id` int(11) NOT NULL,
-  `client_id` int(11) NOT NULL,
-  PRIMARY KEY (`booking_id`,`client_id`),
-  KEY `carry_out_client0_FK` (`client_id`),
-  CONSTRAINT `carry_out_booking_FK` FOREIGN KEY (`booking_id`) REFERENCES `booking` (`booking_id`),
-  CONSTRAINT `carry_out_client0_FK` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- Listage des données de la table resotel.carry_out : ~0 rows (environ)
-/*!40000 ALTER TABLE `carry_out` DISABLE KEYS */;
-INSERT INTO `carry_out` (`booking_id`, `client_id`) VALUES
-('1', '1'),
-('2', '3'),
-('3', '5'),
-('4', '6'),
-('5', '5'),
-('6', '5'),
-('7', '4'),
-('8', '2'),
-('9', '3'),
-('10', '9'),
-('11', '7'),
-('12', '8'),
-('13', '4');
-/*!40000 ALTER TABLE `carry_out` ENABLE KEYS */;
-
 -- Listage de la structure de la table resotel. concern
 DROP TABLE IF EXISTS `concern`;
 CREATE TABLE IF NOT EXISTS `concern` (
@@ -230,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `feature` (
   PRIMARY KEY (`feature_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table resotel.feature : ~5 rows (environ)
+-- Listage des données de la table resotel.feature : ~0 rows (environ)
 /*!40000 ALTER TABLE `feature` DISABLE KEYS */;
 	INSERT INTO `feature` (`feature_id`, `feature_default`, `feature_name`, `feature_price`) VALUES
 	('1', false, 'Espace Cardio', 15),
@@ -300,7 +274,7 @@ CREATE TABLE IF NOT EXISTS `rate` (
   CONSTRAINT `rate_bedroom_type_FK` FOREIGN KEY (`bedroom_type_id`) REFERENCES `bedroom_type` (`bedroom_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table resotel.rate : ~0 rows (environ)
+-- Listage des données de la table resotel.rate : ~18 rows (environ)
 /*!40000 ALTER TABLE `rate` DISABLE KEYS */;
 INSERT INTO `resotel`.`rate` (`rate_id`, `rate_days_number`, `rate_price`, `bedroom_type_id`) VALUES 
 ('1', '1', '49', '1'),

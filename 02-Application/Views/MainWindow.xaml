@@ -146,9 +146,9 @@
                 </MenuItem>
             </Menu>
 
-            <Button Grid.Column="1" 
+            <Border Grid.Column="1" 
                     HorizontalAlignment="Stretch" 
-                    PreviewMouseDown="BtnDragMove" 
+                    MouseLeftButtonDown="BtnDragMove" 
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Cursor="Arrow"/>

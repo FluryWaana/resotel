@@ -75,7 +75,6 @@ namespace Resotel.ViewsModels
 
             set
             {
-                LogSystem.WriteLog( value, TypeLog.Information);
                 floorString = value;
                 NotifyPropertyChanged("FloorString");
                 UpdateBedrooms();

@@ -13,7 +13,7 @@ namespace Resotel.Views
 
         private void BtnDragMove(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+            DragMove();
         }
     }
 }

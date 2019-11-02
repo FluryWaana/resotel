@@ -26,9 +26,11 @@ namespace Resotel.Repositories
             bedroom br = new bedroom();
             br.bedroom_floor  = 1;
             br.bedroom_number = 100;
+            br.bedroom_status = "libre";
+            br.bedroom_type_id = 1;
 
-            var query = entities.bedroom.Add( br );
-
+            entities.bedroom.Add( br );
+            entities.SaveChanges();
             return null;
         }
 
@@ -56,7 +58,6 @@ namespace Resotel.Repositories
             if( ! statut.Equals( "" ) )
             {
                 query = query.Where( x => x.bedroom_status.Equals(statut));
-
             }
 
             // Si un étage est mis dans les filtres de recherche

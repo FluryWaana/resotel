@@ -29,15 +29,8 @@
           <Property Name="booking_start" Type="date" Nullable="false" />
           <Property Name="booking_end" Type="date" Nullable="false" />
           <Property Name="bedroom_number" Type="int" Nullable="false" />
-          <Property Name="invoice_reference" Type="int" />
-        </EntityType>
-        <EntityType Name="carry_out">
-          <Key>
-            <PropertyRef Name="booking_id" />
-            <PropertyRef Name="client_id" />
-          </Key>
-          <Property Name="booking_id" Type="int" Nullable="false" />
           <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="invoice_reference" Type="int" />
         </EntityType>
         <EntityType Name="client">
           <Key>
@@ -147,7 +140,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="booking_invoice0_FK">
+        <Association Name="booking_client0_FK">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="booking_invoice1_FK">
           <End Role="invoice" Type="Self.invoice" Multiplicity="0..1" />
           <End Role="booking" Type="Self.booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -156,30 +161,6 @@
             </Principal>
             <Dependent Role="booking">
               <PropertyRef Name="invoice_reference" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="carry_out_booking_FK">
-          <End Role="booking" Type="Self.booking" Multiplicity="1" />
-          <End Role="carry_out" Type="Self.carry_out" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="booking">
-              <PropertyRef Name="booking_id" />
-            </Principal>
-            <Dependent Role="carry_out">
-              <PropertyRef Name="booking_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="carry_out_client0_FK">
-          <End Role="client" Type="Self.client" Multiplicity="1" />
-          <End Role="carry_out" Type="Self.carry_out" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="client">
-              <PropertyRef Name="client_id" />
-            </Principal>
-            <Dependent Role="carry_out">
-              <PropertyRef Name="client_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -283,7 +264,6 @@
           <EntitySet Name="bedroom" EntityType="Self.bedroom" Schema="resotel" store:Type="Tables" />
           <EntitySet Name="bedroom_type" EntityType="Self.bedroom_type" Schema="resotel" store:Type="Tables" />
           <EntitySet Name="booking" EntityType="Self.booking" Schema="resotel" store:Type="Tables" />
-          <EntitySet Name="carry_out" EntityType="Self.carry_out" Schema="resotel" store:Type="Tables" />
           <EntitySet Name="client" EntityType="Self.client" Schema="resotel" store:Type="Tables" />
           <EntitySet Name="concern" EntityType="Self.concern" Schema="resotel" store:Type="Tables" />
           <EntitySet Name="feature" EntityType="Self.feature" Schema="resotel" store:Type="Tables" />
@@ -301,17 +281,13 @@
             <End Role="bedroom" EntitySet="bedroom" />
             <End Role="booking" EntitySet="booking" />
           </AssociationSet>
-          <AssociationSet Name="booking_invoice0_FK" Association="Self.booking_invoice0_FK">
+          <AssociationSet Name="booking_client0_FK" Association="Self.booking_client0_FK">
+            <End Role="client" EntitySet="client" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="booking_invoice1_FK" Association="Self.booking_invoice1_FK">
             <End Role="invoice" EntitySet="invoice" />
             <End Role="booking" EntitySet="booking" />
-          </AssociationSet>
-          <AssociationSet Name="carry_out_booking_FK" Association="Self.carry_out_booking_FK">
-            <End Role="booking" EntitySet="booking" />
-            <End Role="carry_out" EntitySet="carry_out" />
-          </AssociationSet>
-          <AssociationSet Name="carry_out_client0_FK" Association="Self.carry_out_client0_FK">
-            <End Role="client" EntitySet="client" />
-            <End Role="carry_out" EntitySet="carry_out" />
           </AssociationSet>
           <AssociationSet Name="concern_booking0_FK" Association="Self.concern_booking0_FK">
             <End Role="booking" EntitySet="booking" />
@@ -380,11 +356,12 @@
           <Property Name="booking_start" Type="DateTime" Nullable="false" />
           <Property Name="booking_end" Type="DateTime" Nullable="false" />
           <Property Name="bedroom_number" Type="Int32" Nullable="false" />
+          <Property Name="client_id" Type="Int32" Nullable="false" />
           <Property Name="invoice_reference" Type="Int32" />
           <NavigationProperty Name="bedroom" Relationship="Self.booking_bedroom_FK" FromRole="booking" ToRole="bedroom" />
-          <NavigationProperty Name="invoice" Relationship="Self.booking_invoice0_FK" FromRole="booking" ToRole="invoice" />
+          <NavigationProperty Name="client" Relationship="Self.booking_client0_FK" FromRole="booking" ToRole="client" />
+          <NavigationProperty Name="invoice" Relationship="Self.booking_invoice1_FK" FromRole="booking" ToRole="invoice" />
           <NavigationProperty Name="concern" Relationship="Self.concern_booking0_FK" FromRole="booking" ToRole="concern" />
-          <NavigationProperty Name="client" Relationship="Self.carry_out" FromRole="booking" ToRole="client" />
         </EntityType>
         <EntityType Name="client">
           <Key>
@@ -398,8 +375,8 @@
           <Property Name="client_postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="client_email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="client_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="booking" Relationship="Self.booking_client0_FK" FromRole="client" ToRole="booking" />
           <NavigationProperty Name="invoice" Relationship="Self.invoice_client_FK" FromRole="client" ToRole="invoice" />
-          <NavigationProperty Name="booking" Relationship="Self.carry_out" FromRole="client" ToRole="booking" />
         </EntityType>
         <EntityType Name="concern">
           <Key>
@@ -433,7 +410,7 @@
           <Property Name="invoice_date" Type="DateTime" Nullable="false" />
           <Property Name="invoice_tva" Type="Single" Nullable="false" />
           <Property Name="client_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="booking" Relationship="Self.booking_invoice0_FK" FromRole="invoice" ToRole="booking" />
+          <NavigationProperty Name="booking" Relationship="Self.booking_invoice1_FK" FromRole="invoice" ToRole="booking" />
           <NavigationProperty Name="client" Relationship="Self.invoice_client_FK" FromRole="invoice" ToRole="client" />
         </EntityType>
         <EntityType Name="promotion">
@@ -511,7 +488,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="booking_invoice0_FK">
+        <Association Name="booking_client0_FK">
+          <End Role="client" Type="Self.client" Multiplicity="1" />
+          <End Role="booking" Type="Self.booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="booking">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="booking_invoice1_FK">
           <End Role="invoice" Type="Self.invoice" Multiplicity="0..1" />
           <End Role="booking" Type="Self.booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -583,10 +572,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="carry_out">
-          <End Role="booking" Type="Self.booking" Multiplicity="*" />
-          <End Role="client" Type="Self.client" Multiplicity="*" />
-        </Association>
         <Association Name="own">
           <End Role="bedroom" Type="Self.bedroom" Multiplicity="*" />
           <End Role="feature" Type="Self.feature" Multiplicity="*" />
@@ -615,7 +600,11 @@
             <End Role="bedroom_type" EntitySet="bedroom_type" />
             <End Role="rate" EntitySet="rate" />
           </AssociationSet>
-          <AssociationSet Name="booking_invoice0_FK" Association="Self.booking_invoice0_FK">
+          <AssociationSet Name="booking_client0_FK" Association="Self.booking_client0_FK">
+            <End Role="client" EntitySet="client" />
+            <End Role="booking" EntitySet="booking" />
+          </AssociationSet>
+          <AssociationSet Name="booking_invoice1_FK" Association="Self.booking_invoice1_FK">
             <End Role="invoice" EntitySet="invoice" />
             <End Role="booking" EntitySet="booking" />
           </AssociationSet>
@@ -638,10 +627,6 @@
           <AssociationSet Name="user_role_FK" Association="Self.user_role_FK">
             <End Role="role" EntitySet="role" />
             <End Role="user" EntitySet="user" />
-          </AssociationSet>
-          <AssociationSet Name="carry_out" Association="Self.carry_out">
-            <End Role="booking" EntitySet="booking" />
-            <End Role="client" EntitySet="client" />
           </AssociationSet>
           <AssociationSet Name="own" Association="Self.own">
             <End Role="bedroom" EntitySet="bedroom" />
@@ -679,6 +664,7 @@
                 <ScalarProperty Name="booking_start" ColumnName="booking_start" />
                 <ScalarProperty Name="booking_end" ColumnName="booking_end" />
                 <ScalarProperty Name="bedroom_number" ColumnName="bedroom_number" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
                 <ScalarProperty Name="invoice_reference" ColumnName="invoice_reference" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -766,14 +752,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="carry_out" TypeName="resotelModel.carry_out" StoreEntitySet="carry_out">
-            <EndProperty Name="booking">
-              <ScalarProperty Name="booking_id" ColumnName="booking_id" />
-            </EndProperty>
-            <EndProperty Name="client">
-              <ScalarProperty Name="client_id" ColumnName="client_id" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="own" TypeName="resotelModel.own" StoreEntitySet="own">
             <EndProperty Name="bedroom">
               <ScalarProperty Name="bedroom_number" ColumnName="bedroom_number" />
