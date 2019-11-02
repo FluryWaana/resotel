@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Resotel.Shared
 {
+    /**
+     * Liste de type d'erreur
+     */ 
     public enum TypeLog
     {
         Error,

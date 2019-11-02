@@ -41,39 +41,31 @@
 
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Margin" Value="5 0 10 0"/>
-                    </Style>
-                    <Style TargetType="{x:Type ComboBox}">
                         <Setter Property="Margin" Value="10 0 10 0"/>
+                    </Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+                        <Setter Property="Margin" Value="10 0 10 0"/>
+                    </Style>
+                    <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource {x:Type DatePicker}}">
+                        <Setter Property="Margin" Value="10 10 10 0"/>
                     </Style>
                 </Grid.Resources>
 
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Type de chambre" />
-                <ComboBox Grid.Row="1" Grid.Column="0">
-                    <ComboBoxItem IsSelected="True">Choix...</ComboBoxItem>
-                    <ComboBoxItem>Chambre 1 place</ComboBoxItem>
-                    <ComboBoxItem>Chambre 2 places</ComboBoxItem>
-                    <ComboBoxItem>Chambre 3 places</ComboBoxItem>
-                </ComboBox>
+                <ComboBox Grid.Row="1" Grid.Column="0"
+                          ItemsSource="{Binding BedroomType}" 
+                          DisplayMemberPath="bedroom_type1"
+                          SelectedValue="{Binding Path=Bedroom_type}"/>
 
                 <TextBlock Grid.Row="0" Grid.Column="1" Text="Étage" />
-                <ComboBox Grid.Row="1" Grid.Column="1" 
-                      SelectedItem="{Binding FloorString, Mode=TwoWay}" 
-                      SelectedValuePath="Content">
-                    <ComboBoxItem IsSelected="True">Choix...</ComboBoxItem>
-                    <ComboBoxItem>1</ComboBoxItem>
-                    <ComboBoxItem>2</ComboBoxItem>
-                    <ComboBoxItem>3</ComboBoxItem>
-                    <ComboBoxItem>4</ComboBoxItem>
-                </ComboBox>
+                <ComboBox Grid.Row="1" Grid.Column="1"
+                      ItemsSource="{Binding Floors}" 
+                      SelectedValue="{Binding Path=Floor_filter}"/>
 
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="Statut" />
-                <ComboBox Grid.Row="1" Grid.Column="2">
-                    <ComboBoxItem IsSelected="True">Choix...</ComboBoxItem>
-                    <ComboBoxItem>Libre</ComboBoxItem>
-                    <ComboBoxItem>Occupée</ComboBoxItem>
-                    <ComboBoxItem>à nettoyer</ComboBoxItem>
-                </ComboBox>
+                <ComboBox Grid.Row="1" Grid.Column="2" 
+                      ItemsSource="{Binding Statuts}" 
+                      SelectedValue="{Binding Path=StatutString}"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="1" Text="Libre du" />
                 <DatePicker Grid.Row="4" Grid.Column="1" Language="fr"/>
