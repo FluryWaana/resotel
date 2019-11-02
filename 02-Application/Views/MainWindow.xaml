@@ -16,8 +16,8 @@
         WindowStartupLocation="CenterScreen"
         Height="600"
         Width="1200" 
-        MinWidth="845"
-        MinHeight="450"
+        MinWidth="1000"
+        MinHeight="650"
         x:Name="Window">
     
     <!-- Permet de supprimer le Titlebar par défaut -->

@@ -1,6 +1,7 @@
 ﻿using Resotel.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,17 +20,38 @@ namespace Resotel.Repositories
         //--------------------------------------------------------------------
 
         /**
-         * 
+         * Ajoute et modifie les informations du client
          */
-        public client addClient()
+        public client addClient(client c)
         {
-            client cl = new client();
-            cl.client_lastname = "";
-            cl.client_firstname = "";
+            if (c.client_id > 0)
+            {
+                entities.client.Attach(c);
+                entities.Entry(c).State = EntityState.Modified;
+            }
+            else
+            {
+               entities.client.Add(c); ;
+            }
+            entities.SaveChanges();
+            return c;
+        }
 
-            var query = entities.client.Add(cl);
-
-            return null;
+        /**
+        * Supprime le client
+        */
+        public bool DeleteClient(client c)
+        {
+            if (c.client_id > 0)
+            {
+                {
+                    entities.client.Attach(c);
+                    entities.Entry(c).State = EntityState.Deleted;
+                }
+                entities.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         //--------------------------------------------------------------------
