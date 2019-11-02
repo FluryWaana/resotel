@@ -7,8 +7,7 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
-             mc:Ignorable="d" 
-             MaxHeight="1000" MaxWidth="2000" MinWidth="845" MinHeight="450"
+             mc:Ignorable="d"
              DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}" >
     <UserControl.Resources>
         <ResourceDictionary>
@@ -50,21 +49,23 @@
                    Foreground="WhiteSmoke"
                    Text="Tableau de Bord" />
 
-        <WrapPanel Grid.Row="1"
+        <WrapPanel Grid.Row="3"
                    Grid.Column="1"
-                   Width="940"
-                   Height="382"
+                   MinWidth="812"
+                   MinHeight="370"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top">
 
+            <!--Tuile Chambre-->
             <Controls:Tile Title="Chambres Disponibles"
                            Margin="3"
                            Controls:ControlsHelper.MouseOverBorderBrush="Black"
                            Background="Teal"
                            HorizontalTitleAlignment="Right"
-                           HorizontalContentAlignment="Left"
-                           Style="{StaticResource LargeTileStyle}">
-                <StackPanel>
+                           HorizontalContentAlignment="Stretch"
+                           Style="{StaticResource LargeTileStyle}"
+                           Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.TileShowFormBooking}">
+                <StackPanel Orientation ="Horizontal" Margin="20 0 0 0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -76,35 +77,67 @@
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10" />
-                            <ColumnDefinition Width="12*" />
-                            <ColumnDefinition Width="12*"/>
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="Chambre Individuelle" Grid.Row="0" Grid.Column="1" />
-                        <TextBlock Text="15" Grid.Row="0" Grid.Column="2"  />
-                        <TextBlock Text="Chambre Double" Grid.Row="1" Grid.Column="1" />
-                        <TextBlock Text="{Binding Bedroom.bedroom_floor}" Grid.Row="1" Grid.Column="2" />
-                        <TextBlock Text="Chambre 3 Personnes" Grid.Row="2" Grid.Column="1" />
-                        <TextBlock Text="{Binding Bedroom.bedroom_type.bedroom_type1}" Grid.Row="2" Grid.Column="2" />
-                        <TextBlock Text="Chambre 4 Personnes" Grid.Row="3" Grid.Column="1" />
-                        <TextBlock Text="{Binding Bedroom.bedroom_number}" Grid.Row="3" Grid.Column="2"  />
-                        <TextBlock Text="Chambre 6 Personnes" Grid.Row="4" Grid.Column="1" />
-                        <TextBlock Text="{Binding Bedroom.bedroom_floor}" Grid.Row="4" Grid.Column="21" />
-                        <TextBlock Text="Chambre Double + Bébé" Grid.Row="5" Grid.Column="1" />
-                        <TextBlock Text="{Binding Bedroom.bedroom_type.bedroom_type1}" Grid.Row="5" Grid.Column="2" />
+                        <TextBlock Text="Chambre Individuelle" Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock Text="15" Grid.Row="0" Grid.Column="1"  />
+                        <TextBlock Text="Chambre Double" Grid.Row="1" Grid.Column="0" />
+                        <TextBlock Text="{Binding Bedroom.bedroom_floor}" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="Chambre 3 Personnes" Grid.Row="2" Grid.Column="0" />
+                        <TextBlock Text="{Binding Bedroom.bedroom_type.bedroom_type1}" Grid.Row="2" Grid.Column="1" />
+                        <TextBlock Text="Chambre 4 Personnes" Grid.Row="3" Grid.Column="0" />
+                        <TextBlock Text="{Binding Bedroom.bedroom_number}" Grid.Row="3" Grid.Column="1"  />
+                        <TextBlock Text="Chambre 6 Personnes" Grid.Row="4" Grid.Column="0" />
+                        <TextBlock Text="{Binding Bedroom.bedroom_floor}" Grid.Row="4" Grid.Column="1" />
+                        <TextBlock Text="Chambre Double + Bébé" Grid.Row="5" Grid.Column="0" />
+                        <TextBlock Text="{Binding Bedroom.bedroom_type.bedroom_type1}" Grid.Row="5" Grid.Column="1" />
                     </Grid>
+                    <StackPanel Margin="80 0 0 0">
+                        <fa:FontAwesomeIcon FontSize="80"
+                                    SolidIcon="Bed" />
+                    </StackPanel>
                 </StackPanel>
             </Controls:Tile>
-            <Controls:Tile Title="Desktop"
+
+            <!--Tuile Restauration-->
+            <Controls:Tile Title="Restauration"
                            Margin="3"
                            Background="DarkRed"
                            Controls:ControlsHelper.MouseOverBorderBrush="Black"
+                           HorizontalTitleAlignment="Left"
+                           HorizontalContentAlignment="Stretch"
                            Style="{StaticResource LargeTileStyle}">
-                <fa:FontAwesomeIcon FontSize="50"
-                                    SolidIcon="Save" />
+                <StackPanel Orientation ="Horizontal" Margin="20 0 0 0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Petit Déjeuner" Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock Text="60" Grid.Row="0" Grid.Column="1" />
+                        <TextBlock Text="Déjeuner" Grid.Row="1" Grid.Column="0" />
+                        <TextBlock Text="{Binding Bedroom.bedroom_floor}" Grid.Row="1" Grid.Column="1" />
+                        <TextBlock Text="Diner" Grid.Row="2" Grid.Column="0" />
+                        <TextBlock Text="{Binding Bedroom.bedroom_type.bedroom_type1}" Grid.Row="2" Grid.Column="1" />
+                    </Grid>
+                    <StackPanel Margin="170 0 0 0">
+                        <fa:FontAwesomeIcon FontSize="80"
+                                    SolidIcon="Utensils" />
+                    </StackPanel>
+                </StackPanel>
             </Controls:Tile>
+
             <Controls:Tile Title="Finance"
                            Controls:ControlsHelper.MouseOverBorderBrush="Black"
                            Background="DimGray"
@@ -116,30 +149,6 @@
                            Controls:ControlsHelper.MouseOverBorderBrush="Black"
                            Background="#D2691E"
                            HorizontalTitleAlignment="Right"
-                           Style="{StaticResource LargeTileStyle}">
-                <fa:FontAwesomeIcon FontSize="50"
-                                    SolidIcon="Save" />
-            </Controls:Tile>
-            <Controls:Tile Title="Count"
-                           Controls:ControlsHelper.MouseOverBorderBrush="Black"
-                           Background="#FF842D"
-                           Count="28"
-                           CountFontSize="42"
-                           HorizontalTitleAlignment="Center"
-                           IsEnabled="False"
-                           Style="{StaticResource SmallTileStyle}"
-                           TitleFontSize="16"
-                           VerticalTitleAlignment="Top" />
-            <Controls:Tile Title="Weather"
-                           Controls:ControlsHelper.MouseOverBorderBrush="Black"
-                           Background="#1E90FF"
-                           Style="{StaticResource SmallTileStyle}">
-                <fa:FontAwesomeIcon FontSize="50"
-                                    SolidIcon="Save" />
-            </Controls:Tile>
-            <Controls:Tile Title="Store"
-                           Controls:ControlsHelper.MouseOverBorderBrush="Black"
-                           Background="Green"
                            Style="{StaticResource LargeTileStyle}">
                 <fa:FontAwesomeIcon FontSize="50"
                                     SolidIcon="Save" />

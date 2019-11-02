@@ -59,7 +59,7 @@
             <TextBox Grid.Row="7"  Grid.Column="2" Text="{Binding Client.client_email}" />
 
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center">
-                <Button Command="{Binding CommandSave}">
+                <Button Command="{Binding AddShowClient}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesomeIcon SolidIcon="Save" Foreground="White" Height="16"  />
                         <TextBlock Text="Enregistrer" Margin="5 0 0 0" />

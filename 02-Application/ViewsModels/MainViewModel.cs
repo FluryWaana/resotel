@@ -289,5 +289,24 @@ namespace Resotel.ViewsModels
             }
         }
 
+        /**
+ * Commande sur le bouton "Chambre"
+ */
+        private ICommand tileShowFormBooking;
+        public ICommand TileShowFormBooking
+        {
+            get
+            {
+                if (tileShowFormBooking == null)
+                {
+                    tileShowFormBooking = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new FormBookingViewModel();
+                    });
+                }
+                return tileShowFormBooking;
+            }
+        }
+
     }
 }

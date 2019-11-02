@@ -21,15 +21,21 @@ namespace Resotel.Repositories
         /**
          * 
          */
-        public client addClient()
+        public client addClient( client c )
         {
-            client cl = new client();
-            cl.client_lastname = "";
-            cl.client_firstname = "";
+            entities.client.Add( c );
+            entities.SaveChanges();
+            return c;
+        }
 
-            var query = entities.client.Add(cl);
-
-            return null;
+        /**
+        * 
+        */
+        public client UpdateClient(client c)
+        {
+            entities.client.Add(c);
+            entities.SaveChanges();
+            return c;
         }
 
         //--------------------------------------------------------------------

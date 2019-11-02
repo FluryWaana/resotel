@@ -132,5 +132,21 @@ namespace Resotel.ViewsModels
             FormClientViewModel temp = new FormClientViewModel(client);
             listClient.Add(temp);
         }
+
+        private ICommand commandeNewClient;
+        public ICommand CommandeNewClient
+        {
+            get
+            {
+                if (commandeNewClient == null)
+                {
+                    commandeNewClient = new RelayCommand((window) =>
+                    {
+                        listClient.Add( new FormClientViewModel(new  client() ) );
+                    });
+                }
+                return commandeNewClient;
+            }
+        }
     }
 }
