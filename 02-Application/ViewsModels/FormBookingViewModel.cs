@@ -16,16 +16,29 @@ namespace Resotel.ViewsModels
          * Repository Booking
          */
         private BookingRepository bookingRepository = new BookingRepository();
+        /**
+         * Repository Bedroom
+         */
+        private BedroomRepository bedroomRepository = new BedroomRepository();
+
+        
+
+        
 
         //--------------------------------------------------------------------
 
         /**
          * Constructeur
-         */ 
+         */
         public FormBookingViewModel()
         {
+            
+
             // Récupération de la liste des clients
             Clients = bookingRepository.GetClients();
+
+            // Récupération de la liste des types de chambre
+            Bedroom_types = bookingRepository.GetBedroomType();
 
             // Récupération de la liste des chambres disponibles
             Bedrooms = bookingRepository.GetBedrooms();
@@ -55,6 +68,24 @@ namespace Resotel.ViewsModels
             {
                 booking = value;
                 NotifyPropertyChanged("Booking");
+            }
+        }
+
+        /**
+         * Liste de types des chambres
+         */
+        private List<bedroom_type> bedroom_types;
+        public List<bedroom_type> Bedroom_types
+        {
+            get
+            {
+                return bedroom_types;
+            }
+
+            set
+            {
+                bedroom_types = value;
+                NotifyPropertyChanged("Bedroom_types");
             }
         }
 
@@ -94,6 +125,8 @@ namespace Resotel.ViewsModels
             }
         }
 
+        //--------------------------------------------------------------------
+
         /**
          * client_id
          */
@@ -129,6 +162,10 @@ namespace Resotel.ViewsModels
                 NotifyPropertyChanged("Beedroom_number");
             }
         }
+
+ 
+
+
 
         //--------------------------------------------------------------------
 

@@ -20,8 +20,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
-     
 
+ 
 
         <Button Grid.Row="0" Grid.Column="0" Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.BtnShowFormBooking}" Margin=" 5 0 0 0" >
             <StackPanel Orientation="Horizontal">
@@ -36,7 +36,7 @@
                   CanUserResizeColumns="False" 
                   CanUserResizeRows="False" 
                   CanUserSortColumns="True"
-                  AlternatingRowBackground="Gainsboro"  
+                  AlternatingRowBackground="DarkGray"  
                   IsReadOnly="True"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
@@ -71,7 +71,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Date de fin" Width="*" IsReadOnly="True">
+                <DataGridTemplateColumn Header="Date de fin" Width="Auto" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding booking_end}"/>

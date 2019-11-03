@@ -39,5 +39,7 @@ namespace Resotel.ViewsModels
                 NotifyPropertyChanged("Bookings");
             }
         }
+
+
     }
 }

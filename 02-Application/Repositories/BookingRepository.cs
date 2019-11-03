@@ -8,6 +8,7 @@ namespace Resotel.Repositories
 {
     class BookingRepository : BaseRepository
     {
+      
 
         /**
         * Constructeur
@@ -24,16 +25,42 @@ namespace Resotel.Repositories
             return entities.client.Select(x => x).ToList();
         }
 
+        public List<bedroom_type> GetBedroomType()
+        {
+            return entities.bedroom_type.ToList();
+        }
+
         public List<booking> GetBookings()
         {
             return entities.booking.Select(x => x).ToList();
         }
 
-        public List<bedroom> GetBedrooms()
+        public List<bedroom> GetBedrooms(bedroom_type b_type = null, string date_start = "", string date_end = "")
         {
-            return entities.bedroom.Select(x => x).ToList();
-        }
+            // Récupère toutes les chambres
+            var query = entities.bedroom.Select(x => x);
 
+
+            // Si un type de chambre est mis dans les filtres
+            if (b_type != null)
+            {
+                query = query.Where(x => x.bedroom_type.bedroom_type1 == b_type.bedroom_type1);
+            }
+
+            if (!date_start.Equals("") && !date_end.Equals(""))
+            {
+                List<int> temp_bedroom_number = entities.Database.SqlQuery<int>("SELECT bedroom_number " +
+                                                "FROM bedroom " +
+                                                "WHERE bedroom_number NOT IN(SELECT br.bedroom_number " +
+                                                    "FROM bedroom br " +
+                                                    "LEFT JOIN booking bk ON br.bedroom_number = bk.bedroom_number " +
+                                                    "WHERE bk.booking_start >="+date_start+
+                                                    "AND bk.booking_end <=" +date_end+
+                                                "ORDER BY bedroom_number ASC").ToList<int>();
+
+            }
+            return query.ToList();
+        }
 
 
         //----------Ajout reservation table booking

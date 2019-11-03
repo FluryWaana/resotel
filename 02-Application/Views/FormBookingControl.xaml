@@ -11,7 +11,7 @@
 
     <UserControl.DataContext>
         <ViewsModels:FormBookingViewModel/>
-    </UserControl.DataContext>
+    </UserControl.DataContext> 
 
     <Grid>
         <Grid>
@@ -45,27 +45,36 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Date de début" />
-            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Date de fin" />
-            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Numéro de chambre" />
-            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Client" />
-
-            <DatePicker Grid.Row="1"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_start" SelectedDate="{Binding Booking.booking_start}" />
-            <DatePicker Grid.Row="2"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_end" SelectedDate="{Binding Booking.booking_end}" />
-            <ComboBox Grid.Row="3"  Grid.Column="2" 
-                      ItemsSource="{Binding Bedrooms}" 
-                      DisplayMemberPath="bedroom_number"
-                      SelectedValuePath="bedroom_number"
-                      SelectedValue="{Binding Path=Beedroom_number}"/>
-            <ComboBox Grid.Row="4"  Grid.Column="2" 
+            <TextBlock Grid.Column="1"
+                   VerticalAlignment="Center"
+                   FontFamily="Segoe UI"
+                   FontSize="30"
+                   FontWeight="Light"
+                   Foreground="WhiteSmoke"
+                   Text="Saisir une réservation" />
+            <TextBlock Grid.Row="1"  Grid.Column="1" Text="Client" />
+            <TextBlock Grid.Row="2"  Grid.Column="1" Text="Type de chambre" />
+            <TextBlock Grid.Row="3"  Grid.Column="1" Text="Date de début" />
+            <TextBlock Grid.Row="4"  Grid.Column="1" Text="Date de fin" />
+            <TextBlock Grid.Row="5"  Grid.Column="1" Text="Numéro de chambre" />
+            
+            <ComboBox Grid.Row="1"  Grid.Column="2" 
                       ItemsSource="{Binding Clients}" 
                       DisplayMemberPath="client_lastname"
                       SelectedValuePath="client_id"
                       SelectedValue="{Binding Path=Client_id}"/>
+            <ComboBox Grid.Row="2"  Grid.Column="2" 
+                      ItemsSource="{Binding Bedroom_types}" 
+                      DisplayMemberPath="bedroom_type1"
+                      SelectedValue=""/>
+            <DatePicker Grid.Row="3"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_start" SelectedDate="{Binding Booking.booking_start}" />
+            <DatePicker  Grid.Row="4"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_end" SelectedDate="{Binding Booking.booking_end}" />
+            <ComboBox Grid.Row="5"  Grid.Column="2" 
+                      ItemsSource="{Binding Bedrooms}" 
+                      DisplayMemberPath="bedroom_number"
+                      SelectedValuePath="bedroom_number"
+                      SelectedValue="{Binding Path=Beedroom_number}"/>
             
-
-
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center">
                 <Button Command="{Binding BtnAddBooking}">
                     <StackPanel Orientation="Horizontal">

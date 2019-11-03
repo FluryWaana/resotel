@@ -92,7 +92,7 @@
                   CanUserResizeColumns="False" 
                   CanUserResizeRows="False" 
                   CanUserSortColumns="True"
-                  AlternatingRowBackground="Chocolate"
+                  AlternatingRowBackground="DarkGray"
                   AlternationCount="2"
                   IsReadOnly="True"
                   SelectionMode="Single"
