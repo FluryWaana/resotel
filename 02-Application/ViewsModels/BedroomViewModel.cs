@@ -30,8 +30,6 @@ namespace Resotel.ViewsModels
             Statuts.Add("");
             BedroomType       = bedroomRepository.GetBedroomType();
             BedroomType.Add(new bedroom_type());
-            Date_start        = DateTime.Now;
-            Date_end          = DateTime.Now;
 
         }
 
@@ -168,44 +166,6 @@ namespace Resotel.ViewsModels
         }
 
         /**
-         * Binding du filtre pour la date de début
-         */
-        private DateTime date_start;
-        public DateTime Date_start
-        {
-            get
-            {
-                return date_start;
-            }
-
-            set
-            {
-                date_start = value;
-                NotifyPropertyChanged("Date_start");
-                UpdateBedrooms();
-            }
-        }
-
-        /**
-         * Binding du filtre pour la date de fin
-         */
-        private DateTime date_end;
-        public DateTime Date_end
-        {
-            get
-            {
-                return date_end;
-            }
-
-            set
-            {
-                date_end = value;
-                NotifyPropertyChanged("Date_end");
-                UpdateBedrooms();
-            }
-        }
-
-        /**
          * Binding show/hide filter
          */
         private bool showFilter;
@@ -238,8 +198,6 @@ namespace Resotel.ViewsModels
                         Bedroom_type = null;
                         StatutString = "";
                         Floor_filter = 0;
-                        Date_start   = DateTime.Now;
-                        Date_end     = DateTime.Now;
                     });
                 }
                 return btnResetFilter;
@@ -265,7 +223,43 @@ namespace Resotel.ViewsModels
             }
         }
 
+        /**
+         * Met à jour le statut d'une chambre (nettoyé)
+         */
+        private ICommand btnUpdateBedroomStatut;
+        public ICommand BtnUpdateBedroomStatut
+        {
+            get
+            {
+                if( btnUpdateBedroomStatut == null )
+                {
+                    btnUpdateBedroomStatut = new RelayCommand( bedroom_number =>
+                    {
+                        bedroomRepository.SetFree((int)bedroom_number);
+                        UpdateBedrooms();
+                    });
+                }
+                return btnUpdateBedroomStatut;
+            }
+        }
 
+        /**
+         * Binding show/hide filter
+         */
+        private string cleanShow;
+        public string CleanShow
+        {
+            get
+            {
+                return cleanShow;
+            }
+
+            set
+            {
+                cleanShow = value;
+                NotifyPropertyChanged("CleanShow");
+            }
+        }
 
         //--------------------------------------------------------------------
 
@@ -274,7 +268,7 @@ namespace Resotel.ViewsModels
          */
         private void UpdateBedrooms()
         {
-            Bedrooms = bedroomRepository.GetBedrooms( StatutString, Floor_filter);
+            Bedrooms = bedroomRepository.GetBedrooms( StatutString, Floor_filter, Bedroom_type );
         }
     }
 }

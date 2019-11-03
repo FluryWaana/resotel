@@ -56,13 +56,30 @@ namespace Resotel.Repositories
          {
             return entities.bedroom_type.ToList();
          }
+
+        //--------------------------------------------------------------------
+
+        public bedroom SetFree( int bedroom_number )
+        {
+            LogSystem.WriteLog("aa", TypeLog.Information);
+            // Récupère la chambre dans la base de données
+            bedroom temp = entities.bedroom.Where(x => x.bedroom_number == bedroom_number).FirstOrDefault();
+
+            // Met à jour le statut
+            temp.bedroom_status = "libre";
+
+            // Sauvegarde la modification
+            entities.SaveChanges();
+
+            return temp;
+        }
         
         //--------------------------------------------------------------------
 
         /**
          * Récupère toutes les chambres selons les filtres
          */
-        public List<bedroom> GetBedrooms( string statut = "", int floor = 0, string date_start = "", string date_end = "" )
+        public List<bedroom> GetBedrooms( string statut = "", int floor = 0, bedroom_type b_type = null )
         {
             // Récupère toutes les chambres
             var query  = entities.bedroom.Select(x => x);
@@ -74,22 +91,15 @@ namespace Resotel.Repositories
             }
 
             // Si un étage est mis dans les filtres de recherche
-            if(  floor > 0 )
+            if( floor > 0 )
             {
                 query = query.Where(x => x.bedroom_floor == floor);
             }
 
-            if( ! date_start.Equals( "" ) && ! date_end.Equals( "" ) )
+            // Si un type de chambre est mis dans les filtres
+            if( b_type != null )
             {
-                List<int> temp_bedroom_number = entities.Database.SqlQuery<int>("SELECT bedroom_number " +
-                                                "FROM bedroom " +
-                                                "WHERE bedroom_number NOT IN(SELECT br.bedroom_number " +
-                                                    "FROM bedroom br " +
-                                                    "LEFT JOIN booking bk ON br.bedroom_number = bk.bedroom_number " +
-                                                    "WHERE bk.booking_start >= '2019-04-26' " +
-                                                    "AND bk.booking_end <= '2019-04-27') " +
-                                                "ORDER BY bedroom_number ASC").ToList<int>();
-
+                query = query.Where(x => x.bedroom_type.bedroom_type1 == b_type.bedroom_type1);
             }
             return query.ToList();
         }
