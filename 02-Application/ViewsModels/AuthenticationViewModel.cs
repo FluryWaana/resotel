@@ -39,8 +39,9 @@ namespace Resotel.ViewsModels
         {
             IsAuthenticated = false;
             CurrentUser     = new user();
+            CurrentUser.user_identifiant = "sarah.pell";
+            CurrentUser.user_password = "test";
             userRepository  = new UserRepository();
-            LogSystem.WriteLog("le message", TypeLog.Information);
         }
 
         //--------------------------------------------------------------------
@@ -147,7 +148,7 @@ namespace Resotel.ViewsModels
                 }
                 messageError(lc, true, "Identifiants incorrects, veuillez vérifier votre email et mot de passe.");                     
             }
-            catch( EntityException e )
+            catch( EntityException )
             {
                 messageError(lc, true, "Impossible de se connecter à la base de données");
             }

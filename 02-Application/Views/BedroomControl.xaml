@@ -3,25 +3,103 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:local="clr-namespace:Resotel.Views"
+             xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
              xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
              HorizontalAlignment="Stretch" 
-             VerticalAlignment="Stretch"
-             >
+             VerticalAlignment="Stretch" 
+             Padding="10 0 10 0">
     
     <!-- Déclaration du DataContext dans le .XAML au lieu du .CS (cela ne change rien) -->
     <UserControl.DataContext>
         <ViewsModels:BedroomViewModel/>
     </UserControl.DataContext>
     
-    <Grid Margin="8 0 8 0">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </UserControl.Resources>
+    
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Page Chambres" Grid.Row="0" Margin="0 5 0 0" />
+        <TextBlock HorizontalAlignment="Left"
+                   TextAlignment="Left"
+                   FontFamily="Segoe UI"
+                   FontSize="30"
+                   FontWeight="Light"
+                   Foreground="WhiteSmoke"
+                   Text="Liste des chambres" Grid.Row="0"/>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Bedrooms}"
+        <Border BorderBrush="WhiteSmoke" Grid.Row="1" BorderThickness="1" Margin="0 0 0 15" />
+
+        <Button Grid.Row="2" Margin="0 10 0 0" Command="{Binding BtnShowFilter}" >
+            <StackPanel Orientation="Horizontal">
+                <fa:FontAwesomeIcon SolidIcon="Filter" Margin="0 0 5 0"/>
+                <TextBlock Text="Filtrer"/>
+            </StackPanel>
+        </Button>
+        
+        <Border Grid.Row="3" 
+                BorderBrush="{DynamicResource PrimaryHueMidBrush}" 
+                BorderThickness="2" 
+                Padding="8"
+                CornerRadius="10"
+                Margin="0 10 0 0"
+                Visibility="{Binding ShowFilter, Converter={StaticResource BoolVisibilityConverter}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="*" />
+                    <ColumnDefinition  Width="*" />
+                    <ColumnDefinition  Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Margin" Value="10 0 10 0"/>
+                    </Style>
+                    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+                        <Setter Property="Margin" Value="10 0 10 0"/>
+                    </Style>
+                    <Style TargetType="{x:Type DatePicker}" BasedOn="{StaticResource {x:Type DatePicker}}">
+                        <Setter Property="Margin" Value="10 10 10 0"/>
+                    </Style>
+                </Grid.Resources>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Type de chambre" />
+                <ComboBox Grid.Row="1" Grid.Column="0"
+                          ItemsSource="{Binding BedroomType}" 
+                          DisplayMemberPath="bedroom_type1"
+                          SelectedValue="{Binding Path=Bedroom_type}"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Étage" />
+                <ComboBox Grid.Row="1" Grid.Column="1"
+                      ItemsSource="{Binding Floors}" 
+                      SelectedValue="{Binding Path=Floor_filter}"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Statut" />
+                <ComboBox Grid.Row="1" Grid.Column="2" 
+                      ItemsSource="{Binding Statuts}" 
+                      SelectedValue="{Binding Path=StatutString}"/>
+
+                <Button Content="Rénitialiser" Grid.Row="2" Grid.Column="1" Margin="0 10 0 0" Command="{Binding BtnResetFilter}"/>
+
+            </Grid>
+        </Border>
+
+        <DataGrid Grid.Row="4" ItemsSource="{Binding Bedrooms}"
                   VerticalScrollBarVisibility="Visible"
                   CanUserReorderColumns="False" 
                   CanUserResizeColumns="False" 
@@ -79,10 +157,21 @@
                 <DataGridTemplateColumn Width="Auto" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Consulter" 
-                                    Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, 
-                                             Path=DataContext.BtnShowBedroom}"
-                                    CommandParameter="{Binding bedroom_number}"/>
+                            <!-- Dans un datatemplate, pour accéder à un ICommand, il faut aller chercher le context du parent -->
+                            <Button Content="Nettoyer" 
+                                    Command="{Binding DataContext.BtnUpdateBedroomStatut, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
+                                    CommandParameter="{Binding bedroom_number}">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                        <Setter Property="Visibility" Value="Hidden" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding bedroom_status}" Value="à nettoyer">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

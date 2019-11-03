@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="Resotel.Views.ucListeClient"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
+             xmlns:local="clr-namespace:Resotel.Views"
+             mc:Ignorable="d">
+
+    <ListBox ItemsSource="{Binding ListClient}" IsSynchronizedWithCurrentItem="True">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Client.client_lastname}" />
+                    <TextBlock Text="{Binding Client.client_firstname}" Margin="5 0 0 0" />
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+
+</UserControl>

@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Resotel.Views.ShowPromotionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Resotel.Views"
+             xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
+             xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch" 
+             Padding="10 0 10 0">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Left"
+                   TextAlignment="Left"
+                   FontFamily="Segoe UI"
+                   FontSize="30"
+                   FontWeight="Light"
+                   Foreground="WhiteSmoke"
+                   Text="Modification d'une promotion" Grid.Row="0" Grid.ColumnSpan="4"/>
+
+        <Border BorderBrush="WhiteSmoke" Grid.Row="1" Grid.ColumnSpan="4" BorderThickness="1" Margin="0 0 0 15" />
+
+        <TextBlock Text="Option" Grid.Row="2" Grid.Column="0"/>
+        <ComboBox ItemsSource="{Binding Features}"
+                  DisplayMemberPath="feature_name"
+                  SelectedValue="{Binding Promotion.feature}" 
+                  Grid.Row="3" Grid.Column="0" Margin="5 0 5 0"/>
+        <TextBlock Text="Débute le..." Grid.Row="2" Grid.Column="1"/>
+        <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding Promotion.promotion_date_start}" Margin="5 3 5 0"/>
+        <TextBlock Text="Se termine le..." Grid.Row="2" Grid.Column="2"/>
+        <DatePicker Grid.Row="3" Grid.Column="2" SelectedDate="{Binding Promotion.promotion_date_end}" Margin="5 3 5 0"/>
+        <TextBlock Text="Pourcentage de réduction" Grid.Row="2" Grid.Column="3"/>
+        <TextBox Text="{Binding Promotion.promotion_percentage}" Grid.Row="3" Grid.Column="3" x:Name="percentage" Margin="5 0 0 0"/>
+
+        <Button Content="Supprimer" Grid.Row="4" Grid.Column="0" Margin="5 10 5 0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Background" Value="DarkRed"/>
+                    <Setter Property="BorderBrush" Value="DarkRed" />
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Content="Enregistrer" Grid.Row="4" Grid.Column="2" Margin="5 10 5 0"/>
+        <Button Content="Annuler" Grid.Row="4" Grid.Column="3" Margin="5 10 0 0" 
+                Command="{Binding DataContext.BtnPromotion, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+    </Grid>
+</UserControl>

@@ -18,28 +18,59 @@ namespace Resotel.Repositories
 
         //--------------------------------------------------------------------
 
-        public booking addBooking()
+        //-----------List accès aux champs
+        public List<client> GetClients()
         {
-            booking book = new booking();
-
-            // ici ajouter des fake reservations pour test
-            book.bedroom_number = 10;
-            
-
-
-            var query = entities.booking.Add(book);
-
-            return null;
-
+            return entities.client.Select(x => x).ToList();
         }
-
 
         public List<booking> GetBookings()
         {
-            // Récupère toutes les reservations
-            var query = entities.booking.Select(x => x);
+            return entities.booking.Select(x => x).ToList();
+        }
 
-            return query.ToList();
+        public List<bedroom> GetBedrooms()
+        {
+            return entities.bedroom.Select(x => x).ToList();
+        }
+
+
+
+        //----------Ajout reservation table booking
+        public booking AddBooking(booking book, int client_id, int beedroom_number)
+        {
+            // Récupération du client
+            client client_temp = entities.client.Where(x => x.client_id == client_id).FirstOrDefault();
+
+            // Récupération de la chambre
+            bedroom bedroom_temp = entities.bedroom.Where(x => x.bedroom_number == beedroom_number).FirstOrDefault();
+
+            // TODO : 
+            // Assigne le client à la réservation
+            // book. = client_temp;
+
+            // Assigne la chambre
+            book.bedroom_number = bedroom_temp.bedroom_number;
+
+            // Ajoute la réservation à la base de données
+            entities.booking.Add(book);
+
+            //entities.SaveChanges();
+
+            return null;
+        }
+
+        public booking SaveBooking( int booking_id)
+
+        {
+            // Recupère la réservation
+            booking resa = entities.booking.Where(x => x.booking_id == booking_id).FirstOrDefault();
+
+            // Sauvegarde les modifications
+            entities.SaveChanges();
+
+            // Retourne la réservation
+            return resa;
         }
     }
 }

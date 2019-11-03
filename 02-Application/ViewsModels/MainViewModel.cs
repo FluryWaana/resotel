@@ -1,4 +1,5 @@
 ﻿using Meziantou.WpfFontAwesome;
+using Resotel.Repositories;
 using Resotel.Shared;
 using Resotel.Views;
 using System.Windows;
@@ -22,6 +23,7 @@ namespace Resotel.ViewsModels
         {
             AuthVM            = new AuthenticationViewModel();
             SelectedViewModel = new LoginViewModel();
+
         }
 
         //--------------------------------------------------------------------
@@ -233,7 +235,7 @@ namespace Resotel.ViewsModels
         }
 
         /**
-         * Commande sur le bouton "Chambre"
+         * Commande sur le bouton "Réservation"
          */
         private ICommand btnBooking;
         public ICommand BtnBooking
@@ -252,22 +254,118 @@ namespace Resotel.ViewsModels
         }
 
         /**
-         * Commande sur le bouton "Chambre"
+         * Commande sur le bouton "Réservation"
          */
-        private ICommand btnShowBedroom;
-        public ICommand BtnShowBedroom
+        private ICommand btnShowFormBooking;
+        public ICommand BtnShowFormBooking
         {
             get
             {
-                if (btnShowBedroom == null)
+                if (btnShowFormBooking == null)
                 {
-                    btnShowBedroom = new RelayCommand(( bedroom_number ) =>
+                    btnShowFormBooking = new RelayCommand((window) =>
                     {
-                        SelectedViewModel = new ShowBedroomViewModel( ( int ) bedroom_number );
+                        SelectedViewModel = new FormBookingViewModel();
                     });
                 }
-                return btnShowBedroom;
+                return btnShowFormBooking;
             }
         }
+
+        /**
+         * Commande sur le bouton "Promotion"
+         */
+        private ICommand btnPromotion;
+        public ICommand BtnPromotion
+        {
+            get
+            {
+                if (btnPromotion == null)
+                {
+                    btnPromotion = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new PromotionViewModel();
+                    });
+                }
+                return btnPromotion;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Promotion"
+         */
+        private ICommand btnFacture;
+        public ICommand BtnFacture
+        {
+            get
+            {
+                if (btnFacture == null)
+                {
+                    btnFacture = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new FactureViewModel();
+                    });
+                }
+                return btnFacture;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Consulter Promotion"
+         */
+        private ICommand btnShowPromotion;
+        public ICommand BtnShowPromotion
+        {
+            get
+            {
+                if (btnShowPromotion == null)
+                {
+                    btnShowPromotion = new RelayCommand( promotion_id =>
+                    {
+                        SelectedViewModel = new ShowPromotionViewModel( (int)promotion_id );
+                    });
+                }
+                return btnShowPromotion;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Ajouter Promotion"
+         */
+        private ICommand btnAddPromotion;
+        public ICommand BtnAddPromotion
+        {
+            get
+            {
+                if (btnAddPromotion == null)
+                {
+                    btnAddPromotion = new RelayCommand(window =>
+                    {
+                        SelectedViewModel = new AddPromotionViewModel();
+                    });
+                }
+                return btnAddPromotion;
+            }
+        }
+
+        /**
+ * Commande sur le bouton "Chambre"
+ */
+        private ICommand tileShowFormBooking;
+        public ICommand TileShowFormBooking
+        {
+            get
+            {
+                if (tileShowFormBooking == null)
+                {
+                    tileShowFormBooking = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new FormBookingViewModel();
+                    });
+                }
+                return tileShowFormBooking;
+            }
+        }
+
     }
 }

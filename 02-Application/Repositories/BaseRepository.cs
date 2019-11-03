@@ -1,4 +1,5 @@
 ﻿using Resotel.Entities;
+using Resotel.Shared;
 
 namespace Resotel.Repositories
 {
@@ -7,6 +8,6 @@ namespace Resotel.Repositories
         /**
          * Variable qui contient le Context
          */
-        protected resotelEntities entities = new resotelEntities();
+        protected resotelEntities entities = SingletonContext.Instance.getContext();
     }
 }
