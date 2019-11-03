@@ -7,7 +7,7 @@
              xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
              HorizontalAlignment="Stretch" 
              VerticalAlignment="Stretch" 
-             Padding=" 5 0 5 0">
+             Padding="10 0 10 0">
     
     <!-- Déclaration du DataContext dans le .XAML au lieu du .CS (cela ne change rien) -->
     <UserControl.DataContext>
@@ -18,20 +18,33 @@
         <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
     </UserControl.Resources>
     
-    <Grid Margin="8 0 8 0">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="42*"/>
         </Grid.RowDefinitions>
-        
-        <Button Grid.Row="0" Margin="0 10 0 0" Command="{Binding BtnShowFilter}" >
+
+        <TextBlock HorizontalAlignment="Left"
+                   TextAlignment="Left"
+                   FontFamily="Segoe UI"
+                   FontSize="30"
+                   FontWeight="Light"
+                   Foreground="WhiteSmoke"
+                   Text="Liste des chambres" Grid.Row="0"/>
+
+        <Border BorderBrush="WhiteSmoke" Grid.Row="1" BorderThickness="1" Margin="0 0 0 15" />
+
+        <Button Grid.Row="2" Margin="0 10 0 0" Command="{Binding BtnShowFilter}" >
             <StackPanel Orientation="Horizontal">
                 <fa:FontAwesomeIcon SolidIcon="Filter" Margin="0 0 5 0"/>
                 <TextBlock Text="Filtrer"/>
             </StackPanel>
         </Button>
-        <Border Grid.Row="1" 
+        
+        <Border Grid.Row="3" 
                 BorderBrush="{DynamicResource PrimaryHueMidBrush}" 
                 BorderThickness="2" 
                 Padding="8"
@@ -86,7 +99,7 @@
             </Grid>
         </Border>
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding Bedrooms}"
+        <DataGrid Grid.Row="4" ItemsSource="{Binding Bedrooms}"
                   VerticalScrollBarVisibility="Visible"
                   CanUserReorderColumns="False" 
                   CanUserResizeColumns="False" 
