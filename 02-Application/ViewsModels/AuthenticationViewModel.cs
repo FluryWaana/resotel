@@ -148,7 +148,7 @@ namespace Resotel.ViewsModels
                 }
                 messageError(lc, true, "Identifiants incorrects, veuillez vérifier votre email et mot de passe.");                     
             }
-            catch( EntityException e )
+            catch( EntityException )
             {
                 messageError(lc, true, "Impossible de se connecter à la base de données");
             }

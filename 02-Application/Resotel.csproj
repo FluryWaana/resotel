@@ -161,30 +161,48 @@
     <Compile Include="Repositories\BedroomRepository.cs" />
     <Compile Include="Repositories\BookingRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\FeatureRepository.cs" />
+    <Compile Include="Repositories\PromotionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Shared\LogSystem.cs" />
     <Compile Include="Shared\RelayCommand.cs" />
     <Compile Include="Shared\SingletonContext.cs" />
     <Compile Include="Shared\TypeLog.cs" />
+    <Compile Include="ViewsModels\AddPromotionViewModel.cs" />
     <Compile Include="ViewsModels\AuthenticationViewModel.cs" />
     <Compile Include="ViewsModels\BedroomViewModel.cs" />
     <Compile Include="ViewsModels\BookingViewModel.cs" />
     <Compile Include="ViewsModels\ClientViewModel.cs" />
     <Compile Include="ViewsModels\DashboardViewModel.cs" />
+    <Compile Include="ViewsModels\FactureViewModel.cs" />
     <Compile Include="ViewsModels\FormBookingViewModel.cs" />
     <Compile Include="ViewsModels\FormClientViewModel.cs" />
     <Compile Include="ViewsModels\LoginViewModel.cs" />
     <Compile Include="ViewsModels\MainViewModel.cs" />
+    <Compile Include="ViewsModels\PromotionViewModel.cs" />
     <Compile Include="ViewsModels\ShowBedroomViewModel.cs" />
+    <Compile Include="ViewsModels\ShowPromotionViewModel.cs" />
     <Compile Include="ViewsModels\ViewModelBase.cs" />
+    <Compile Include="Views\AddPromotionControl.xaml.cs">
+      <DependentUpon>AddPromotionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BookingControl.xaml.cs">
       <DependentUpon>BookingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FactureControl.xaml.cs">
+      <DependentUpon>FactureControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\FormBookingControl.xaml.cs">
       <DependentUpon>FormBookingControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PromotionControl.xaml.cs">
+      <DependentUpon>PromotionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShowBedroomControl.xaml.cs">
       <DependentUpon>ShowBedroomControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShowPromotionControl.xaml.cs">
+      <DependentUpon>ShowPromotionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ucDetailClient.xaml.cs">
       <DependentUpon>ucDetailClient.xaml</DependentUpon>
@@ -200,6 +218,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AddPromotionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BedroomControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\DashboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FactureControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,7 +274,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PromotionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShowBedroomControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShowPromotionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

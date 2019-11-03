@@ -16,7 +16,7 @@
         WindowStartupLocation="CenterScreen"
         Height="600"
         Width="1200" 
-        MinWidth="845"
+        MinWidth="1100"
         MinHeight="450"
         x:Name="Window">
     
@@ -67,6 +67,21 @@
         <!-- Template de la page de booking formulaire -->
         <DataTemplate DataType="{x:Type ViewsModels:FormBookingViewModel}">
             <Views:FormBookingControl/>
+        </DataTemplate>
+
+        <!-- Template de la page de booking formulaire -->
+        <DataTemplate DataType="{x:Type ViewsModels:PromotionViewModel}">
+            <Views:PromotionControl/>
+        </DataTemplate>
+
+        <!-- Template de la page de booking formulaire -->
+        <DataTemplate DataType="{x:Type ViewsModels:ShowPromotionViewModel}">
+            <Views:ShowPromotionControl/>
+        </DataTemplate>
+
+        <!-- Template de la page de booking formulaire -->
+        <DataTemplate DataType="{x:Type ViewsModels:FactureViewModel}">
+            <Views:FactureControl/>
         </DataTemplate>
     </Window.Resources>
 
@@ -136,6 +151,22 @@
                         </StackPanel>
                     </MenuItem.Header>
                 </MenuItem>
+                <MenuItem Command="{Binding BtnPromotion}">
+                    <MenuItem.Header>
+                        <StackPanel>
+                            <fa:FontAwesomeIcon SolidIcon="MoneyBill"/>
+                            <TextBlock Text="Promotions"/>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Command="{Binding BtnFacture}">
+                    <MenuItem.Header>
+                        <StackPanel>
+                            <fa:FontAwesomeIcon SolidIcon="FileInvoiceDollar"/>
+                            <TextBlock Text="Factures"/>
+                        </StackPanel>
+                    </MenuItem.Header>
+                </MenuItem>
                 <MenuItem Command="{Binding BtnLogout}">
                     <MenuItem.Header>
                         <StackPanel>
@@ -173,7 +204,7 @@
         <Rectangle Grid.Row="1" Fill="WhiteSmoke" />
         
         <!-- Affiche ma vue qui est dans SelectedViewModel -->
-        <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}" Grid.Row="2" VerticalAlignment="Stretch" />
+        <ContentControl x:Name="Pages" Content="{Binding SelectedViewModel}" Grid.Row="2" VerticalAlignment="Stretch"/>
         
     </Grid>
 </Window>

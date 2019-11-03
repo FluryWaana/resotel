@@ -259,8 +259,10 @@ CREATE TABLE IF NOT EXISTS `promotion` (
   CONSTRAINT `promotion_feature_FK` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Listage des données de la table resotel.promotion : ~0 rows (environ)
+-- Listage des données de la table resotel.promotion : ~1 rows (environ)
 /*!40000 ALTER TABLE `promotion` DISABLE KEYS */;
+INSERT INTO `resotel`.`promotion` (`promotion_id`, `promotion_date_start`, `promotion_date_end`, `promotion_percentage`, `feature_id`) VALUES 
+( '1', '2019-12-01', '2019-12-31', '35', '5' );
 /*!40000 ALTER TABLE `promotion` ENABLE KEYS */;
 
 -- Listage de la structure de la table resotel. rate

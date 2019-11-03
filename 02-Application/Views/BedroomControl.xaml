@@ -6,8 +6,8 @@
              xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
              xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
              HorizontalAlignment="Stretch" 
-             VerticalAlignment="Stretch"
-             Padding=" 5 0 5 0" >
+             VerticalAlignment="Stretch" 
+             Padding=" 5 0 5 0">
     
     <!-- Déclaration du DataContext dans le .XAML au lieu du .CS (cela ne change rien) -->
     <UserControl.DataContext>
@@ -144,8 +144,9 @@
                 <DataGridTemplateColumn Width="Auto" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
+                            <!-- Dans un datatemplate, pour accéder à un ICommand, il faut aller chercher le context du parent -->
                             <Button Content="Nettoyer" 
-                                    Command="{Binding BtnUpdateBedroomStatut}"
+                                    Command="{Binding DataContext.BtnUpdateBedroomStatut, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}"
                                     CommandParameter="{Binding bedroom_number}">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">

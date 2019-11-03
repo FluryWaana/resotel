@@ -235,7 +235,7 @@ namespace Resotel.ViewsModels
         }
 
         /**
-         * Commande sur le bouton "Chambre"
+         * Commande sur le bouton "Réservation"
          */
         private ICommand btnBooking;
         public ICommand BtnBooking
@@ -254,26 +254,7 @@ namespace Resotel.ViewsModels
         }
 
         /**
-         * Commande sur le bouton "Chambre"
-         */
-        private ICommand btnShowBedroom;
-        public ICommand BtnShowBedroom
-        {
-            get
-            {
-                if (btnShowBedroom == null)
-                {
-                    btnShowBedroom = new RelayCommand(( bedroom_number ) =>
-                    {
-                        SelectedViewModel = new ShowBedroomViewModel( ( int ) bedroom_number );
-                    });
-                }
-                return btnShowBedroom;
-            }
-        }
-
-        /**
-         * Commande sur le bouton "Chambre"
+         * Commande sur le bouton "Réservation"
          */
         private ICommand btnShowFormBooking;
         public ICommand BtnShowFormBooking
@@ -288,6 +269,82 @@ namespace Resotel.ViewsModels
                     });
                 }
                 return btnShowFormBooking;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Promotion"
+         */
+        private ICommand btnPromotion;
+        public ICommand BtnPromotion
+        {
+            get
+            {
+                if (btnPromotion == null)
+                {
+                    btnPromotion = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new PromotionViewModel();
+                    });
+                }
+                return btnPromotion;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Promotion"
+         */
+        private ICommand btnFacture;
+        public ICommand BtnFacture
+        {
+            get
+            {
+                if (btnFacture == null)
+                {
+                    btnFacture = new RelayCommand((window) =>
+                    {
+                        SelectedViewModel = new FactureViewModel();
+                    });
+                }
+                return btnFacture;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Consulter Promotion"
+         */
+        private ICommand btnShowPromotion;
+        public ICommand BtnShowPromotion
+        {
+            get
+            {
+                if (btnShowPromotion == null)
+                {
+                    btnShowPromotion = new RelayCommand( promotion_id =>
+                    {
+                        SelectedViewModel = new ShowPromotionViewModel( (int)promotion_id );
+                    });
+                }
+                return btnShowPromotion;
+            }
+        }
+
+        /**
+         * Commande sur le bouton "Ajouter Promotion"
+         */
+        private ICommand btnAddPromotion;
+        public ICommand BtnAddPromotion
+        {
+            get
+            {
+                if (btnAddPromotion == null)
+                {
+                    btnAddPromotion = new RelayCommand(window =>
+                    {
+                        SelectedViewModel = new AddPromotionViewModel();
+                    });
+                }
+                return btnAddPromotion;
             }
         }
 

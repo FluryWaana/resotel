@@ -30,7 +30,6 @@ namespace Resotel.ViewsModels
             Statuts.Add("");
             BedroomType       = bedroomRepository.GetBedroomType();
             BedroomType.Add(new bedroom_type());
-
         }
 
         //--------------------------------------------------------------------     

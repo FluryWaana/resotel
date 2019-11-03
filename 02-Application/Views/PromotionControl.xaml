@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="Resotel.Views.PromotionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Resotel.Views"
+             xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
+             xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch" 
+             Padding="10 0 10 0">
+    
+    <UserControl.DataContext>
+        <ViewsModels:PromotionViewModel/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolVisibilityConverter"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="42*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock HorizontalAlignment="Left"
+                   TextAlignment="Left"
+                   FontFamily="Segoe UI"
+                   FontSize="30"
+                   FontWeight="Light"
+                   Foreground="WhiteSmoke"
+                   Text="Liste des promotions" Grid.Row="0"/>
+
+        <Border BorderBrush="WhiteSmoke" Grid.Row="1" BorderThickness="1" Margin="0 0 0 15" />
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Promotions}"
+                  VerticalScrollBarVisibility="Visible"
+                  CanUserReorderColumns="False" 
+                  CanUserResizeColumns="False" 
+                  CanUserResizeRows="False" 
+                  CanUserSortColumns="True"
+                  AlternatingRowBackground="Chocolate"
+                  AlternationCount="2"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  AutoGenerateColumns="False">
+
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="DimGray" />
+                            <Setter Property="BorderBrush" Value="DimGray" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Option" Width="*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding feature.feature_name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Débute le..." Width="Auto" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding promotion_date_start, StringFormat='{}{0:dd/MM/yyyy}'}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Se termine le..." Width="Auto" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding promotion_date_end, StringFormat='{}{0:dd/MM/yyyy}'}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Réduction" Width="Auto" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="{Binding promotion_percentage}" TextAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="%" TextAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="3*" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Consulter" 
+                                    Width="100"
+                                    Command="{Binding DataContext.BtnShowPromotion, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                    CommandParameter="{Binding promotion_id}"
+                                    HorizontalAlignment="Right">
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
