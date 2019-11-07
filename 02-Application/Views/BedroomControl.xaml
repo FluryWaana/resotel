@@ -154,7 +154,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="Auto" IsReadOnly="True">
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" Visibility="{Binding DataContext.AuthVM.RoleNettoyage, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Converter={StaticResource BoolVisibilityConverter}}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <!-- Dans un datatemplate, pour accéder à un ICommand, il faut aller chercher le context du parent -->
