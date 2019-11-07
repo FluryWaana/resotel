@@ -57,16 +57,28 @@
             <TextBlock Grid.Row="3"  Grid.Column="1" Text="Date de début" />
             <TextBlock Grid.Row="4"  Grid.Column="1" Text="Date de fin" />
             <TextBlock Grid.Row="5"  Grid.Column="1" Text="Numéro de chambre" />
-            
+
             <ComboBox Grid.Row="1"  Grid.Column="2" 
                       ItemsSource="{Binding Clients}" 
-                      DisplayMemberPath="client_lastname"
                       SelectedValuePath="client_id"
-                      SelectedValue="{Binding Path=Client_id}"/>
+                      SelectedValue="{Binding Path=Client_id}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="client_firstname"/>
+                                    <Binding Path="client_lastname"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <ComboBox Grid.Row="2"  Grid.Column="2" 
                       ItemsSource="{Binding Bedroom_types}" 
                       DisplayMemberPath="bedroom_type1"
-                      SelectedValue=""/>
+                      SelectedValue="{Binding Bedroom_type}"/>
             <DatePicker Grid.Row="3"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_start" SelectedDate="{Binding Booking.booking_start}" />
             <DatePicker  Grid.Row="4"  Grid.Column="2"  HorizontalAlignment="Left" Name="booking_end" SelectedDate="{Binding Booking.booking_end}" />
             <ComboBox Grid.Row="5"  Grid.Column="2" 
@@ -78,7 +90,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="10" Grid.Column="2" HorizontalAlignment="Center">
                 <Button Command="{Binding BtnAddBooking}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesomeIcon SolidIcon="Save"  Foreground="White" Height="16"  />
+                        <fa:FontAwesomeIcon SolidIcon="Save"  Foreground="White" Height="16" />
                         <TextBlock Text="Enregistrer" Margin="5 0 0 0" />
                     </StackPanel>
                 </Button>

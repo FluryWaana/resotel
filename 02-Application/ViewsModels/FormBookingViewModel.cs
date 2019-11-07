@@ -16,14 +16,11 @@ namespace Resotel.ViewsModels
          * Repository Booking
          */
         private BookingRepository bookingRepository = new BookingRepository();
+
         /**
          * Repository Bedroom
          */
         private BedroomRepository bedroomRepository = new BedroomRepository();
-
-        
-
-        
 
         //--------------------------------------------------------------------
 
@@ -32,7 +29,12 @@ namespace Resotel.ViewsModels
          */
         public FormBookingViewModel()
         {
-            
+            // Création d'une réservation
+            Booking = new booking
+            {
+                booking_start = DateTime.Now,
+                booking_end = DateTime.Now
+            };
 
             // Récupération de la liste des clients
             Clients = bookingRepository.GetClients();
@@ -41,14 +43,7 @@ namespace Resotel.ViewsModels
             Bedroom_types = bookingRepository.GetBedroomType();
 
             // Récupération de la liste des chambres disponibles
-            Bedrooms = bookingRepository.GetBedrooms();
-
-            // Création d'une réservation
-            Booking = new booking
-            {
-                booking_start = DateTime.Now,
-                booking_end   = DateTime.Now
-            };
+            Bedrooms = bookingRepository.GetBedrooms( Booking.booking_start, Booking.booking_end, Bedroom_type );
         }
 
         //--------------------------------------------------------------------
@@ -163,8 +158,22 @@ namespace Resotel.ViewsModels
             }
         }
 
- 
 
+        private bedroom_type bedroom_type;
+        public bedroom_type Bedroom_type
+        {
+            get
+            {
+                return bedroom_type;
+            }
+
+            set
+            {
+                bedroom_type = value;
+                NotifyPropertyChanged("Bedroom_type");
+                Bedrooms = bookingRepository.GetBedrooms(Booking.booking_start, Booking.booking_end, Bedroom_type);
+            }
+        }
 
 
         //--------------------------------------------------------------------
@@ -186,17 +195,18 @@ namespace Resotel.ViewsModels
                     window =>
                     {
                         /**
-                         * TODO: Revoir conditions
+                         * .Date permet de comparer seulement la date sans l'heure
                          * Si pas de chambre, Si pas de client, Si la date start est inférieure à aujourd'hui,
                          * Si la date end est inférieure à aujourd'hui && inférieure à date end de start
                          * booking.bedroom_number == 0                     ||
                          * client_id              == 0                     ||
                          *  26/04/2016 < 27/04/2016
                          */
-                        if ( 
-                             
-                             booking.booking_start   < DateTime.Now          ||
-                             booking.booking_end     < booking.booking_start
+
+                        if ( client_id == 0                                          ||
+                             Beedroom_number == 0                                    ||
+                             booking.booking_start.Date < DateTime.Now.Date          ||
+                             booking.booking_end.Date   < booking.booking_start.Date
                            )
                         {
                             return false;

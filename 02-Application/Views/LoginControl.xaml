@@ -62,8 +62,7 @@
                 <PasswordBox Grid.Row="4"
                              Grid.Column="1" 
                              Margin="0,0,0,20"
-                             x:Name="passwordBox"
-                             Password="test"/>
+                             x:Name="passwordBox"/>
 
                 <TextBlock Grid.Row="5" Grid.ColumnSpan="2"
                            x:Name="loginStatut" 

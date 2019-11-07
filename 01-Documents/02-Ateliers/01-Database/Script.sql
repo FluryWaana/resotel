@@ -143,7 +143,9 @@ INSERT INTO `booking` (`booking_id`, `booking_start`, `booking_end`, `bedroom_nu
  ('10', '2019-11-26', '2019-11-26', '23', '2'),
  ('11', '2019-11-24', '2019-11-26', '25', '10'),
  ('12', '2019-10-26', '2019-10-26', '17', '11'),
- ('13', '2019-04-25', '2019-04-25', '17', '12');
+ ('13', '2019-12-08', '2019-12-09', '26', '12'),
+ ('14', '2019-12-08', '2019-12-08', '27', '3'),
+ ('15', '2019-12-08', '2019-12-08', '28', '4');
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 
 -- Listage de la structure de la table resotel. client
@@ -313,7 +315,8 @@ INSERT INTO `role` (`role_name`) VALUES
 	('hote d\'accueil'),
 	('responsable de l\'hygiène'),
 	('responsable de la restauration'),
-	('standardiste');
+	('standardiste'),
+	('administrateur');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 
 -- Listage de la structure de la table resotel. user
@@ -336,7 +339,8 @@ INSERT INTO `user` (`user_identifiant`, `user_password`, `user_lastname`, `user_
 	('henriette.dumans', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'dumans', 'henriette', 'hote d\'accueil'),
 	('harry.golade', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'golade', 'harry', 'hote d\'accueil'),
 	('marc.menager', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'menager', 'marc', 'responsable de l\'hygiène'),
-	('jean.bonnot', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'bonnot', 'jean', 'responsable de la restauration');
+	('jean.bonnot', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'bonnot', 'jean', 'responsable de la restauration'),
+	('admin', '$2b$10$iDW1/xOEXptqPSMT0YQ1Ue4IvCGGbv06NR8ZL4vDCT4O8TWCYzFD6', 'admin', 'admin', 'administrateur');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

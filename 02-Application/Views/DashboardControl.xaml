@@ -7,8 +7,8 @@
              xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:fa="clr-namespace:Meziantou.WpfFontAwesome;assembly=Meziantou.WpfFontAwesome"
-             mc:Ignorable="d"
-             DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}}" >
+             xmlns:ViewsModels="clr-namespace:Resotel.ViewsModels"
+             mc:Ignorable="d" >
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="LargeTileStyle" TargetType="Controls:Tile">
@@ -31,6 +31,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
+    <UserControl.DataContext>
+        <ViewsModels:DashboardViewModel/>
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100" />
@@ -49,6 +53,8 @@
                    Foreground="WhiteSmoke"
                    Text="Tableau de Bord" />
 
+        <DatePicker Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 200 0" Width="100" SelectedDate="{Binding DateSelected}" Language="fr"/>
+
         <WrapPanel Grid.Row="3"
                    Grid.Column="1"
                    MinWidth="812"
@@ -65,7 +71,7 @@
                            HorizontalContentAlignment="Stretch"
                            Style="{StaticResource LargeTileStyle}"
                            Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.TileShowFormBooking}">
-                <StackPanel Orientation ="Horizontal" Margin="20 0 0 0">
+                <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -132,29 +138,9 @@
                         <TextBlock Text="38" Grid.Row="2" Grid.Column="1" Margin="10 0 0 0"/>
                     </Grid>
                     <StackPanel Margin="170 0 0 0">
-                        <fa:FontAwesomeIcon FontSize="80"
-                                    SolidIcon="Utensils" />
+                        <fa:FontAwesomeIcon FontSize="80" SolidIcon="Utensils" />
                     </StackPanel>
                 </StackPanel>
-            </Controls:Tile>
-
-            <!--Tuile Finance-->
-            <Controls:Tile Title="Finance"
-                           Controls:ControlsHelper.MouseOverBorderBrush="Black"
-                           Background="DimGray"
-                           Style="{StaticResource LargeTileStyle}">
-                <fa:FontAwesomeIcon FontSize="50"
-                                    SolidIcon="Save" />
-            </Controls:Tile>
-
-            <!--Tuile People-->
-            <Controls:Tile Title="People"
-                           Controls:ControlsHelper.MouseOverBorderBrush="Black"
-                           Background="#D2691E"
-                           HorizontalTitleAlignment="Right"
-                           Style="{StaticResource LargeTileStyle}">
-                <fa:FontAwesomeIcon FontSize="50"
-                                    SolidIcon="Save" />
             </Controls:Tile>
         </WrapPanel>
     </Grid>
