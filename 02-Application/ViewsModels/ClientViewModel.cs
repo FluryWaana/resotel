@@ -123,6 +123,8 @@ namespace Resotel.ViewsModels
             }
         }
 
+        //--------------------------------------------------------------------
+
         /**
          * Ajoute un client
          * Ajoute l'evenement de suppression au client
@@ -134,6 +136,11 @@ namespace Resotel.ViewsModels
             listClient.Add(temp);
         }
 
+        //--------------------------------------------------------------------
+
+        /**
+         * Bouton ajouter un client
+         */
         private ICommand commandeNewClient;
         public ICommand CommandeNewClient
         {
@@ -144,6 +151,8 @@ namespace Resotel.ViewsModels
                     commandeNewClient = new RelayCommand((window) =>
                     {
                         listClient.Add( new FormClientViewModel(new client () ) );
+                        NotifyPropertyChanged("ListClient");
+                        observer.MoveCurrentToLast();
                     });
                 }
                 return commandeNewClient;

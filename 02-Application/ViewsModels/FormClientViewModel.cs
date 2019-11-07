@@ -17,6 +17,7 @@ namespace Resotel.ViewsModels
         *  Evenement de Suppression du client
         */
         public event EventHandler OnDeleted;
+
         /**
          *  Client
          */
@@ -61,6 +62,8 @@ namespace Resotel.ViewsModels
             ClientEvent?.Invoke(this, EventArgs.Empty);
         }
 
+        //-------------------------------------------------------------
+
         private ICommand addShowClient;
         public ICommand AddShowClient
         {
@@ -74,10 +77,14 @@ namespace Resotel.ViewsModels
                     },
                     (window) =>
                     {
-                        if (string.IsNullOrWhiteSpace(Client.client_lastname) || string.IsNullOrWhiteSpace(Client.client_firstname)
-                            || string.IsNullOrWhiteSpace(Client.client_address) || string.IsNullOrWhiteSpace(Client.client_city)
-                            || string.IsNullOrWhiteSpace(Client.client_postalCode) || string.IsNullOrWhiteSpace(Client.client_email)
-                            || string.IsNullOrWhiteSpace(Client.client_phone))
+                        if ( string.IsNullOrWhiteSpace(Client.client_lastname)     ||
+                             string.IsNullOrWhiteSpace(Client.client_firstname)    ||
+                             string.IsNullOrWhiteSpace(Client.client_address)      || 
+                             string.IsNullOrWhiteSpace(Client.client_city)         ||
+                             string.IsNullOrWhiteSpace(Client.client_postalCode)   ||
+                             string.IsNullOrWhiteSpace(Client.client_email)        ||
+                             string.IsNullOrWhiteSpace(Client.client_phone)        ||
+                             Client.client_postalCode.Length > 5 )
                         {
                             return false;
                         }

@@ -31,6 +31,13 @@
                    Foreground="WhiteSmoke"
                    Text="Liste des promotions" Grid.Row="0"/>
 
+        <Button Command="" Grid.Row="0" Width="200" HorizontalAlignment="Right">
+            <StackPanel Orientation="Horizontal">
+                <fa:FontAwesomeIcon SolidIcon="MoneyBill" Foreground="White" Height="14" />
+                <TextBlock Text="Nouvelle Promotion" Margin=" 5 0 0 0" />
+            </StackPanel>
+        </Button>
+
         <Border BorderBrush="WhiteSmoke" Grid.Row="1" BorderThickness="1" Margin="0 0 0 15" />
 
         <DataGrid Grid.Row="2" ItemsSource="{Binding Promotions}"
